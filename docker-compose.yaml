@@ -1,0 +1,81 @@
+services:
+  web:
+    container_name: travel_concierge
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - .:/var/www/
+      - static_file:/var/www/static
+      - media_file:/var/www/media
+      - ./config/credentials:/app/credentials
+    depends_on:
+      - db
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+      TZ: UTC
+      DEBUG: "True"
+      PRODUCTION: "False"
+      DB_ENGINE: django.db.backends.mysql
+      DB_NAME: travel_concierge
+      DB_USER: travel_concierge
+      DB_PASSWORD: travel_concierge
+      DB_HOST: travel_concierge_db
+      DB_PORT: "3306"
+      LOG_LEVEL: DEBUG
+      CORS_ALLOWED_ORIGINS: '["http://localhost:3000"]'
+      TMP_FOLDER_ROOT: /tmp/file_storage
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials/service-account-key.json
+      GOOGLE_CLOUD_API_KEY: ${GOOGLE_CLOUD_API_KEY}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+      GOOGLE_CLOUD_REGION: ${GOOGLE_CLOUD_REGION}
+    ports:
+      - 8001:8000  # Django app
+      - 5679:5678  # Debugpy
+      - 8002:8002  # ADK web server
+    networks:
+      - travel-concierge-network
+
+  db:
+    container_name: travel_concierge_db
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: travel_concierge
+      MYSQL_ROOT_PASSWORD: travel_concierge
+      MYSQL_USER: travel_concierge
+      MYSQL_PASSWORD: travel_concierge
+      TZ: UTC
+    ports:
+      - 3309:3306
+    networks:
+      - travel-concierge-network
+
+  server:
+    container_name: travel_concierge_server
+    build:
+      context: .
+      dockerfile: ./docker/server/Dockerfile
+    volumes:
+      - ./docker/server/config:/etc/nginx/conf.d
+      - static_file:/var/www/static
+      - media_file:/var/www/media
+    ports:
+      - 8010:80
+    depends_on:
+      - web
+      - db
+    networks:
+      - travel-concierge-network
+
+networks:
+  travel-concierge-network:
+    driver: bridge
+
+volumes:
+  static_file:
+  media_file:
+  mysql_data:

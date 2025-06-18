@@ -1,0 +1,7 @@
+# Environment variables
+.env
+
+# Credentials
+config/credentials/
+**/credentials/
+*.json
