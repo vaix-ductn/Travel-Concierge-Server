@@ -23,7 +23,7 @@ from travel_concierge.tools.memory import memorize
 
 
 itinerary_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="itinerary_agent",
     description="Create and persist a structured JSON representation of the itinerary",
     instruction=prompt.ITINERARY_AGENT_INSTR,
@@ -36,7 +36,7 @@ itinerary_agent = Agent(
 
 
 hotel_room_selection_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="hotel_room_selection_agent",
     description="Help users with the room choices for a hotel",
     instruction=prompt.HOTEL_ROOM_SELECTION_INSTR,
@@ -48,7 +48,7 @@ hotel_room_selection_agent = Agent(
 )
 
 hotel_search_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="hotel_search_agent",
     description="Help users find hotel around a specific geographic area",
     instruction=prompt.HOTEL_SEARCH_INSTR,
@@ -61,7 +61,7 @@ hotel_search_agent = Agent(
 
 
 flight_seat_selection_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="flight_seat_selection_agent",
     description="Help users with the seat choices",
     instruction=prompt.FLIGHT_SEAT_SELECTION_INSTR,
@@ -73,7 +73,7 @@ flight_seat_selection_agent = Agent(
 )
 
 flight_search_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="flight_search_agent",
     description="Help users find best flight deals",
     instruction=prompt.FLIGHT_SEARCH_INSTR,
@@ -86,7 +86,7 @@ flight_search_agent = Agent(
 
 
 planning_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="planning_agent",
     description="This agent helps with travel planning and itinerary creation",
     instruction=prompt.PLANNING_AGENT_INSTR,

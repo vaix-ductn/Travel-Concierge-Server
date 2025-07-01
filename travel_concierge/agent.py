@@ -48,7 +48,7 @@ def configure_genai():
 configure_genai()
 
 root_agent = Agent(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.0-flash-exp",
     name="root_agent",
     description="A Travel Conceirge using the services of multiple sub-agents",
     instruction=prompt.ROOT_AGENT_INSTR,
