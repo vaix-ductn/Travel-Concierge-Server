@@ -10031,3 +10031,2340 @@ Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
 Found model: models/gemini-2.0-flash-live-001
 [2025-06-16 23:53:55 +0000] [24] [ERROR] Worker (pid:104) was sent SIGKILL! Perhaps out of memory?
 [2025-06-16 23:53:55 +0000] [147] [INFO] Booting worker with pid: 147
+[2025-07-01 06:11:56 +0000] [25] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f91d1a27600>
+  on_reload: <function OnReload.on_reload at 0x7f91d1a27740>
+  when_ready: <function WhenReady.when_ready at 0x7f91d1a27880>
+  pre_fork: <function Prefork.pre_fork at 0x7f91d1a279c0>
+  post_fork: <function Postfork.post_fork at 0x7f91d1a27b00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f91d1a27c40>
+  worker_int: <function WorkerInt.worker_int at 0x7f91d1a27d80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f91d1a27ec0>
+  pre_exec: <function PreExec.pre_exec at 0x7f91d1a38040>
+  pre_request: <function PreRequest.pre_request at 0x7f91d1a38180>
+  post_request: <function PostRequest.post_request at 0x7f91d1a38220>
+  child_exit: <function ChildExit.child_exit at 0x7f91d1a38360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f91d1a384a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f91d1a385e0>
+  on_exit: <function OnExit.on_exit at 0x7f91d1a38720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f91d1a38900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-01 06:11:56 +0000] [25] [INFO] Starting gunicorn 21.2.0
+[2025-07-01 06:11:56 +0000] [25] [DEBUG] Arbiter booted
+[2025-07-01 06:11:56 +0000] [25] [INFO] Listening at: http://0.0.0.0:8000 (25)
+[2025-07-01 06:11:56 +0000] [25] [INFO] Using worker: sync
+[2025-07-01 06:11:56 +0000] [25] [DEBUG] 1 workers
+[2025-07-01 06:11:57 +0000] [45] [INFO] Booting worker with pid: 45
+[2025-07-01 06:16:50 +0000] [45] [DEBUG] Closing connection. 
+[2025-07-01 06:18:37 +0000] [45] [INFO] Worker reloading: /var/www/travel_concierge/agent.py modified
+[2025-07-01 06:18:37 +0000] [45] [INFO] Worker exiting (pid: 45)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:18:39 +0000] [107] [INFO] Booting worker with pid: 107
+[2025-07-01 06:19:07 +0000] [24] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fa7d50eb600>
+  on_reload: <function OnReload.on_reload at 0x7fa7d50eb740>
+  when_ready: <function WhenReady.when_ready at 0x7fa7d50eb880>
+  pre_fork: <function Prefork.pre_fork at 0x7fa7d50eb9c0>
+  post_fork: <function Postfork.post_fork at 0x7fa7d50ebb00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fa7d50ebc40>
+  worker_int: <function WorkerInt.worker_int at 0x7fa7d50ebd80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fa7d50ebec0>
+  pre_exec: <function PreExec.pre_exec at 0x7fa7d50f8040>
+  pre_request: <function PreRequest.pre_request at 0x7fa7d50f8180>
+  post_request: <function PostRequest.post_request at 0x7fa7d50f8220>
+  child_exit: <function ChildExit.child_exit at 0x7fa7d50f8360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fa7d50f84a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fa7d50f85e0>
+  on_exit: <function OnExit.on_exit at 0x7fa7d50f8720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fa7d50f8900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-01 06:19:07 +0000] [24] [INFO] Starting gunicorn 21.2.0
+[2025-07-01 06:19:07 +0000] [24] [DEBUG] Arbiter booted
+[2025-07-01 06:19:07 +0000] [24] [INFO] Listening at: http://0.0.0.0:8000 (24)
+[2025-07-01 06:19:07 +0000] [24] [INFO] Using worker: sync
+[2025-07-01 06:19:07 +0000] [24] [DEBUG] 1 workers
+[2025-07-01 06:19:07 +0000] [44] [INFO] Booting worker with pid: 44
+[2025-07-01 06:25:48 +0000] [44] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/inspiration/agent.py modified
+[2025-07-01 06:25:48 +0000] [44] [INFO] Worker exiting (pid: 44)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:25:50 +0000] [106] [INFO] Booting worker with pid: 106
+[2025-07-01 06:26:05 +0000] [106] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/planning/agent.py modified
+[2025-07-01 06:26:05 +0000] [106] [INFO] Worker exiting (pid: 106)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:26:07 +0000] [151] [INFO] Booting worker with pid: 151
+[2025-07-01 06:26:24 +0000] [151] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/planning/agent.py modified
+[2025-07-01 06:26:24 +0000] [151] [INFO] Worker exiting (pid: 151)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:26:26 +0000] [196] [INFO] Booting worker with pid: 196
+[2025-07-01 06:26:40 +0000] [196] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/booking/agent.py modified
+[2025-07-01 06:26:40 +0000] [196] [INFO] Worker exiting (pid: 196)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:26:43 +0000] [241] [INFO] Booting worker with pid: 241
+[2025-07-01 06:27:00 +0000] [241] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/in_trip/agent.py modified
+[2025-07-01 06:27:00 +0000] [241] [INFO] Worker exiting (pid: 241)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:27:02 +0000] [287] [INFO] Booting worker with pid: 287
+[2025-07-01 06:27:18 +0000] [287] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/pre_trip/agent.py modified
+[2025-07-01 06:27:18 +0000] [287] [INFO] Worker exiting (pid: 287)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 06:27:20 +0000] [332] [INFO] Booting worker with pid: 332
+[2025-07-01 06:28:02 +0000] [24] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fab91f7b600>
+  on_reload: <function OnReload.on_reload at 0x7fab91f7b740>
+  when_ready: <function WhenReady.when_ready at 0x7fab91f7b880>
+  pre_fork: <function Prefork.pre_fork at 0x7fab91f7b9c0>
+  post_fork: <function Postfork.post_fork at 0x7fab91f7bb00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fab91f7bc40>
+  worker_int: <function WorkerInt.worker_int at 0x7fab91f7bd80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fab91f7bec0>
+  pre_exec: <function PreExec.pre_exec at 0x7fab91f88040>
+  pre_request: <function PreRequest.pre_request at 0x7fab91f88180>
+  post_request: <function PostRequest.post_request at 0x7fab91f88220>
+  child_exit: <function ChildExit.child_exit at 0x7fab91f88360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fab91f884a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fab91f885e0>
+  on_exit: <function OnExit.on_exit at 0x7fab91f88720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fab91f88900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-01 06:28:02 +0000] [24] [INFO] Starting gunicorn 21.2.0
+[2025-07-01 06:28:02 +0000] [24] [DEBUG] Arbiter booted
+[2025-07-01 06:28:02 +0000] [24] [INFO] Listening at: http://0.0.0.0:8000 (24)
+[2025-07-01 06:28:02 +0000] [24] [INFO] Using worker: sync
+[2025-07-01 06:28:02 +0000] [24] [DEBUG] 1 workers
+[2025-07-01 06:28:02 +0000] [44] [INFO] Booting worker with pid: 44
+[2025-07-01 09:48:08 +0000] [24] [CRITICAL] WORKER TIMEOUT (pid:44)
+[2025-07-01 09:48:08 +0000] [44] [INFO] Worker exiting (pid: 44)
+[2025-07-01 09:48:09 +0000] [24] [ERROR] Worker (pid:44) was sent SIGKILL! Perhaps out of memory?
+[2025-07-01 09:48:10 +0000] [104] [INFO] Booting worker with pid: 104
+[2025-07-01 11:13:29 +0000] [24] [CRITICAL] WORKER TIMEOUT (pid:104)
+[2025-07-01 11:13:29 +0000] [104] [INFO] Worker exiting (pid: 104)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 11:13:30 +0000] [24] [ERROR] Worker (pid:104) was sent SIGKILL! Perhaps out of memory?
+[2025-07-01 11:13:30 +0000] [148] [INFO] Booting worker with pid: 148
+[2025-07-01 12:10:25 +0000] [148] [INFO] Worker reloading: /var/www/travel_concierge/agent.py modified
+[2025-07-01 12:10:25 +0000] [148] [INFO] Worker exiting (pid: 148)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 12:10:28 +0000] [196] [INFO] Booting worker with pid: 196
+[2025-07-01 12:11:21 +0000] [24] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f6bfacc36a0>
+  on_reload: <function OnReload.on_reload at 0x7f6bfacc37e0>
+  when_ready: <function WhenReady.when_ready at 0x7f6bfacc3920>
+  pre_fork: <function Prefork.pre_fork at 0x7f6bfacc3a60>
+  post_fork: <function Postfork.post_fork at 0x7f6bfacc3ba0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f6bfacc3ce0>
+  worker_int: <function WorkerInt.worker_int at 0x7f6bfacc3e20>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f6bfacc3f60>
+  pre_exec: <function PreExec.pre_exec at 0x7f6bfad000e0>
+  pre_request: <function PreRequest.pre_request at 0x7f6bfad00220>
+  post_request: <function PostRequest.post_request at 0x7f6bfad002c0>
+  child_exit: <function ChildExit.child_exit at 0x7f6bfad00400>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f6bfad00540>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f6bfad00680>
+  on_exit: <function OnExit.on_exit at 0x7f6bfad007c0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f6bfad009a0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-01 12:11:21 +0000] [24] [INFO] Starting gunicorn 21.2.0
+[2025-07-01 12:11:21 +0000] [24] [DEBUG] Arbiter booted
+[2025-07-01 12:11:21 +0000] [24] [INFO] Listening at: http://0.0.0.0:8000 (24)
+[2025-07-01 12:11:21 +0000] [24] [INFO] Using worker: sync
+[2025-07-01 12:11:21 +0000] [24] [DEBUG] 1 workers
+[2025-07-01 12:11:21 +0000] [44] [INFO] Booting worker with pid: 44
+[2025-07-01 12:15:19 +0000] [44] [INFO] Worker reloading: /var/www/travel_concierge/agent.py modified
+[2025-07-01 12:15:19 +0000] [44] [INFO] Worker exiting (pid: 44)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-01 12:15:24 +0000] [108] [INFO] Booting worker with pid: 108
+[2025-07-02 00:12:58 +0000] [30] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f547b317600>
+  on_reload: <function OnReload.on_reload at 0x7f547b317740>
+  when_ready: <function WhenReady.when_ready at 0x7f547b317880>
+  pre_fork: <function Prefork.pre_fork at 0x7f547b3179c0>
+  post_fork: <function Postfork.post_fork at 0x7f547b317b00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f547b317c40>
+  worker_int: <function WorkerInt.worker_int at 0x7f547b317d80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f547b317ec0>
+  pre_exec: <function PreExec.pre_exec at 0x7f547b320040>
+  pre_request: <function PreRequest.pre_request at 0x7f547b320180>
+  post_request: <function PostRequest.post_request at 0x7f547b320220>
+  child_exit: <function ChildExit.child_exit at 0x7f547b320360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f547b3204a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f547b3205e0>
+  on_exit: <function OnExit.on_exit at 0x7f547b320720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f547b320900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-02 00:12:58 +0000] [30] [INFO] Starting gunicorn 21.2.0
+[2025-07-02 00:12:58 +0000] [30] [DEBUG] Arbiter booted
+[2025-07-02 00:12:58 +0000] [30] [INFO] Listening at: http://0.0.0.0:8000 (30)
+[2025-07-02 00:12:58 +0000] [30] [INFO] Using worker: sync
+[2025-07-02 00:12:58 +0000] [30] [DEBUG] 1 workers
+[2025-07-02 00:12:58 +0000] [50] [INFO] Booting worker with pid: 50
+[2025-07-02 04:04:49 +0000] [30] [CRITICAL] WORKER TIMEOUT (pid:50)
+[2025-07-02 04:04:49 +0000] [50] [INFO] Worker exiting (pid: 50)
+[2025-07-02 04:04:50 +0000] [30] [ERROR] Worker (pid:50) was sent SIGKILL! Perhaps out of memory?
+[2025-07-02 04:04:52 +0000] [107] [INFO] Booting worker with pid: 107
+[2025-07-02 04:50:14 +0000] [28] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fa059f57600>
+  on_reload: <function OnReload.on_reload at 0x7fa059f57740>
+  when_ready: <function WhenReady.when_ready at 0x7fa059f57880>
+  pre_fork: <function Prefork.pre_fork at 0x7fa059f579c0>
+  post_fork: <function Postfork.post_fork at 0x7fa059f57b00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fa059f57c40>
+  worker_int: <function WorkerInt.worker_int at 0x7fa059f57d80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fa059f57ec0>
+  pre_exec: <function PreExec.pre_exec at 0x7fa059f68040>
+  pre_request: <function PreRequest.pre_request at 0x7fa059f68180>
+  post_request: <function PostRequest.post_request at 0x7fa059f68220>
+  child_exit: <function ChildExit.child_exit at 0x7fa059f68360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fa059f684a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fa059f685e0>
+  on_exit: <function OnExit.on_exit at 0x7fa059f68720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fa059f68900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-02 04:50:14 +0000] [28] [INFO] Starting gunicorn 21.2.0
+[2025-07-02 04:50:14 +0000] [28] [DEBUG] Arbiter booted
+[2025-07-02 04:50:14 +0000] [28] [INFO] Listening at: http://0.0.0.0:8000 (28)
+[2025-07-02 04:50:15 +0000] [28] [INFO] Using worker: sync
+[2025-07-02 04:50:15 +0000] [28] [DEBUG] 1 workers
+[2025-07-02 04:50:15 +0000] [48] [INFO] Booting worker with pid: 48
+[2025-07-02 07:26:48 +0000] [48] [INFO] Worker reloading: /var/www/config/settings.py modified
+[2025-07-02 07:26:49 +0000] [48] [INFO] Worker exiting (pid: 48)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 07:26:53 +0000] [97] [INFO] Booting worker with pid: 97
+[2025-07-02 07:27:09 +0000] [97] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/www/config/wsgi.py", line 11, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/usr/local/lib/python3.11/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.11/site-packages/django/apps/registry.py", line 116, in populate
+    app_config.import_models()
+  File "/usr/local/lib/python3.11/site-packages/django/apps/config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/www/travel_concierge/models.py", line 7, in <module>
+    class UserProfile(models.Model):
+  File "/var/www/travel_concierge/models.py", line 11, in UserProfile
+    id = models.UUIDField(primary_key=True, default=uuid.uuid7, editable=False)
+                                                    ^^^^^^^^^^
+AttributeError: module 'uuid' has no attribute 'uuid7'
+[2025-07-02 07:27:09 +0000] [97] [INFO] Worker exiting (pid: 97)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 07:27:11 +0000] [28] [ERROR] Worker (pid:97) exited with code 3
+[2025-07-02 07:27:11 +0000] [28] [ERROR] Shutting down: Master
+[2025-07-02 07:27:11 +0000] [28] [ERROR] Reason: Worker failed to boot.
+[2025-07-02 07:28:41 +0000] [24] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f2f85d87600>
+  on_reload: <function OnReload.on_reload at 0x7f2f85d87740>
+  when_ready: <function WhenReady.when_ready at 0x7f2f85d87880>
+  pre_fork: <function Prefork.pre_fork at 0x7f2f85d879c0>
+  post_fork: <function Postfork.post_fork at 0x7f2f85d87b00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f2f85d87c40>
+  worker_int: <function WorkerInt.worker_int at 0x7f2f85d87d80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f2f85d87ec0>
+  pre_exec: <function PreExec.pre_exec at 0x7f2f85d90040>
+  pre_request: <function PreRequest.pre_request at 0x7f2f85d90180>
+  post_request: <function PostRequest.post_request at 0x7f2f85d90220>
+  child_exit: <function ChildExit.child_exit at 0x7f2f85d90360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f2f85d904a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f2f85d905e0>
+  on_exit: <function OnExit.on_exit at 0x7f2f85d90720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f2f85d90900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-02 07:28:41 +0000] [24] [INFO] Starting gunicorn 21.2.0
+[2025-07-02 07:28:41 +0000] [24] [DEBUG] Arbiter booted
+[2025-07-02 07:28:41 +0000] [24] [INFO] Listening at: http://0.0.0.0:8000 (24)
+[2025-07-02 07:28:41 +0000] [24] [INFO] Using worker: sync
+[2025-07-02 07:28:41 +0000] [24] [DEBUG] 1 workers
+[2025-07-02 07:28:41 +0000] [44] [INFO] Booting worker with pid: 44
+[2025-07-02 07:28:54 +0000] [44] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/www/config/wsgi.py", line 11, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/usr/local/lib/python3.11/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.11/site-packages/django/apps/registry.py", line 116, in populate
+    app_config.import_models()
+  File "/usr/local/lib/python3.11/site-packages/django/apps/config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/www/travel_concierge/models.py", line 7, in <module>
+    class UserProfile(models.Model):
+  File "/var/www/travel_concierge/models.py", line 11, in UserProfile
+    id = models.UUIDField(primary_key=True, default=uuid.uuid7, editable=False)
+                                                    ^^^^^^^^^^
+AttributeError: module 'uuid' has no attribute 'uuid7'
+[2025-07-02 07:28:54 +0000] [44] [INFO] Worker exiting (pid: 44)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 07:28:56 +0000] [24] [ERROR] Worker (pid:44) exited with code 3
+[2025-07-02 07:28:56 +0000] [24] [ERROR] Shutting down: Master
+[2025-07-02 07:28:56 +0000] [24] [ERROR] Reason: Worker failed to boot.
+[2025-07-02 07:30:17 +0000] [24] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fa22135b600>
+  on_reload: <function OnReload.on_reload at 0x7fa22135b740>
+  when_ready: <function WhenReady.when_ready at 0x7fa22135b880>
+  pre_fork: <function Prefork.pre_fork at 0x7fa22135b9c0>
+  post_fork: <function Postfork.post_fork at 0x7fa22135bb00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fa22135bc40>
+  worker_int: <function WorkerInt.worker_int at 0x7fa22135bd80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fa22135bec0>
+  pre_exec: <function PreExec.pre_exec at 0x7fa221364040>
+  pre_request: <function PreRequest.pre_request at 0x7fa221364180>
+  post_request: <function PostRequest.post_request at 0x7fa221364220>
+  child_exit: <function ChildExit.child_exit at 0x7fa221364360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fa2213644a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fa2213645e0>
+  on_exit: <function OnExit.on_exit at 0x7fa221364720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fa221364900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-02 07:30:17 +0000] [24] [INFO] Starting gunicorn 21.2.0
+[2025-07-02 07:30:17 +0000] [24] [DEBUG] Arbiter booted
+[2025-07-02 07:30:17 +0000] [24] [INFO] Listening at: http://0.0.0.0:8000 (24)
+[2025-07-02 07:30:17 +0000] [24] [INFO] Using worker: sync
+[2025-07-02 07:30:17 +0000] [24] [DEBUG] 1 workers
+[2025-07-02 07:30:17 +0000] [44] [INFO] Booting worker with pid: 44
+[2025-07-02 07:35:01 +0000] [44] [INFO] Worker reloading: /var/www/travel_concierge/models.py modified
+[2025-07-02 07:35:01 +0000] [44] [INFO] Worker exiting (pid: 44)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 07:35:04 +0000] [91] [INFO] Booting worker with pid: 91
+[2025-07-02 07:44:48 +0000] [91] [INFO] Worker reloading: /var/www/config/settings.py modified
+[2025-07-02 07:44:48 +0000] [91] [INFO] Worker exiting (pid: 91)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 07:44:50 +0000] [137] [INFO] Booting worker with pid: 137
+[2025-07-02 07:45:32 +0000] [137] [INFO] Worker reloading: /var/www/travel_concierge/models.py modified
+[2025-07-02 07:45:32 +0000] [137] [INFO] Worker exiting (pid: 137)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 07:45:34 +0000] [183] [INFO] Booting worker with pid: 183
+[2025-07-02 08:09:03 +0000] [29] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f3f3435b600>
+  on_reload: <function OnReload.on_reload at 0x7f3f3435b740>
+  when_ready: <function WhenReady.when_ready at 0x7f3f3435b880>
+  pre_fork: <function Prefork.pre_fork at 0x7f3f3435b9c0>
+  post_fork: <function Postfork.post_fork at 0x7f3f3435bb00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f3f3435bc40>
+  worker_int: <function WorkerInt.worker_int at 0x7f3f3435bd80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f3f3435bec0>
+  pre_exec: <function PreExec.pre_exec at 0x7f3f34398040>
+  pre_request: <function PreRequest.pre_request at 0x7f3f34398180>
+  post_request: <function PostRequest.post_request at 0x7f3f34398220>
+  child_exit: <function ChildExit.child_exit at 0x7f3f34398360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f3f343984a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f3f343985e0>
+  on_exit: <function OnExit.on_exit at 0x7f3f34398720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f3f34398900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-02 08:09:03 +0000] [29] [INFO] Starting gunicorn 21.2.0
+[2025-07-02 08:09:03 +0000] [29] [DEBUG] Arbiter booted
+[2025-07-02 08:09:03 +0000] [29] [INFO] Listening at: http://0.0.0.0:8000 (29)
+[2025-07-02 08:09:03 +0000] [29] [INFO] Using worker: sync
+[2025-07-02 08:09:03 +0000] [29] [DEBUG] 1 workers
+[2025-07-02 08:09:03 +0000] [49] [INFO] Booting worker with pid: 49
+[2025-07-02 08:16:47 +0000] [49] [DEBUG] GET /api/profile/
+Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
+Internal Server Error: /api/profile/
+[2025-07-02 08:17:06 +0000] [49] [DEBUG] GET /api/profile/
+Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
+Internal Server Error: /api/profile/
+[2025-07-02 08:29:45 +0000] [49] [DEBUG] GET /profile
+Not Found: /profile
+[2025-07-02 08:30:35 +0000] [49] [DEBUG] GET //api/profile
+Not Found: //api/profile
+[2025-07-02 08:30:43 +0000] [49] [DEBUG] GET /api/profile
+[2025-07-02 08:30:43 +0000] [49] [DEBUG] GET /api/profile/
+Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
+Internal Server Error: /api/profile/
+[2025-07-02 08:42:55 +0000] [49] [DEBUG] GET /api/profile
+[2025-07-02 08:42:55 +0000] [49] [DEBUG] GET /api/profile/
+Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
+Internal Server Error: /api/profile/
+[2025-07-02 08:42:57 +0000] [49] [DEBUG] GET /api/profile
+[2025-07-02 08:42:57 +0000] [49] [DEBUG] GET /api/profile/
+Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
+Internal Server Error: /api/profile/
+[2025-07-02 09:42:57 +0000] [29] [CRITICAL] WORKER TIMEOUT (pid:49)
+[2025-07-02 09:42:57 +0000] [49] [INFO] Worker exiting (pid: 49)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 09:42:58 +0000] [29] [ERROR] Worker (pid:49) was sent SIGKILL! Perhaps out of memory?
+[2025-07-02 09:42:58 +0000] [332] [INFO] Booting worker with pid: 332
+[2025-07-02 10:43:13 +0000] [29] [CRITICAL] WORKER TIMEOUT (pid:332)
+[2025-07-02 10:43:13 +0000] [332] [INFO] Worker exiting (pid: 332)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 10:43:14 +0000] [29] [ERROR] Worker (pid:332) was sent SIGKILL! Perhaps out of memory?
+[2025-07-02 10:43:14 +0000] [378] [INFO] Booting worker with pid: 378
+[2025-07-02 11:13:08 +0000] [378] [DEBUG] GET /api/profile
+[2025-07-02 11:13:08 +0000] [378] [DEBUG] GET /api/profile/
+[2025-07-02 11:17:36 +0000] [378] [INFO] Worker reloading: /var/www/user_manager/views.py modified
+[2025-07-02 11:17:36 +0000] [378] [INFO] Worker exiting (pid: 378)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 11:17:39 +0000] [424] [INFO] Booting worker with pid: 424
+[2025-07-02 11:19:36 +0000] [424] [DEBUG] GET /api/profile/%7B%7B114c3e87-efc3-44cc-8662-84cb9850ccdb%7D%7D
+Not Found: /api/profile/{{114c3e87-efc3-44cc-8662-84cb9850ccdb}}
+[2025-07-02 11:22:16 +0000] [424] [INFO] Worker reloading: /var/www/user_manager/models.py modified
+[2025-07-02 11:22:16 +0000] [424] [INFO] Worker exiting (pid: 424)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-02 11:22:18 +0000] [470] [INFO] Booting worker with pid: 470
+[2025-07-02 11:39:36 +0000] [24] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fcdea973600>
+  on_reload: <function OnReload.on_reload at 0x7fcdea973740>
+  when_ready: <function WhenReady.when_ready at 0x7fcdea973880>
+  pre_fork: <function Prefork.pre_fork at 0x7fcdea9739c0>
+  post_fork: <function Postfork.post_fork at 0x7fcdea973b00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fcdea973c40>
+  worker_int: <function WorkerInt.worker_int at 0x7fcdea973d80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fcdea973ec0>
+  pre_exec: <function PreExec.pre_exec at 0x7fcdea980040>
+  pre_request: <function PreRequest.pre_request at 0x7fcdea980180>
+  post_request: <function PostRequest.post_request at 0x7fcdea980220>
+  child_exit: <function ChildExit.child_exit at 0x7fcdea980360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fcdea9804a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fcdea9805e0>
+  on_exit: <function OnExit.on_exit at 0x7fcdea980720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fcdea980900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-02 11:39:36 +0000] [24] [INFO] Starting gunicorn 21.2.0
+[2025-07-02 11:39:36 +0000] [24] [DEBUG] Arbiter booted
+[2025-07-02 11:39:36 +0000] [24] [INFO] Listening at: http://0.0.0.0:8000 (24)
+[2025-07-02 11:39:36 +0000] [24] [INFO] Using worker: sync
+[2025-07-02 11:39:36 +0000] [24] [DEBUG] 1 workers
+[2025-07-02 11:39:37 +0000] [44] [INFO] Booting worker with pid: 44
+[2025-07-02 11:42:34 +0000] [44] [DEBUG] GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb
+[2025-07-02 11:42:34 +0000] [44] [DEBUG] GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb/
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)

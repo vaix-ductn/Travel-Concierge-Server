@@ -1,0 +1,35 @@
+[
+    {
+        "model": "travel_concierge.userprofile",
+        "fields": {
+            "username": "Alan Love",
+            "email": "alanlovelq@gmail.com",
+            "password_hash": "pbkdf2_sha256$600000$defaultsalt$defaulthash",
+            "address": "Ha Noi, Viet Nam",
+            "interests": "Travel, Photography, Food",
+            "avatar_url": null,
+            "passport_nationality": "Vietnamese",
+            "seat_preference": "window",
+            "food_preference": "Japanese cuisine - Ramen, Sushi, Sashimi",
+            "allergies": [],
+            "likes": [
+                "temples",
+                "beaches",
+                "mountains",
+                "museums",
+                "nightlife",
+                "hiking",
+                "hot springs",
+                "beautiful scenery"
+            ],
+            "dislikes": [
+                "remote locations",
+                "dangerous areas",
+                "places unsuitable for families with small children"
+            ],
+            "price_sensitivity": ["mid-range"],
+            "home_address": "2-chōme-40-2 Harayama, Midori Ward, Saitama, 336-0931",
+            "local_prefer_mode": "drive"
+        }
+    }
+]

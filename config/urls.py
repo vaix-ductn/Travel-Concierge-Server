@@ -6,5 +6,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('travel_concierge.urls')),
+    path('api/', include('user_manager.urls')),  # User profile APIs
+    path('api/', include('travel_concierge.urls')),  # Other travel concierge APIs
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

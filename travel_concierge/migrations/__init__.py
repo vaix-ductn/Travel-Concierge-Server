@@ -1,0 +1,1 @@
+# Migrations module for travel_concierge app

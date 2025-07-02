@@ -1,0 +1,204 @@
+{
+  "state": {
+        "user_profile" : {
+      "passport_nationality" : "Vietnamese",
+      "seat_preference": "window",
+      "food_preference": "Japanese cuisine - Ramen, Sushi, Sashimi",
+      "allergies": [],
+      "likes": ["temples", "beaches", "mountains", "museums", "nightlife", "hiking", "hot springs", "beautiful scenery"],
+      "dislikes": ["remote locations", "dangerous areas", "places unsuitable for families with small children"],
+      "price_sensitivity": ["mid-range"],
+      "home":
+      {
+        "event_type": "home",
+        "address": "2-chōme-40-2 Harayama, Midori Ward, Saitama, 336-0931",
+        "local_prefer_mode": "drive"
+      }
+    },
+    "itinerary": {
+      "trip_name": "Family Trip to Historic Kyoto",
+      "start_date": "2025-07-15",
+      "end_date": "2025-07-17",
+      "origin": "Tokyo",
+      "destination": "Kyoto",
+      "days": [
+        {
+          "day_number": 1,
+          "date": "2025-07-15",
+          "events": [
+            {
+              "event_type": "flight",
+              "description": "Flight from Tokyo Haneda to Osaka Itami",
+              "flight_number": "JL119",
+              "departure_airport": "HND",
+              "arrival_airport": "ITM",
+              "departure_time": "08:30",
+              "boarding_time": "08:00",
+              "seat_number": "12A",
+              "booking_required": true,
+              "booking_id": "JL-789-KYO"
+            },
+            {
+              "event_type": "visit",
+              "description": "Visit Kiyomizu-dera Temple",
+              "location": {
+                "name": "Kiyomizu-dera Temple",
+                "address": "1-294 Kiyomizu, Higashiyama Ward, Kyoto, 605-0862",
+                "latitude": "34.9949",
+                "longitude": "135.7851"
+              },
+              "start_time": "13:00",
+              "end_time": "15:30",
+              "booking_required": false
+            },
+            {
+              "event_type": "visit",
+              "description": "Walk through Historic Higashiyama District",
+              "location": {
+                "name": "Higashiyama District",
+                "address": "Higashiyama Ward, Kyoto",
+                "latitude": "34.9980",
+                "longitude": "135.7836"
+              },
+              "start_time": "15:30",
+              "end_time": "17:00",
+              "booking_required": false
+            },
+            {
+              "event_type": "visit",
+              "description": "Traditional Kaiseki Dinner",
+              "location": {
+                "name": "Kikunoi Restaurant",
+                "address": "459 Shimokawara-cho, Higashiyama Ward, Kyoto, 605-0825",
+                "latitude": "34.9961",
+                "longitude": "135.7797"
+              },
+              "start_time": "18:30",
+              "end_time": "20:30",
+              "booking_required": true,
+              "booking_id": "KIK-456-DIN"
+            }
+          ]
+        },
+        {
+          "day_number": 2,
+          "date": "2025-07-16",
+          "events": [
+            {
+              "event_type": "visit",
+              "description": "Explore Fushimi Inari Shrine",
+              "location": {
+                "name": "Fushimi Inari Taisha",
+                "address": "68 Fukakusa Yabunouchicho, Fushimi Ward, Kyoto, 612-0882",
+                "latitude": "34.9671",
+                "longitude": "135.7727"
+              },
+              "start_time": "09:00",
+              "end_time": "12:00",
+              "booking_required": false
+            },
+            {
+              "event_type": "visit",
+              "description": "Family-friendly Bamboo Grove Walk",
+              "location": {
+                "name": "Arashiyama Bamboo Grove",
+                "address": "Arashiyama, Ukyo Ward, Kyoto, 616-8394",
+                "latitude": "35.0170",
+                "longitude": "135.6718"
+              },
+              "start_time": "14:00",
+              "end_time": "15:30",
+              "booking_required": false
+            },
+            {
+              "event_type": "visit",
+              "description": "Visit Tenryu-ji Temple and Gardens",
+              "location": {
+                "name": "Tenryu-ji Temple",
+                "address": "68 Susukinobaba-cho, Tenryu-ji, Ukyo Ward, Kyoto, 616-8385",
+                "latitude": "35.0155",
+                "longitude": "135.6739"
+              },
+              "start_time": "15:30",
+              "end_time": "17:00",
+              "booking_required": true,
+              "booking_id": "TEN-789-VIS"
+            },
+            {
+              "event_type": "visit",
+              "description": "Family Dinner at Ramen Restaurant",
+              "location": {
+                "name": "Ippudo Ramen Kyoto",
+                "address": "Kyoto Station Building, Karasuma-dori Shiokoji-sagaru, Shimogyo Ward, Kyoto",
+                "latitude": "34.9858",
+                "longitude": "135.7581"
+              },
+              "start_time": "18:30",
+              "end_time": "19:30",
+              "booking_required": false
+            }
+          ]
+        },
+        {
+          "day_number": 3,
+          "date": "2025-07-17",
+          "events": [
+            {
+              "event_type": "visit",
+              "description": "Visit Kyoto National Museum",
+              "location": {
+                "name": "Kyoto National Museum",
+                "address": "527 Chayacho, Higashiyama Ward, Kyoto, 605-0931",
+                "latitude": "34.9880",
+                "longitude": "135.7722"
+              },
+              "start_time": "10:00",
+              "end_time": "12:00",
+              "booking_required": true,
+              "booking_id": "KNM-123-MUS"
+            },
+            {
+              "event_type": "visit",
+              "description": "Last-minute Souvenir Shopping at Kyoto Station",
+              "location": {
+                "name": "Kyoto Station",
+                "address": "Karasuma-dori Shiokoji-sagaru, Shimogyo Ward, Kyoto, 600-8216",
+                "latitude": "34.9858",
+                "longitude": "135.7581"
+              },
+              "start_time": "13:00",
+              "end_time": "14:30",
+              "booking_required": false
+            },
+            {
+              "event_type":"flight",
+              "description": "Return Flight from Osaka Itami to Tokyo Haneda",
+              "flight_number": "JL128",
+              "departure_airport": "ITM",
+              "arrival_airport": "HND",
+              "departure_time": "17:30",
+              "boarding_time": "17:00",
+              "seat_number": "12B",
+              "booking_required": true,
+              "booking_id": "JL-321-RTN"
+            }
+          ]
+        }
+      ]
+    },
+    "origin": "Tokyo",
+    "destination": "Kyoto",
+    "start_date": "2025-07-15",
+    "end_date": "2025-07-17",
+    "outbound_flight_selection" : "",
+    "outbound_seat_number" : "",
+    "return_flight_selection" : "",
+    "return_seat_number" : "",
+    "hotel_selection" : "",
+    "room_selection" : "",
+    "poi" : "",
+    "itinerary_datetime" : "",
+    "itinerary_start_date" : "2025-06-15",
+    "itinerary_end_date" : "2025-06-17"
+  }
+}
