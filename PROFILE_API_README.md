@@ -188,11 +188,11 @@ python manage.py migrate
 ### 2. Load Sample Data
 
 ```bash
-# Sử dụng management command
-python manage.py load_sample_profiles
+# Sử dụng seed_data command (recommended)
+python manage.py seed_data
 
-# Hoặc sử dụng fixtures
-python manage.py loaddata travel_concierge/fixtures/sample_profiles.json
+# Force recreate nếu users đã tồn tại
+python manage.py seed_data --force
 ```
 
 ### 3. Docker Setup

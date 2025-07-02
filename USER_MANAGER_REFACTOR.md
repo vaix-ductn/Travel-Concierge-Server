@@ -30,7 +30,7 @@ user_manager/
     ├── __init__.py
     └── commands/
         ├── __init__.py
-        └── load_user_profiles.py  # Sample data command
+        └── seed_data.py  # Comprehensive seed data command
 ```
 
 ### **App `travel_concierge`** (sau refactor)
@@ -73,7 +73,7 @@ travel_concierge/
 - ✅ **Moved**: Tất cả profile tests → `user_manager/tests.py`
 
 ### **6. Management Commands**
-- ✅ **Moved**: `load_sample_profiles` → `load_user_profiles`
+- ✅ **Moved**: `load_sample_profiles` → `seed_data` (improved version)
 
 ## 🚀 **MIGRATION STRATEGY**
 
@@ -137,8 +137,8 @@ python manage.py test
 # Old command (removed)
 python manage.py load_sample_profiles
 
-# New command
-python manage.py load_user_profiles [--force]
+# Current recommended command
+python manage.py seed_data [--force]
 ```
 
 ## 📚 **TÀI LIỆU LIÊN QUAN**
