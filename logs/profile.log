@@ -5,3 +5,6 @@ Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' do
 Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
 Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
 Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+Retrieved 4 user profiles
+Retrieved 4 user profiles

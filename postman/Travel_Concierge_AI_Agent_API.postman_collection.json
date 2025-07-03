@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "travel-concierge-ai-agent-api",
+		"name": "Travel Concierge AI Agent API",
+		"description": "Complete API collection for testing Travel Concierge AI Agent endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🤖 AI Agent Endpoints",
+			"item": [
+				{
+					"name": "Chat with Agent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Hello! I want to plan a trip to Tokyo, Japan for 7 days. Can you help me?\",\n    \"user_id\": \"test_user_001\",\n    \"session_id\": \"session_001\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/agent/chat/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"chat",
+								""
+							]
+						},
+						"description": "Send a chat message to the AI Agent for travel assistance"
+					}
+				},
+				{
+					"name": "Get Agent Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/agent/status/?include_sub_agents=true&include_tools_status=true&detailed_info=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"status",
+								""
+							],
+							"query": [
+								{
+									"key": "include_sub_agents",
+									"value": "true"
+								},
+								{
+									"key": "include_tools_status",
+									"value": "true"
+								},
+								{
+									"key": "detailed_info",
+									"value": "false"
+								}
+							]
+						},
+						"description": "Get comprehensive status information about the AI Agent system"
+					}
+				},
+				{
+					"name": "List Sub-Agents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/agent/sub-agents/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"sub-agents",
+								""
+							]
+						},
+						"description": "Get list of all available sub-agents (inspiration, planning, booking, etc.)"
+					}
+				},
+				{
+					"name": "Agent Interaction - Planning",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"interaction_type\": \"planning\",\n    \"parameters\": {\n        \"destination\": \"Tokyo\",\n        \"duration\": 7,\n        \"budget\": \"mid-range\",\n        \"travel_style\": \"cultural\"\n    },\n    \"user_context\": {\n        \"preferences\": [\"culture\", \"food\", \"temples\"],\n        \"group_size\": 2,\n        \"previous_visits\": []\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/agent/interaction/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"interaction",
+								""
+							]
+						},
+						"description": "Complex agent interaction for trip planning with specific parameters"
+					}
+				},
+				{
+					"name": "Agent Interaction - Inspiration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"interaction_type\": \"inspiration\",\n    \"parameters\": {\n        \"region\": \"Asia\",\n        \"season\": \"Spring\",\n        \"interests\": [\"culture\", \"nature\"]\n    },\n    \"user_context\": {\n        \"budget_range\": \"mid-range\",\n        \"travel_experience\": \"intermediate\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/agent/interaction/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"interaction",
+								""
+							]
+						},
+						"description": "Get travel inspiration with specific parameters"
+					}
+				}
+			]
+		},
+		{
+			"name": "🧳 Travel Service Endpoints",
+			"item": [
+				{
+					"name": "Get Travel Recommendations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"destination_type\": \"cultural\",\n    \"budget_range\": \"mid-range\",\n    \"travel_dates\": \"Spring 2024\",\n    \"group_size\": 2,\n    \"interests\": [\"temples\", \"food\", \"history\"],\n    \"special_requirements\": \"English-speaking guides preferred\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/recommendations/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recommendations",
+								""
+							]
+						},
+						"description": "Get travel recommendations based on user preferences"
+					}
+				},
+				{
+					"name": "Get Travel Recommendations - Beach",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"destination_type\": \"beach\",\n    \"budget_range\": \"luxury\",\n    \"travel_dates\": \"Summer 2024\",\n    \"group_size\": 4,\n    \"interests\": [\"relaxation\", \"water sports\", \"nightlife\"],\n    \"special_requirements\": \"Family-friendly resorts\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/recommendations/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recommendations",
+								""
+							]
+						},
+						"description": "Get beach destination recommendations for families"
+					}
+				},
+				{
+					"name": "Tools Status Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tools/status/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tools",
+								"status",
+								""
+							]
+						},
+						"description": "Check status of travel tools (Places API, Search, Memory)"
+					}
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health",
+								""
+							]
+						},
+						"description": "Simple health check for the entire system"
+					}
+				}
+			]
+		},
+		{
+			"name": "👤 User Management Endpoints",
+			"item": [
+				{
+					"name": "List User Profiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user_manager/profiles/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user_manager",
+								"profiles",
+								""
+							]
+						},
+						"description": "Get list of all user profiles"
+					}
+				},
+				{
+					"name": "Create User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test_traveler\",\n    \"email\": \"test@example.com\",\n    \"address\": \"123 Test Street, Test City\",\n    \"interests\": \"Travel, Photography, Culture\",\n    \"passport_nationality\": \"American\",\n    \"seat_preference\": \"window\",\n    \"food_preference\": \"No restrictions\",\n    \"allergies\": [\"peanuts\"],\n    \"likes\": [\"beaches\", \"mountains\", \"cultural sites\"],\n    \"dislikes\": [\"crowded places\"],\n    \"price_sensitivity\": \"medium\",\n    \"password\": \"test123456\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user_manager",
+								"profile",
+								"create",
+								""
+							]
+						},
+						"description": "Create a new user profile for testing"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔍 Validation Tests",
+			"item": [
+				{
+					"name": "Chat - Empty Message (Should Fail)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"\",\n    \"user_id\": \"test_user_validation\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/agent/chat/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"chat",
+								""
+							]
+						},
+						"description": "Test validation - empty message should return 400 error"
+					}
+				},
+				{
+					"name": "Recommendations - Invalid Type (Should Fail)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"destination_type\": \"invalid_type\",\n    \"budget_range\": \"mid-range\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/recommendations/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recommendations",
+								""
+							]
+						},
+						"description": "Test validation - invalid destination type should return 400 error"
+					}
+				},
+				{
+					"name": "Agent Interaction - Invalid Type (Should Fail)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"interaction_type\": \"invalid_interaction\",\n    \"parameters\": {}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/agent/interaction/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"agent",
+								"interaction",
+								""
+							]
+						},
+						"description": "Test validation - invalid interaction type should return 400 error"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		}
+	]
+}

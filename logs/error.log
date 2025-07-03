@@ -12500,3 +12500,82 @@ Found model: models/gemini-live-2.5-flash-preview
 [2025-07-03 01:18:46 +0000] [146] [INFO] Worker exiting (pid: 146)
 [2025-07-03 01:18:47 +0000] [24] [ERROR] Worker (pid:146) was sent SIGKILL! Perhaps out of memory?
 [2025-07-03 01:18:47 +0000] [190] [INFO] Booting worker with pid: 190
+[2025-07-03 01:46:02 +0000] [190] [DEBUG] GET /agent/chat/
+Not Found: /agent/chat/
+[2025-07-03 01:46:03 +0000] [190] [DEBUG] GET /favicon.ico
+Not Found: /favicon.ico
+[2025-07-03 01:50:06 +0000] [190] [DEBUG] GET /api/agent/sub-agents/
+[2025-07-03 01:52:34 +0000] [190] [DEBUG] GET /agent/sub-agents/
+Not Found: /agent/sub-agents/
+[2025-07-03 01:53:25 +0000] [190] [DEBUG] GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb
+[2025-07-03 01:53:25 +0000] [190] [DEBUG] GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb/
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+[2025-07-03 01:53:34 +0000] [190] [DEBUG] GET /api/agent/sub-agents/
+[2025-07-03 01:53:47 +0000] [190] [DEBUG] GET /api/user_manager/profiles/
+Not Found: /api/user_manager/profiles/
+[2025-07-03 01:54:14 +0000] [190] [DEBUG] GET /api/profiles/
+Retrieved 4 user profiles
+[2025-07-03 02:01:47 +0000] [190] [INFO] Worker reloading: /var/www/config/urls.py modified
+[2025-07-03 02:01:47 +0000] [190] [INFO] Worker exiting (pid: 190)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-03 02:01:51 +0000] [251] [INFO] Booting worker with pid: 251
+[2025-07-03 02:10:48 +0000] [251] [DEBUG] GET /api/user_manager/profiles/
+Retrieved 4 user profiles
