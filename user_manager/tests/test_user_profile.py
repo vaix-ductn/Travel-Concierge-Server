@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 import json
 import uuid
 
-from .models import UserProfile
+from ..models import UserProfile
 
 
 class UserProfileModelTest(TestCase):

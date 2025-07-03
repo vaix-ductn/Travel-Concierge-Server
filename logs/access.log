@@ -16,3 +16,5 @@
 172.18.0.1 - - [02/Jul/2025:11:19:37 +0000] "GET /api/profile/%7B%7B114c3e87-efc3-44cc-8662-84cb9850ccdb%7D%7D HTTP/1.1" 404 3380 "-" "PostmanRuntime/7.44.0"
 172.18.0.1 - - [02/Jul/2025:11:42:34 +0000] "GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb HTTP/1.1" 301 0 "-" "PostmanRuntime/7.44.0"
 172.18.0.1 - - [02/Jul/2025:11:42:34 +0000] "GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb/ HTTP/1.1" 200 790 "http://192.168.1.10:8001/api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb" "PostmanRuntime/7.44.0"
+172.18.0.1 - - [02/Jul/2025:14:20:31 +0000] "GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb HTTP/1.1" 301 0 "-" "PostmanRuntime/7.44.1"
+172.18.0.1 - - [02/Jul/2025:14:20:32 +0000] "GET /api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb/ HTTP/1.1" 200 790 "http://192.168.1.10:8001/api/profile/114c3e87-efc3-44cc-8662-84cb9850ccdb" "PostmanRuntime/7.44.1"

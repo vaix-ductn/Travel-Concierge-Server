@@ -3,7 +3,7 @@ from django.core.validators import EmailValidator
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 import re
-from .models import UserProfile
+from ..models.user_profile import UserProfile
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
