@@ -4,10 +4,20 @@ from .user_profile_validation import (
     ChangePasswordValidation,
     UserProfileListValidation
 )
+from .auth_validation import (
+    AuthValidation,
+    RateLimitValidation,
+    TokenValidation,
+    SecurityValidation
+)
 
 __all__ = [
     'UserProfileUpdateValidation',
     'UserProfileCreateValidation',
     'ChangePasswordValidation',
-    'UserProfileListValidation'
+    'UserProfileListValidation',
+    'AuthValidation',
+    'RateLimitValidation',
+    'TokenValidation',
+    'SecurityValidation'
 ]

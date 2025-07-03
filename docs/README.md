@@ -8,6 +8,9 @@ Welcome to the Travel Concierge project documentation! This folder contains all 
 - **[API_AGENT_TESTING_GUIDE.md](./API_AGENT_TESTING_GUIDE.md)** - Complete guide for testing AI Agent API endpoints
 - **[API_TESTING_GUIDE.md](./API_TESTING_GUIDE.md)** - General API testing documentation
 
+### 🔐 **Authentication & Security**
+- **[AUTHENTICATION_API_GUIDE.md](./AUTHENTICATION_API_GUIDE.md)** - Complete authentication API documentation with JWT, rate limiting, and security features
+
 ### 🔗 **URL & Routing Configuration**
 - **[URL_CONSISTENCY_UPDATE.md](./URL_CONSISTENCY_UPDATE.md)** - Latest URL structure consistency updates
 - **[URL_MAPPING_CHANGES.md](./URL_MAPPING_CHANGES.md)** - Historical URL mapping changes and fixes
@@ -25,9 +28,10 @@ Welcome to the Travel Concierge project documentation! This folder contains all 
 ## 🚀 **Quick Start Guides**
 
 ### **For Developers**
-1. Start with **[API_AGENT_TESTING_GUIDE.md](./API_AGENT_TESTING_GUIDE.md)** for API testing
-2. Review **[URL_CONSISTENCY_UPDATE.md](./URL_CONSISTENCY_UPDATE.md)** for current URL structure
-3. Check **[USER_MANAGER_REFACTOR.md](./USER_MANAGER_REFACTOR.md)** for app architecture
+1. Start with **[AUTHENTICATION_API_GUIDE.md](./AUTHENTICATION_API_GUIDE.md)** for authentication setup
+2. Continue with **[API_AGENT_TESTING_GUIDE.md](./API_AGENT_TESTING_GUIDE.md)** for API testing
+3. Review **[URL_CONSISTENCY_UPDATE.md](./URL_CONSISTENCY_UPDATE.md)** for current URL structure
+4. Check **[USER_MANAGER_REFACTOR.md](./USER_MANAGER_REFACTOR.md)** for app architecture
 
 ### **For API Testing**
 1. **[API_AGENT_TESTING_GUIDE.md](./API_AGENT_TESTING_GUIDE.md)** - Complete API testing guide
@@ -81,6 +85,7 @@ Welcome to the Travel Concierge project documentation! This folder contains all 
 ## 🔍 **Finding What You Need**
 
 ### **I want to...**
+- **Set up authentication** → [AUTHENTICATION_API_GUIDE.md](./AUTHENTICATION_API_GUIDE.md)
 - **Test the AI Agent API** → [API_AGENT_TESTING_GUIDE.md](./API_AGENT_TESTING_GUIDE.md)
 - **Understand URL structure** → [URL_CONSISTENCY_UPDATE.md](./URL_CONSISTENCY_UPDATE.md)
 - **Set up user profiles** → [PROFILE_API_README.md](./PROFILE_API_README.md)

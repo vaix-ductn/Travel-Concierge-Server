@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'user_manager',  # New user management app
+    'drf_yasg',  # Swagger documentation
+    'user_manager',  # User management app with authentication
     'travel_concierge',
 ]
 
@@ -108,6 +109,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# JWT Authentication settings
+JWT_SECRET = os.getenv('JWT_SECRET', 'your-super-secret-jwt-key-here-change-in-production')
+JWT_EXPIRATION = os.getenv('JWT_EXPIRATION', '24h')
+BCRYPT_ROUNDS = int(os.getenv('BCRYPT_ROUNDS', '12'))
+
+# Rate Limiting settings
+LOGIN_RATE_LIMIT_ATTEMPTS = int(os.getenv('LOGIN_RATE_LIMIT_ATTEMPTS', '5'))
+LOGIN_RATE_LIMIT_WINDOW = int(os.getenv('LOGIN_RATE_LIMIT_WINDOW', '900'))  # 15 minutes
+ACCOUNT_LOCKOUT_DURATION = int(os.getenv('ACCOUNT_LOCKOUT_DURATION', '1800'))  # 30 minutes
+
+# Cache configuration for rate limiting
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/1'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'KEY_PREFIX': 'travel_concierge',
+        'TIMEOUT': 300,
+    }
+}
 
 # CORS settings
 CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '["http://localhost:3000"]')
