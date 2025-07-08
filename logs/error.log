@@ -20298,3 +20298,14 @@ Unauthorized: /api/auth/login/
 [2025-07-08 03:10:24 +0000] [52] [DEBUG] GET /api/auth/verify/
 Unauthorized: /api/auth/verify/
 [2025-07-08 03:10:34 +0000] [52] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:25:04 +0000] [112] [DEBUG] GET /api/health
+[2025-07-08 03:25:06 +0000] [112] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:25:06 +0000] [112] [DEBUG] GET /api/auth/verify/
+[2025-07-08 03:25:06 +0000] [112] [DEBUG] GET /api/profile
+[2025-07-08 03:25:06 +0000] [112] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:25:08 +0000] [112] [DEBUG] GET /api/auth/verify/
+[2025-07-08 03:26:52 +0000] [112] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:33:39 +0000] [112] [INFO] Worker reloading: /var/www/travel_concierge/agent.py modified
+[2025-07-08 03:33:39 +0000] [112] [INFO] Worker exiting (pid: 112)
+[2025-07-08 03:34:09 +0000] [158] [INFO] Worker reloading: /var/www/config/settings.py modified
+[2025-07-08 03:34:09 +0000] [158] [INFO] Worker exiting (pid: 158)

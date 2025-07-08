@@ -31,6 +31,12 @@ from travel_concierge.sub_agents.pre_trip.agent import pre_trip_agent
 
 from travel_concierge.tools.memory import _load_precreated_itinerary
 
+# Disable OpenTelemetry to fix context detach errors
+os.environ.setdefault('OTEL_SDK_DISABLED', 'true')
+os.environ.setdefault('OTEL_TRACES_EXPORTER', 'none')
+os.environ.setdefault('OTEL_METRICS_EXPORTER', 'none')
+os.environ.setdefault('OTEL_LOGS_EXPORTER', 'none')
+
 # Configure Gemini API with retry logic
 def configure_genai():
     api_key = os.getenv('GOOGLE_CLOUD_API_KEY')

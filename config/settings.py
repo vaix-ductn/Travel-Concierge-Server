@@ -206,5 +206,16 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
+        # Suppress OpenTelemetry context warnings
+        'opentelemetry': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'google.adk': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
     },
 }
