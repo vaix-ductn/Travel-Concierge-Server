@@ -160,19 +160,6 @@ class SecurityValidation:
     """Security validation for various authentication scenarios."""
 
     @staticmethod
-    def validate_account_lockout(user):
-        """Check if user account is locked."""
-        if user.is_locked():
-            time_remaining = user.locked_until - timezone.now()
-            minutes_remaining = int(time_remaining.total_seconds() / 60)
-            raise serializers.ValidationError(
-                f"Account is locked. Try again in {minutes_remaining} minutes.",
-                code="ACCOUNT_LOCKED"
-            )
-
-        return True
-
-    @staticmethod
     def validate_user_exists(user):
         """Validate that user exists and is active."""
         if not user:

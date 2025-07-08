@@ -8,3 +8,15 @@ Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccd
 Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
 Retrieved 4 user profiles
 Retrieved 4 user profiles
+Retrieved 4 user profiles
+Retrieved 4 user profiles
+Retrieved 4 user profiles
+Retrieved 4 user profiles
+Retrieved 4 user profiles
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+Retrieved 4 user profiles
+Error listing user profiles: (1054, "Unknown column 'user_profiles.user_id' in 'field list'")
+Error listing user profiles: (1054, "Unknown column 'user_profiles.user_id' in 'field list'")

@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-from django.contrib.auth.hashers import make_password, check_password
 import json
 
 
@@ -8,12 +7,12 @@ class UserProfile(models.Model):
     """User Profile model with travel preferences and basic information"""
 
     # Primary key using UUID4 with new field name
-    profile_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user_profile_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    # Foreign key to User model for authentication data (temporary nullable)
+    user = models.OneToOneField('user_manager.User', on_delete=models.CASCADE, related_name='profile', to_field='user_uuid', null=True, blank=True)
 
     # Basic profile information (from API spec)
-    username = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password_hash = models.CharField(max_length=255)
     address = models.TextField()
     interests = models.TextField()
     avatar_url = models.URLField(max_length=500, null=True, blank=True)
@@ -38,27 +37,21 @@ class UserProfile(models.Model):
     class Meta:
         db_table = 'user_profiles'
         indexes = [
-            models.Index(fields=['email']),
-            models.Index(fields=['username']),
+            models.Index(fields=['user']),
         ]
 
     def __str__(self):
-        return f"{self.username} ({self.email})"
-
-    def set_password(self, raw_password):
-        """Hash and set password"""
-        self.password_hash = make_password(raw_password)
-
-    def check_password(self, raw_password):
-        """Check if provided password matches the stored hash"""
-        return check_password(raw_password, self.password_hash)
+        if self.user:
+            return f"{self.user.username} ({self.user.email})"
+        return f"Profile {self.user_profile_uuid}"
 
     def to_dict(self):
         """Convert model instance to dictionary for API responses"""
         return {
-            'profile_uuid': str(self.profile_uuid),
-            'username': self.username,
-            'email': self.email,
+            'user_profile_uuid': str(self.user_profile_uuid),
+            'user_uuid': str(self.user.user_uuid) if self.user else None,
+            'username': self.user.username if self.user else None,
+            'email': self.user.email if self.user else None,
             'address': self.address,
             'interests': self.interests,
             'avatar_url': self.avatar_url,
@@ -79,9 +72,10 @@ class UserProfile(models.Model):
         """Generate user context data for AI Agent integration"""
         return {
             "user_scenario": {
-                "user_uuid": str(self.profile_uuid),
-                "user_name": self.username,
-                "user_email": self.email,
+                "user_profile_uuid": str(self.user_profile_uuid),
+                "user_uuid": str(self.user.user_uuid) if self.user else None,
+                "user_name": self.user.username if self.user else None,
+                "user_email": self.user.email if self.user else None,
                 "user_location": self.address,
                 "user_interests": self.interests,
                 "user_preferences": {

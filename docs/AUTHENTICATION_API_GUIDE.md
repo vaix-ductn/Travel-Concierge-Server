@@ -71,9 +71,29 @@ python manage.py runserver 8001
 ```
 
 **Error Responses:**
-- **400 Bad Request:** Invalid input data
-- **401 Unauthorized:** Invalid credentials
-- **429 Too Many Requests:** Rate limit exceeded
+- **400 Bad Request:**
+```json
+{
+    "success": false,
+    "message": "Invalid input data",
+    "details": {"username": ["This field is required."]}
+}
+```
+- **401 Unauthorized:**
+```json
+{
+    "success": false,
+    "message": "Invalid username or password"
+}
+```
+- **429 Too Many Requests:**
+```json
+{
+    "success": false,
+    "message": "Too many login attempts. Please try again later.",
+    "error_code": "RATE_LIMIT_EXCEEDED"
+}
+```
 
 ### 2. Verify Token
 
@@ -104,8 +124,21 @@ Authorization: Bearer <your-jwt-token>
 ```
 
 **Error Responses:**
-- **401 Unauthorized:** Invalid or expired token
-- **429 Too Many Requests:** Rate limit exceeded
+- **401 Unauthorized:**
+```json
+{
+    "success": false,
+    "message": "Invalid or expired token"
+}
+```
+- **429 Too Many Requests:**
+```json
+{
+    "success": false,
+    "message": "Too many requests. Please try again later.",
+    "error_code": "RATE_LIMIT_EXCEEDED"
+}
+```
 
 ### 3. Logout User
 
@@ -127,7 +160,19 @@ Authorization: Bearer <your-jwt-token>
 ```
 
 **Error Response:**
-- **401 Unauthorized:** Invalid or expired token
+- **401 Unauthorized:**
+```json
+{
+    "success": false,
+    "message": "Invalid or expired token"
+}
+```
+
+## Notes
+- All endpoints require and return JSON.
+- All endpoints (except login) require the `Authorization: Bearer <token>` header.
+- Rate limiting is enforced for login and verify endpoints. Too many failed attempts will result in temporary lockout.
+- Error responses always include `success: false` and a `message` field. Some errors may include `error_code` or `details` for more information.
 
 ## Testing Examples
 
@@ -159,7 +204,6 @@ curl -X POST http://localhost:8001/api/auth/logout/ \
 
 ```python
 import requests
-import json
 
 BASE_URL = "http://localhost:8001/api"
 
@@ -169,23 +213,17 @@ login_data = {
     "password": "SecurePassword123!"
 }
 
-response = requests.post(f"{BASE_URL}/auth/login/",
-                        json=login_data)
+response = requests.post(f"{BASE_URL}/auth/login/", json=login_data)
 login_result = response.json()
 
-if login_result.get('success'):
-    token = login_result['token']
-    print(f"Login successful! Token: {token[:50]}...")
-
-    # 2. Verify token
+token = login_result.get('token')
+if token:
     headers = {"Authorization": f"Bearer {token}"}
-    verify_response = requests.get(f"{BASE_URL}/auth/verify/",
-                                  headers=headers)
+    # 2. Verify token
+    verify_response = requests.get(f"{BASE_URL}/auth/verify/", headers=headers)
     print("Token verification:", verify_response.json())
-
     # 3. Logout
-    logout_response = requests.post(f"{BASE_URL}/auth/logout/",
-                                   headers=headers)
+    logout_response = requests.post(f"{BASE_URL}/auth/logout/", headers=headers)
     print("Logout result:", logout_response.json())
 else:
     print("Login failed:", login_result)
@@ -198,50 +236,27 @@ The system comes with pre-created test users:
 ### User 1: Alan Love
 - **Username:** `alan_love`
 - **Password:** `SecurePassword123!`
-- **Email:** `alanlovelq@gmail.com`
-- **Full Name:** Alan Love
-- **Address:** Ha Noi, Viet Nam
-- **Interests:** Travel, Photography, Food
 
-### User 2: Test User
+### User 2: test_user
 - **Username:** `test_user`
 - **Password:** `TestPassword123!`
-- **Email:** `test@example.com`
-- **Full Name:** Test User
-- **Address:** Ho Chi Minh City, Viet Nam
-- **Interests:** Technology, Gaming, Music
 
-### User 3: Demo User
+### User 3: demo_user
 - **Username:** `demo_user`
 - **Password:** `DemoPassword123!`
-- **Email:** `demo@example.com`
-- **Full Name:** Demo User
-- **Address:** Da Nang, Viet Nam
-- **Interests:** Art, Culture, History
 
 ## Security Features
+- JWT token authentication (stateless)
+- Token blacklisting on logout
+- Rate limiting and account lockout
+- Password hashing (bcrypt)
+- Input validation and sanitization
 
-### 1. Password Security
-- **Minimum Length:** 6 characters
-- **Hashing:** bcrypt with salt rounds ≥ 12
-- **Storage:** Never stores plain text passwords
-
-### 2. JWT Token Security
-- **Algorithm:** HS256 (HMAC with SHA-256)
-- **Expiration:** 24 hours
-- **Blacklisting:** Tokens are tracked and can be invalidated
-- **Secret:** Configurable via environment variables
-
-### 3. Rate Limiting
-- **Login Attempts:** Maximum 5 attempts per IP per 15 minutes
-- **Token Verification:** Maximum 100 requests per minute per IP
-- **Account Lockout:** 30 minutes after 5 failed attempts
-
-### 4. Input Validation
-- **Username:** 3-50 characters, alphanumeric and underscore only
-- **Password:** 6+ characters minimum
-- **Email:** Valid email format required
-- **Sanitization:** All inputs are sanitized to prevent injection
+## Troubleshooting
+- Always include the `Authorization: Bearer <token>` header for protected endpoints.
+- If you receive a 401 or 403 error, check that your token is valid and not expired.
+- If you receive a 429 error, wait before retrying (rate limit exceeded).
+- For further issues, check server logs for error details.
 
 ## Environment Variables
 
@@ -342,34 +357,6 @@ The test suite covers:
 1. Send POST request to `/api/auth/logout/`
 2. Clear local storage
 3. Navigate to login screen
-
-## Troubleshooting
-
-### Common Issues
-
-1. **"Python was not found" error**
-   - Install Python or use `python3` command
-   - Check Python is in your PATH
-
-2. **Redis connection error**
-   - Install and start Redis server
-   - Update REDIS_URL in settings
-
-3. **Database connection error**
-   - Check database credentials
-   - Ensure database server is running
-   - Run migrations: `python manage.py migrate`
-
-4. **Token verification fails**
-   - Check JWT_SECRET configuration
-   - Ensure token is not expired
-   - Verify Authorization header format
-
-### Debug Mode
-
-Enable debug logging by setting `DEBUG=True` in settings. Check logs in:
-- Console output
-- `logs/profile.log` file
 
 ## Support
 

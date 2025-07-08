@@ -12,7 +12,7 @@ class User(models.Model):
     """User model for authentication system."""
 
     # Primary fields
-    id = models.CharField(max_length=50, primary_key=True, default=lambda: f"user_{uuid.uuid4().hex[:10]}")
+    user_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(max_length=50, unique=True, db_index=True)
     email = models.CharField(max_length=255, unique=True, db_index=True)
     password_hash = models.CharField(max_length=255)
@@ -27,10 +27,6 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     last_login = models.DateTimeField(blank=True, null=True)
-
-    # Security fields
-    failed_login_attempts = models.IntegerField(default=0)
-    locked_until = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         db_table = 'users'
@@ -50,40 +46,16 @@ class User(models.Model):
         """Check if provided password matches stored hash."""
         return check_password(raw_password, self.password_hash)
 
-    def is_locked(self):
-        """Check if account is currently locked."""
-        if self.locked_until:
-            return timezone.now() < self.locked_until
-        return False
-
-    def lock_account(self, duration_minutes=30):
-        """Lock account for specified duration."""
-        self.locked_until = timezone.now() + timedelta(minutes=duration_minutes)
-        self.save()
-
-    def unlock_account(self):
-        """Unlock account and reset failed attempts."""
-        self.locked_until = None
-        self.failed_login_attempts = 0
-        self.save()
-
-    def increment_failed_attempts(self):
-        """Increment failed login attempts."""
-        self.failed_login_attempts += 1
-        if self.failed_login_attempts >= 5:
-            self.lock_account()
-        self.save()
-
-    def reset_failed_attempts(self):
-        """Reset failed login attempts on successful login."""
-        self.failed_login_attempts = 0
-        self.last_login = timezone.now()
-        self.save()
+    def update_last_login(self):
+        """Update last login timestamp."""
+        User.objects.filter(user_uuid=self.user_uuid).update(
+            last_login=timezone.now()
+        )
 
     def to_dict(self):
         """Convert user to dictionary for API responses."""
         return {
-            'id': self.id,
+            'user_uuid': str(self.user_uuid),
             'username': self.username,
             'email': self.email,
             'full_name': self.full_name,
@@ -95,7 +67,7 @@ class User(models.Model):
     def get_auth_context(self):
         """Get user context for authentication responses."""
         return {
-            'id': self.id,
+            'user_uuid': str(self.user_uuid),
             'username': self.username,
             'email': self.email,
             'full_name': self.full_name or self.username,
@@ -108,7 +80,7 @@ class User(models.Model):
 class UserToken(models.Model):
     """Model to track user tokens for logout functionality."""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tokens')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tokens', to_field='user_uuid')
     token_hash = models.CharField(max_length=255, unique=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()

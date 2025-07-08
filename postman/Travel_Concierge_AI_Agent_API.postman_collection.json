@@ -2,10 +2,410 @@
 	"info": {
 		"_postman_id": "travel-concierge-ai-agent-api",
 		"name": "Travel Concierge AI Agent API",
-		"description": "Complete API collection for testing Travel Concierge AI Agent endpoints",
+		"description": "Complete API collection for testing Travel Concierge AI Agent endpoints including Authentication",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "🔐 Authentication Endpoints",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract token from response and set as environment variable",
+									"if (pm.response.code === 200) {",
+									"    const responseJson = pm.response.json();",
+									"    if (responseJson.success && responseJson.token) {",
+									"        pm.environment.set('auth_token', responseJson.token);",
+									"        pm.environment.set('user_id', responseJson.user.id);",
+									"        pm.environment.set('username', responseJson.user.username);",
+									"        console.log('Token saved:', responseJson.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"alan_love\",\n    \"password\": \"SecurePassword123!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Authenticate user credentials and return JWT token with user data. Test credentials: alan_love / SecurePassword123!"
+					}
+				},
+				{
+					"name": "User Login - Test User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract token from response and set as environment variable",
+									"if (pm.response.code === 200) {",
+									"    const responseJson = pm.response.json();",
+									"    if (responseJson.success && responseJson.token) {",
+									"        pm.environment.set('auth_token', responseJson.token);",
+									"        pm.environment.set('user_id', responseJson.user.id);",
+									"        pm.environment.set('username', responseJson.user.username);",
+									"        console.log('Token saved:', responseJson.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test_user\",\n    \"password\": \"TestPassword123!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Login with test_user credentials for testing purposes"
+					}
+				},
+				{
+					"name": "User Login - Demo User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract token from response and set as environment variable",
+									"if (pm.response.code === 200) {",
+									"    const responseJson = pm.response.json();",
+									"    if (responseJson.success && responseJson.token) {",
+									"        pm.environment.set('auth_token', responseJson.token);",
+									"        pm.environment.set('user_id', responseJson.user.id);",
+									"        pm.environment.set('username', responseJson.user.username);",
+									"        console.log('Token saved:', responseJson.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"demo_user\",\n    \"password\": \"DemoPassword123!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Login with demo_user credentials for demonstration purposes"
+					}
+				},
+				{
+					"name": "Verify Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"description": "JWT token from login response"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/verify/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								""
+							]
+						},
+						"description": "Verify if the provided authentication token is valid and return user information. Requires Authorization header with Bearer token."
+					}
+				},
+				{
+					"name": "User Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Clear token from environment after logout",
+									"if (pm.response.code === 200) {",
+									"    pm.environment.unset('auth_token');",
+									"    pm.environment.unset('user_id');",
+									"    pm.environment.unset('username');",
+									"    console.log('Authentication tokens cleared');",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"description": "JWT token to invalidate"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/logout/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout",
+								""
+							]
+						},
+						"description": "Invalidate the user's authentication token and log them out. Requires Authorization header with Bearer token."
+					}
+				}
+			]
+		},
+		{
+			"name": "🔍 Authentication Validation Tests",
+			"item": [
+				{
+					"name": "Login - Invalid Credentials",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"alan_love\",\n    \"password\": \"wrong_password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Test login with invalid credentials - should return 401 Unauthorized"
+					}
+				},
+				{
+					"name": "Login - Missing Fields",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"alan_love\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Test login with missing password field - should return 400 Bad Request"
+					}
+				},
+				{
+					"name": "Login - Invalid Username Format",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ab\",\n    \"password\": \"SecurePassword123!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Test login with username too short (< 3 characters) - should return 400 Bad Request"
+					}
+				},
+				{
+					"name": "Verify Token - Invalid Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer invalid.token.here"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/verify/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								""
+							]
+						},
+						"description": "Test token verification with invalid token - should return 401 Unauthorized"
+					}
+				},
+				{
+					"name": "Verify Token - Missing Authorization Header",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/verify/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								""
+							]
+						},
+						"description": "Test token verification without Authorization header - should return 401 Unauthorized"
+					}
+				},
+				{
+					"name": "Logout - Invalid Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer invalid.token.here"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/logout/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout",
+								""
+							]
+						},
+						"description": "Test logout with invalid token - should return 401 Unauthorized"
+					}
+				},
+				{
+					"name": "Rate Limiting Test - Multiple Failed Logins",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"nonexistent_user\",\n    \"password\": \"wrong_password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Test rate limiting by making multiple failed login attempts - after 5 attempts should return 429 Too Many Requests"
+					}
+				}
+			]
+		},
 		{
 			"name": "🤖 AI Agent Endpoints",
 			"item": [
@@ -293,6 +693,96 @@
 						},
 						"description": "Create a new user profile for testing"
 					}
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/{{profile_uuid}}/",
+							"host": ["{{base_url}}"],
+							"path": ["user_manager", "profile", "{{profile_uuid}}", ""]
+						},
+						"description": "Get detailed information for a specific user profile by UUID."
+					}
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"updated_email@example.com\",\n  \"address\": \"456 New Address, New City\",\n  \"interests\": \"Hiking, Food, Art\",\n  \"seat_preference\": \"aisle\",\n  \"food_preference\": \"Vegetarian\",\n  \"allergies\": [\"gluten\"],\n  \"likes\": [\"nature\", \"museums\"],\n  \"dislikes\": [\"loud places\"],\n  \"price_sensitivity\": \"low\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/{{profile_uuid}}/update/",
+							"host": ["{{base_url}}"],
+							"path": ["user_manager", "profile", "{{profile_uuid}}", "update", ""]
+						},
+						"description": "Update information for a specific user profile by UUID. Only include fields to update."
+					}
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"current_password\": \"test123456\",\n  \"new_password\": \"newSecurePassword789!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/{{profile_uuid}}/change-password/",
+							"host": ["{{base_url}}"],
+							"path": ["user_manager", "profile", "{{profile_uuid}}", "change-password", ""]
+						},
+						"description": "Change password for a specific user profile by UUID."
+					}
+				},
+				{
+					"name": "Delete User Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/{{profile_uuid}}/delete/",
+							"host": ["{{base_url}}"],
+							"path": ["user_manager", "profile", "{{profile_uuid}}", "delete", ""]
+						},
+						"description": "Delete (soft delete) a specific user profile by UUID."
+					}
+				},
+				{
+					"name": "Get AI Context",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/{{profile_uuid}}/ai-context/",
+							"host": ["{{base_url}}"],
+							"path": ["user_manager", "profile", "{{profile_uuid}}", "ai-context", ""]
+						},
+						"description": "Get AI context data for a specific user profile by UUID."
+					}
+				},
+				{
+					"name": "Get Profile Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user_manager/profile/{{profile_uuid}}/summary/",
+							"host": ["{{base_url}}"],
+							"path": ["user_manager", "profile", "{{profile_uuid}}", "summary", ""]
+						},
+						"description": "Get summarized information for a specific user profile by UUID."
+					}
 				}
 			]
 		},
@@ -410,6 +900,24 @@
 			"key": "base_url",
 			"value": "http://localhost:8000/api",
 			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string",
+			"description": "JWT authentication token from login response"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string",
+			"description": "Current authenticated user ID"
+		},
+		{
+			"key": "username",
+			"value": "",
+			"type": "string",
+			"description": "Current authenticated username"
 		}
 	]
 }

@@ -95,28 +95,33 @@ def map_tool(key: str, tool_context: ToolContext):
     """
     This is going to inspect the pois stored under the specified key in the state.
     One by one it will retrieve the accurate Lat/Lon from the Map API, if the Map API is available for use.
-
     Args:
         key: The key under which the POIs are stored.
         tool_context: The ADK tool context.
-        
     Returns:
         The updated state with the full JSON object under the key.
     """
-    if key not in tool_context.state:
-        tool_context.state[key] = {}
+    # Attempt to get POIs from the provided key, with a fallback to 'poi'
+    pois_data = tool_context.state.get(key, {})
+    if not pois_data or "places" not in pois_data:
+        pois_data = tool_context.state.get("poi", {})
+    
+    if "places" not in pois_data:
+        pois_data["places"] = []
 
-    # The pydantic object types.POISuggestions
-    if "places" not in tool_context.state[key]:
-        tool_context.state[key]["places"] = []
-
-    pois = tool_context.state[key]["places"]
+    pois = pois_data["places"]
     for poi in pois:  # The pydantic object types.POI
         location = poi["place_name"] + ", " + poi["address"]
         result = places_service.find_place_from_text(location)
+        
         # Fill the place holders with verified information.
-        poi["place_id"] = result["place_id"] if "place_id" in result else None
-        poi["map_url"] = result["map_url"] if "map_url" in result else None
+        poi["place_id"] = result.get("place_id")
+        poi["map_url"] = result.get("map_url")
+        
+        # Update image_url with the first photo found, if available
+        if result.get("photos"):
+            poi["image_url"] = result["photos"][0]
+            
         if "lat" in result and "lng" in result:
             poi["lat"] = result["lat"]
             poi["long"] = result["lng"]

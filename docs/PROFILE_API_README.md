@@ -83,7 +83,7 @@ curl -X GET "http://localhost:8001/api/profile" \
 **Cập nhật thông tin profile**
 
 ```bash
-curl -X PUT "http://localhost:8001/api/profile/update" \
+curl -X PUT "http://localhost:8001/api/user_manager/profile/{{profile_uuid}}/update" \
   -H "Content-Type: application/json" \
   -d '{
     "username": "Alan Smith",

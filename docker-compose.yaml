@@ -11,6 +11,7 @@ services:
       - ./config/credentials:/app/credentials
     depends_on:
       - db
+      - redis
     environment:
       DEBIAN_FRONTEND: noninteractive
       TZ: UTC
@@ -29,6 +30,7 @@ services:
       GOOGLE_CLOUD_API_KEY: ${GOOGLE_CLOUD_API_KEY}
       GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
       GOOGLE_CLOUD_REGION: ${GOOGLE_CLOUD_REGION}
+      REDIS_URL: redis://travel_concierge_redis:6379/1
     ports:
       - 8001:8000  # Django app
       - 5679:5678  # Debugpy
@@ -51,6 +53,17 @@ services:
       TZ: UTC
     ports:
       - 3309:3306
+    networks:
+      - travel-concierge-network
+
+  redis:
+    container_name: travel_concierge_redis
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
     networks:
       - travel-concierge-network
 
@@ -79,3 +92,4 @@ volumes:
   static_file:
   media_file:
   mysql_data:
+  redis_data:
