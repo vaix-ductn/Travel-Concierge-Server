@@ -20309,3 +20309,506 @@ Unauthorized: /api/auth/verify/
 [2025-07-08 03:33:39 +0000] [112] [INFO] Worker exiting (pid: 112)
 [2025-07-08 03:34:09 +0000] [158] [INFO] Worker reloading: /var/www/config/settings.py modified
 [2025-07-08 03:34:09 +0000] [158] [INFO] Worker exiting (pid: 158)
+[2025-07-08 03:48:03 +0000] [204] [DEBUG] GET /api/health
+[2025-07-08 03:48:05 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:48:05 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 03:48:05 +0000] [204] [DEBUG] GET /api/profile
+[2025-07-08 03:48:05 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:48:07 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 03:49:29 +0000] [204] [DEBUG] GET /api/health
+[2025-07-08 03:49:29 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:49:29 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 03:49:30 +0000] [204] [DEBUG] GET /api/profile
+[2025-07-08 03:49:30 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:49:51 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:58:10 +0000] [204] [DEBUG] GET /api/health
+[2025-07-08 03:58:10 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:58:10 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 03:58:10 +0000] [204] [DEBUG] GET /api/profile
+[2025-07-08 03:58:10 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 03:58:13 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 04:06:00 +0000] [204] [DEBUG] GET /api/health
+[2025-07-08 04:06:00 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 04:06:00 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 04:06:00 +0000] [204] [DEBUG] GET /api/profile
+[2025-07-08 04:06:00 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 04:06:15 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 04:13:46 +0000] [204] [DEBUG] GET /api/health
+[2025-07-08 04:13:46 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 04:13:46 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 04:13:46 +0000] [204] [DEBUG] GET /api/profile
+[2025-07-08 04:13:46 +0000] [204] [DEBUG] POST /api/auth/login/
+[2025-07-08 04:13:49 +0000] [204] [DEBUG] GET /api/auth/verify/
+[2025-07-08 05:33:17 +0000] [204] [INFO] Worker exiting (pid: 204)
+[2025-07-08 05:35:15 +0000] [240] [DEBUG] GET /api/health
+[2025-07-08 05:35:17 +0000] [240] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:35:18 +0000] [240] [DEBUG] GET /api/auth/verify/
+[2025-07-08 05:35:18 +0000] [240] [DEBUG] GET /api/profile
+[2025-07-08 05:35:18 +0000] [240] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:35:31 +0000] [240] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:39:44 +0000] [240] [DEBUG] GET /api/health
+[2025-07-08 05:39:44 +0000] [240] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:39:45 +0000] [240] [DEBUG] GET /api/auth/verify/
+[2025-07-08 05:39:45 +0000] [240] [DEBUG] GET /api/profile
+[2025-07-08 05:39:45 +0000] [240] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:39:47 +0000] [240] [DEBUG] GET /api/auth/verify/
+[2025-07-08 05:39:55 +0000] [240] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:49:51 +0000] [240] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/inspiration/prompt.py modified
+[2025-07-08 05:49:51 +0000] [240] [INFO] Worker exiting (pid: 240)
+[2025-07-08 05:50:14 +0000] [286] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/inspiration/prompt.py modified
+[2025-07-08 05:50:14 +0000] [286] [INFO] Worker exiting (pid: 286)
+[2025-07-08 05:50:33 +0000] [332] [INFO] Worker reloading: /var/www/travel_concierge/tools/places.py modified
+[2025-07-08 05:50:33 +0000] [332] [INFO] Worker exiting (pid: 332)
+[2025-07-08 05:56:23 +0000] [377] [DEBUG] GET /api/health
+[2025-07-08 05:56:25 +0000] [377] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:56:25 +0000] [377] [DEBUG] GET /api/auth/verify/
+[2025-07-08 05:56:25 +0000] [377] [DEBUG] GET /api/profile
+[2025-07-08 05:56:25 +0000] [377] [DEBUG] POST /api/auth/login/
+[2025-07-08 05:56:28 +0000] [377] [DEBUG] GET /api/auth/verify/
+[2025-07-08 05:56:37 +0000] [377] [DEBUG] POST /api/auth/login/
+[2025-07-08 06:01:55 +0000] [377] [DEBUG] GET /api/health
+[2025-07-08 06:01:56 +0000] [377] [DEBUG] POST /api/auth/login/
+[2025-07-08 06:01:56 +0000] [377] [DEBUG] GET /api/auth/verify/
+[2025-07-08 06:01:56 +0000] [377] [DEBUG] GET /api/profile
+[2025-07-08 06:01:56 +0000] [377] [DEBUG] POST /api/auth/login/
+[2025-07-08 06:01:58 +0000] [377] [DEBUG] GET /api/auth/verify/
+[2025-07-08 06:33:41 +0000] [377] [DEBUG] POST /api/auth/login/
+[2025-07-08 06:43:07 +0000] [377] [INFO] Worker reloading: /var/www/travel_concierge/service/agent_service.py modified
+[2025-07-08 06:43:07 +0000] [377] [INFO] Worker exiting (pid: 377)
+[2025-07-08 08:15:13 +0000] [424] [INFO] Worker exiting (pid: 424)
+[2025-07-08 08:47:53 +0000] [469] [DEBUG] GET /api/health
+[2025-07-08 08:47:55 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:47:55 +0000] [469] [DEBUG] GET /api/auth/verify/
+[2025-07-08 08:47:55 +0000] [469] [DEBUG] GET /api/profile
+[2025-07-08 08:47:55 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:47:57 +0000] [469] [DEBUG] GET /api/auth/verify/
+[2025-07-08 08:49:30 +0000] [469] [DEBUG] GET /api/health
+[2025-07-08 08:49:31 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:49:31 +0000] [469] [DEBUG] GET /api/auth/verify/
+[2025-07-08 08:49:31 +0000] [469] [DEBUG] GET /api/profile
+[2025-07-08 08:49:31 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:50:14 +0000] [469] [DEBUG] GET /api/health
+[2025-07-08 08:50:14 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:50:14 +0000] [469] [DEBUG] GET /api/auth/verify/
+[2025-07-08 08:50:15 +0000] [469] [DEBUG] GET /api/profile
+[2025-07-08 08:50:15 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:50:38 +0000] [469] [DEBUG] POST /api/auth/login/
+[2025-07-08 08:59:15 +0000] [469] [INFO] Worker reloading: /var/www/travel_concierge/tools/places.py modified
+[2025-07-08 08:59:15 +0000] [469] [INFO] Worker exiting (pid: 469)
+[2025-07-08 09:12:54 +0000] [515] [DEBUG] GET /api/health
+[2025-07-08 09:12:56 +0000] [515] [DEBUG] POST /api/auth/login/
+[2025-07-08 09:12:57 +0000] [515] [DEBUG] GET /api/auth/verify/
+[2025-07-08 09:12:57 +0000] [515] [DEBUG] GET /api/profile
+[2025-07-08 09:12:57 +0000] [515] [DEBUG] POST /api/auth/login/
+[2025-07-08 09:12:59 +0000] [515] [DEBUG] GET /api/auth/verify/
+[2025-07-08 10:32:13 +0000] [515] [INFO] Worker exiting (pid: 515)
+[2025-07-08 11:32:43 +0000] [559] [INFO] Worker exiting (pid: 559)
+[2025-07-08 12:20:52 +0000] [604] [DEBUG] GET /api/health
+[2025-07-08 12:20:54 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 12:20:55 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-08 12:20:55 +0000] [604] [DEBUG] GET /api/profile
+[2025-07-08 12:20:55 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 12:21:18 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:06:51 +0000] [604] [DEBUG] GET /api/health
+[2025-07-08 13:06:51 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:06:52 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-08 13:06:52 +0000] [604] [DEBUG] GET /api/profile
+[2025-07-08 13:06:52 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:06:54 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-08 13:07:04 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:10:43 +0000] [604] [DEBUG] GET /api/health
+[2025-07-08 13:10:43 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:10:43 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-08 13:10:44 +0000] [604] [DEBUG] GET /api/profile
+[2025-07-08 13:10:44 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:10:46 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-08 13:10:54 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:20:42 +0000] [604] [DEBUG] GET /api/health
+[2025-07-08 13:20:43 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:20:43 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-08 13:20:43 +0000] [604] [DEBUG] GET /api/profile
+[2025-07-08 13:20:43 +0000] [604] [DEBUG] POST /api/auth/login/
+[2025-07-08 13:20:45 +0000] [604] [DEBUG] GET /api/auth/verify/
+[2025-07-09 00:47:13 +0000] [604] [INFO] Worker exiting (pid: 604)
+[2025-07-09 01:04:59 +0000] [649] [DEBUG] GET /api/health
+[2025-07-09 01:05:00 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:05:00 +0000] [649] [DEBUG] GET /api/auth/verify/
+[2025-07-09 01:05:00 +0000] [649] [DEBUG] GET /api/profile
+[2025-07-09 01:05:00 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:05:15 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:10:35 +0000] [649] [DEBUG] GET /api/health
+[2025-07-09 01:10:35 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:10:36 +0000] [649] [DEBUG] GET /api/auth/verify/
+[2025-07-09 01:10:36 +0000] [649] [DEBUG] GET /api/profile
+[2025-07-09 01:10:36 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:10:38 +0000] [649] [DEBUG] GET /api/auth/verify/
+[2025-07-09 01:10:56 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:34:55 +0000] [649] [DEBUG] GET /api/health
+[2025-07-09 01:34:56 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:34:56 +0000] [649] [DEBUG] GET /api/auth/verify/
+[2025-07-09 01:34:56 +0000] [649] [DEBUG] GET /api/profile
+[2025-07-09 01:34:56 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 01:34:58 +0000] [649] [DEBUG] GET /api/auth/verify/
+[2025-07-09 01:38:40 +0000] [649] [DEBUG] POST /api/auth/login/
+[2025-07-09 02:06:26 +0000] [649] [INFO] Worker reloading: /var/www/travel_concierge/sub_agents/planning/prompt.py modified
+[2025-07-09 02:06:26 +0000] [649] [INFO] Worker exiting (pid: 649)
+[2025-07-09 02:07:03 +0000] [695] [INFO] Worker reloading: /var/www/travel_concierge/tools/places.py modified
+[2025-07-09 02:07:03 +0000] [695] [INFO] Worker exiting (pid: 695)
+[2025-07-09 02:11:26 +0000] [28] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f2141aab600>
+  on_reload: <function OnReload.on_reload at 0x7f2141aab740>
+  when_ready: <function WhenReady.when_ready at 0x7f2141aab880>
+  pre_fork: <function Prefork.pre_fork at 0x7f2141aab9c0>
+  post_fork: <function Postfork.post_fork at 0x7f2141aabb00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f2141aabc40>
+  worker_int: <function WorkerInt.worker_int at 0x7f2141aabd80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f2141aabec0>
+  pre_exec: <function PreExec.pre_exec at 0x7f2141ab8040>
+  pre_request: <function PreRequest.pre_request at 0x7f2141ab8180>
+  post_request: <function PostRequest.post_request at 0x7f2141ab8220>
+  child_exit: <function ChildExit.child_exit at 0x7f2141ab8360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f2141ab84a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f2141ab85e0>
+  on_exit: <function OnExit.on_exit at 0x7f2141ab8720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f2141ab8900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-09 02:11:26 +0000] [28] [INFO] Starting gunicorn 21.2.0
+[2025-07-09 02:11:26 +0000] [28] [DEBUG] Arbiter booted
+[2025-07-09 02:11:26 +0000] [28] [INFO] Listening at: http://0.0.0.0:8000 (28)
+[2025-07-09 02:11:26 +0000] [28] [INFO] Using worker: sync
+[2025-07-09 02:11:26 +0000] [28] [DEBUG] 1 workers
+[2025-07-09 02:11:26 +0000] [48] [INFO] Booting worker with pid: 48
+[2025-07-09 02:12:35 +0000] [48] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 02:12:37 +0000] [48] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 02:12:37 +0000] [48] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:12:37 +0000] [48] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 02:12:37 +0000] [48] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 02:12:39 +0000] [48] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:13:05 +0000] [48] [DEBUG] POST /api/auth/login/
+[2025-07-09 02:20:46 +0000] [48] [INFO] Worker reloading: /var/www/travel_concierge/tools/places.py modified
+[2025-07-09 02:20:46 +0000] [48] [INFO] Worker exiting (pid: 48)
+Checking available Gemini models...
+Found model: models/embedding-gecko-001
+Found model: models/gemini-1.0-pro-vision-latest
+Found model: models/gemini-pro-vision
+Found model: models/gemini-1.5-pro-latest
+Found model: models/gemini-1.5-pro-002
+Found model: models/gemini-1.5-pro
+Found model: models/gemini-1.5-flash-latest
+Found model: models/gemini-1.5-flash
+Found model: models/gemini-1.5-flash-002
+Found model: models/gemini-1.5-flash-8b
+Found model: models/gemini-1.5-flash-8b-001
+Found model: models/gemini-1.5-flash-8b-latest
+Found model: models/gemini-2.5-pro-preview-03-25
+Found model: models/gemini-2.5-flash-preview-04-17
+Found model: models/gemini-2.5-flash-preview-05-20
+Found model: models/gemini-2.5-flash
+Found model: models/gemini-2.5-flash-preview-04-17-thinking
+Found model: models/gemini-2.5-flash-lite-preview-06-17
+Found model: models/gemini-2.5-pro-preview-05-06
+Found model: models/gemini-2.5-pro-preview-06-05
+Found model: models/gemini-2.5-pro
+Found model: models/gemini-2.0-flash-exp
+Found model: models/gemini-2.0-flash
+Found model: models/gemini-2.0-flash-001
+Found model: models/gemini-2.0-flash-exp-image-generation
+Found model: models/gemini-2.0-flash-lite-001
+Found model: models/gemini-2.0-flash-lite
+Found model: models/gemini-2.0-flash-preview-image-generation
+Found model: models/gemini-2.0-flash-lite-preview-02-05
+Found model: models/gemini-2.0-flash-lite-preview
+Found model: models/gemini-2.0-pro-exp
+Found model: models/gemini-2.0-pro-exp-02-05
+Found model: models/gemini-exp-1206
+Found model: models/gemini-2.0-flash-thinking-exp-01-21
+Found model: models/gemini-2.0-flash-thinking-exp
+Found model: models/gemini-2.0-flash-thinking-exp-1219
+Found model: models/gemini-2.5-flash-preview-tts
+Found model: models/gemini-2.5-pro-preview-tts
+Found model: models/learnlm-2.0-flash-experimental
+Found model: models/gemma-3-1b-it
+Found model: models/gemma-3-4b-it
+Found model: models/gemma-3-12b-it
+Found model: models/gemma-3-27b-it
+Found model: models/gemma-3n-e4b-it
+Found model: models/gemma-3n-e2b-it
+Found model: models/embedding-001
+Found model: models/text-embedding-004
+Found model: models/gemini-embedding-exp-03-07
+Found model: models/gemini-embedding-exp
+Found model: models/aqa
+Found model: models/imagen-3.0-generate-002
+Found model: models/imagen-4.0-generate-preview-06-06
+Found model: models/imagen-4.0-ultra-generate-preview-06-06
+Found model: models/veo-2.0-generate-001
+Found model: models/gemini-2.5-flash-preview-native-audio-dialog
+Found model: models/gemini-2.5-flash-exp-native-audio-thinking-dialog
+Found model: models/gemini-2.0-flash-live-001
+Found model: models/gemini-live-2.5-flash-preview
+[2025-07-09 02:20:49 +0000] [108] [INFO] Booting worker with pid: 108
+[2025-07-09 02:23:10 +0000] [26] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 1
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 3600
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /var/www
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /var/www/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /var/www/logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: config.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f18bb613600>
+  on_reload: <function OnReload.on_reload at 0x7f18bb613740>
+  when_ready: <function WhenReady.when_ready at 0x7f18bb613880>
+  pre_fork: <function Prefork.pre_fork at 0x7f18bb6139c0>
+  post_fork: <function Postfork.post_fork at 0x7f18bb613b00>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f18bb613c40>
+  worker_int: <function WorkerInt.worker_int at 0x7f18bb613d80>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f18bb613ec0>
+  pre_exec: <function PreExec.pre_exec at 0x7f18b86fc040>
+  pre_request: <function PreRequest.pre_request at 0x7f18b86fc180>
+  post_request: <function PostRequest.post_request at 0x7f18b86fc220>
+  child_exit: <function ChildExit.child_exit at 0x7f18b86fc360>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f18b86fc4a0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f18b86fc5e0>
+  on_exit: <function OnExit.on_exit at 0x7f18b86fc720>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f18b86fc900>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2025-07-09 02:23:10 +0000] [26] [INFO] Starting gunicorn 21.2.0
+[2025-07-09 02:23:10 +0000] [26] [DEBUG] Arbiter booted
+[2025-07-09 02:23:10 +0000] [26] [INFO] Listening at: http://0.0.0.0:8000 (26)
+[2025-07-09 02:23:10 +0000] [26] [INFO] Using worker: sync
+[2025-07-09 02:23:10 +0000] [26] [DEBUG] 1 workers
+[2025-07-09 02:23:10 +0000] [46] [INFO] Booting worker with pid: 46
+[2025-07-09 02:23:23 +0000] [46] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 02:23:24 +0000] [46] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 02:23:24 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:23:24 +0000] [46] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 02:23:24 +0000] [46] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 02:23:26 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:23:55 +0000] [46] [DEBUG] POST /api/auth/login/
+[2025-07-09 02:40:57 +0000] [46] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 02:40:58 +0000] [46] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 02:40:58 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:40:58 +0000] [46] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 02:40:58 +0000] [46] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 02:41:00 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:42:51 +0000] [46] [DEBUG] POST /api/auth/login/
+[2025-07-09 02:55:56 +0000] [46] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 02:55:57 +0000] [46] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 02:55:57 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:55:57 +0000] [46] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 02:55:57 +0000] [46] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 02:56:00 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 02:57:09 +0000] [46] [DEBUG] POST /api/auth/login/
+[2025-07-09 03:30:13 +0000] [46] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 03:30:14 +0000] [46] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 03:30:14 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 03:30:14 +0000] [46] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 03:30:14 +0000] [46] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 03:30:17 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 03:30:28 +0000] [46] [DEBUG] POST /api/auth/login/
+[2025-07-09 03:41:58 +0000] [46] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 03:41:58 +0000] [46] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 03:41:58 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 03:41:58 +0000] [46] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 03:41:58 +0000] [46] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 03:42:01 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 03:42:13 +0000] [46] [DEBUG] POST /api/auth/login/
+[2025-07-09 04:03:11 +0000] [46] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 04:03:12 +0000] [46] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 04:03:12 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 04:03:12 +0000] [46] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 04:03:12 +0000] [46] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 04:03:14 +0000] [46] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 04:04:18 +0000] [46] [DEBUG] POST /api/auth/login/
+[2025-07-09 05:27:03 +0000] [26] [CRITICAL] WORKER TIMEOUT (pid:46)
+[2025-07-09 05:27:03 +0000] [46] [INFO] Worker exiting (pid: 46)
+[2025-07-09 05:27:04 +0000] [26] [ERROR] Worker (pid:46) was sent SIGKILL! Perhaps out of memory?
+[2025-07-09 05:27:06 +0000] [104] [INFO] Booting worker with pid: 104
+[2025-07-09 05:39:21 +0000] [104] [DEBUG] GET /api/health
+Not Found: /api/health
+[2025-07-09 05:39:23 +0000] [104] [DEBUG] POST /api/auth/login/
+Bad Request: /api/auth/login/
+[2025-07-09 05:39:23 +0000] [104] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 05:39:23 +0000] [104] [DEBUG] GET /api/profile
+Not Found: /api/profile
+[2025-07-09 05:39:23 +0000] [104] [DEBUG] POST /api/auth/login/
+Unauthorized: /api/auth/login/
+[2025-07-09 05:39:26 +0000] [104] [DEBUG] GET /api/auth/verify/
+Unauthorized: /api/auth/verify/
+[2025-07-09 05:40:01 +0000] [104] [DEBUG] POST /api/auth/login/

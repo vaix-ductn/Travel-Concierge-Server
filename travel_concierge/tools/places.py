@@ -103,25 +103,56 @@ def map_tool(key: str, tool_context: ToolContext):
     """
     # Attempt to get POIs from the provided key, with a fallback to 'poi'
     pois_data = tool_context.state.get(key, {})
+
+    # Ensure pois_data is a dictionary, not a string
+    if isinstance(pois_data, str):
+        pois_data = {}
+
     if not pois_data or "places" not in pois_data:
         pois_data = tool_context.state.get("poi", {})
-    
+        # Ensure this is also a dictionary
+        if isinstance(pois_data, str):
+            pois_data = {}
+
     if "places" not in pois_data:
         pois_data["places"] = []
 
     pois = pois_data["places"]
+
+    # Ensure pois is a list
+    if not isinstance(pois, list):
+        pois = []
+        pois_data["places"] = pois
+
     for poi in pois:  # The pydantic object types.POI
-        location = poi["place_name"] + ", " + poi["address"]
+        # Ensure poi is a dictionary
+        if not isinstance(poi, dict):
+            continue
+
+        location = poi.get("place_name", "") + ", " + poi.get("address", "")
         result = places_service.find_place_from_text(location)
-        
+
         # Fill the place holders with verified information.
         poi["place_id"] = result.get("place_id")
         poi["map_url"] = result.get("map_url")
-        
+
+        # Ensure map_url is never empty - create fallback if Google Places API fails
+        if not poi.get("map_url") or poi["map_url"] == "":
+            # Create a basic Google Maps URL using place name and address
+            place_name = poi.get("place_name", "").replace(" ", "+")
+            address = poi.get("address", "").replace(" ", "+")
+            search_query = f"{place_name}+{address}"
+            poi["map_url"] = f"https://www.google.com/maps/search/?api=1&query={search_query}"
+
         # Update image_url with the first photo found, if available
         if result.get("photos"):
             poi["image_url"] = result["photos"][0]
-            
+        # Ensure image_url is never empty - if no Google Places photo, keep the original or use a fallback
+        elif not poi.get("image_url") or poi["image_url"] == "":
+            # Fallback to a generic image for the destination if no specific image is available
+            destination_name = poi.get("place_name", "").split(",")[0].strip()
+            poi["image_url"] = f"https://source.unsplash.com/featured/?{destination_name.replace(' ', '+')}"
+
         if "lat" in result and "lng" in result:
             poi["lat"] = result["lat"]
             poi["long"] = result["lng"]

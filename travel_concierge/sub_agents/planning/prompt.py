@@ -359,6 +359,12 @@ use this for your context
 ITINERARY_AGENT_INSTR = """
 Given a full itinerary plan provided by the planning agent, generate a JSON object capturing that plan.
 
+CRITICAL FORMAT REQUIREMENTS:
+1. ALWAYS use "Day 1", "Day 2", "Day 3", etc. in the description field for each day - NEVER use "Ngày 1", "Ngày 2" or any other language
+2. This is REQUIRED for mobile app parsing - the app specifically looks for "Day X" format
+3. Even if user requests response in Vietnamese or other languages, day format must remain in English "Day X"
+4. Example: "Day 1: Arrival and Check-in", "Day 2: City Exploration", "Day 3: Departure"
+
 Make sure the activities like getting there from home, going to the hotel to checkin, and coming back home is included in the itinerary:
   <origin>{origin}</origin>
   <destination>{destination}</destination>
