@@ -9,10 +9,24 @@ from base.serializers.base import BaseSerializer
 
 class UserProfileSerializer(BaseSerializer):
     """Serializer for reading user profile data"""
+    username = serializers.SerializerMethodField()
+    email = serializers.SerializerMethodField()
+    full_name = serializers.SerializerMethodField()
+
     class Meta:
         model = UserProfile
         exclude = ['user_profile_uuid', 'created_at', 'updated_at']
         read_only_fields = ['user_profile_uuid', 'created_at', 'updated_at']
+        # Các trường mới sẽ tự động thêm vào output
+
+    def get_username(self, obj):
+        return obj.user_uuid.username if obj.user_uuid else None
+
+    def get_email(self, obj):
+        return obj.user_uuid.email if obj.user_uuid else None
+
+    def get_full_name(self, obj):
+        return obj.user_uuid.full_name if obj.user_uuid else None
 
 
 class UserProfileUpdateSerializer(BaseSerializer):
