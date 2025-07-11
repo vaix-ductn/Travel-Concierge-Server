@@ -1,4 +1,4 @@
-from .user_profile import UserProfile
 from .auth_models import User, UserToken
+from .user_profile import UserProfile
 
-__all__ = ['UserProfile', 'User', 'UserToken']
+__all__ = ['User', 'UserToken', 'UserProfile']

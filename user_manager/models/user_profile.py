@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     user_profile_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     # Foreign key to User model for authentication data (temporary nullable)
-    user = models.OneToOneField('user_manager.User', on_delete=models.CASCADE, related_name='profile', to_field='user_uuid', null=True, blank=True)
+    user_uuid = models.ForeignKey('user_manager.User', on_delete=models.CASCADE, related_name='profiles', db_column='user_uuid', to_field='user_uuid', null=True, blank=True)
 
     # Basic profile information (from API spec)
     address = models.TextField()
@@ -37,21 +37,21 @@ class UserProfile(models.Model):
     class Meta:
         db_table = 'user_profiles'
         indexes = [
-            models.Index(fields=['user']),
+            models.Index(fields=['user_uuid']),
         ]
 
     def __str__(self):
-        if self.user:
-            return f"{self.user.username} ({self.user.email})"
+        if self.user_uuid:
+            return f"{self.user_uuid.username} ({self.user_uuid.email})"
         return f"Profile {self.user_profile_uuid}"
 
     def to_dict(self):
         """Convert model instance to dictionary for API responses"""
         return {
             'user_profile_uuid': str(self.user_profile_uuid),
-            'user_uuid': str(self.user.user_uuid) if self.user else None,
-            'username': self.user.username if self.user else None,
-            'email': self.user.email if self.user else None,
+            'user_uuid': str(self.user_uuid.user_uuid) if self.user_uuid else None,
+            'username': self.user_uuid.username if self.user_uuid else None,
+            'email': self.user_uuid.email if self.user_uuid else None,
             'address': self.address,
             'interests': self.interests,
             'avatar_url': self.avatar_url,
@@ -73,9 +73,9 @@ class UserProfile(models.Model):
         return {
             "user_scenario": {
                 "user_profile_uuid": str(self.user_profile_uuid),
-                "user_uuid": str(self.user.user_uuid) if self.user else None,
-                "user_name": self.user.username if self.user else None,
-                "user_email": self.user.email if self.user else None,
+                "user_uuid": str(self.user_uuid.user_uuid) if self.user_uuid else None,
+                "user_name": self.user_uuid.username if self.user_uuid else None,
+                "user_email": self.user_uuid.email if self.user_uuid else None,
                 "user_location": self.address,
                 "user_interests": self.interests,
                 "user_preferences": {

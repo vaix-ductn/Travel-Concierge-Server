@@ -3,26 +3,30 @@ from typing import Optional, List, Dict, Any
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ValidationError
-
+from base.service.base_service import AbstractBaseService
 from ..models.user_profile import UserProfile
 
 
-class UserProfileService:
+class UserProfileService(AbstractBaseService):
     """Service class for UserProfile business logic"""
 
-    def __init__(self, profile_uuid: str = None):
+    def __init__(self, user_profile_uuid: str = None):
+        super().__init__()
         """Initialize service with optional profile UUID"""
-        self.profile_uuid = profile_uuid
+        self.user_profile_uuid = user_profile_uuid
         self.profile = None
         self.logger = logging.getLogger(__name__)
 
-        if profile_uuid:
-            self.profile = self._get_profile_by_uuid(profile_uuid)
+        if user_profile_uuid:
+            self.profile = self._get_profile_by_uuid(user_profile_uuid)
 
-    def _get_profile_by_uuid(self, profile_uuid: str) -> UserProfile:
+    def _set_model(self) -> list:
+        return ['user_manager', 'UserProfile']
+
+    def _get_profile_by_uuid(self, user_profile_uuid: str) -> UserProfile:
         """Get profile by UUID or raise 404"""
         try:
-            return get_object_or_404(UserProfile, profile_uuid=profile_uuid)
+            return get_object_or_404(UserProfile, user_profile_uuid=user_profile_uuid)
         except Exception as e:
             self.logger.error(f"Error retrieving user profile: {e}")
             raise
@@ -32,7 +36,8 @@ class UserProfileService:
         if not self.profile:
             raise ValidationError("Profile not found")
 
-        self.logger.info(f"Retrieved profile for user: {self.profile.username} (UUID: {self.profile_uuid})")
+        username = self.profile.user_uuid.username if self.profile.user_uuid else None
+        self.logger.info(f"Retrieved profile for user: {username} (UUID: {self.user_profile_uuid})")
         return self.profile
 
     def process_create_profile(self, validated_data: Dict[str, Any]) -> UserProfile:
@@ -50,7 +55,8 @@ class UserProfileService:
 
             profile.save()
 
-            self.logger.info(f"Created new profile for user: {profile.username} (UUID: {profile.profile_uuid})")
+            username = profile.user_uuid.username if profile.user_uuid else None
+            self.logger.info(f"Created new profile for user: {username} (UUID: {self.user_profile_uuid})")
             return profile
 
         except Exception as e:
@@ -70,7 +76,8 @@ class UserProfileService:
 
             self.profile.save()
 
-            self.logger.info(f"Updated profile for user: {self.profile.username} (UUID: {self.profile_uuid})")
+            username = self.profile.user_uuid.username if self.profile.user_uuid else None
+            self.logger.info(f"Updated profile for user: {username} (UUID: {self.user_profile_uuid})")
             return self.profile
 
         except Exception as e:
@@ -91,7 +98,8 @@ class UserProfileService:
             self.profile.set_password(new_password)
             self.profile.save()
 
-            self.logger.info(f"Password changed for user: {self.profile.username} (UUID: {self.profile_uuid})")
+            username = self.profile.user_uuid.username if self.profile.user_uuid else None
+            self.logger.info(f"Password changed for user: {username} (UUID: {self.user_profile_uuid})")
             return True
 
         except ValidationError:
@@ -106,10 +114,10 @@ class UserProfileService:
             raise ValidationError("Profile not found")
 
         try:
-            username = self.profile.username
+            username = self.profile.user_uuid.username if self.profile.user_uuid else None
             self.profile.delete()
 
-            self.logger.info(f"Deleted profile for user: {username} (UUID: {self.profile_uuid})")
+            self.logger.info(f"Deleted profile for user: {username} (UUID: {self.user_profile_uuid})")
             return True
 
         except Exception as e:
@@ -183,7 +191,7 @@ class UserProfileService:
 
         return self.profile.get_ai_context()
 
-    def validate_profile_ownership(self, user_id: str) -> bool:
+    def validate_profile_ownership(self, user_uuid: str) -> bool:
         """Validate if user owns this profile (for future authentication)"""
         if not self.profile:
             return False
@@ -198,9 +206,9 @@ class UserProfileService:
             raise ValidationError("Profile not found")
 
         return {
-            'profile_uuid': str(self.profile.profile_uuid),
-            'username': self.profile.username,
-            'email': self.profile.email,
+            'user_profile_uuid': str(self.profile.user_profile_uuid),
+            'username': self.profile.user_uuid.username if self.profile.user_uuid else None,
+            'email': self.profile.user_uuid.email if self.profile.user_uuid else None,
             'address': self.profile.address,
             'interests': self.profile.interests,
             'created_at': self.profile.created_at.isoformat() if self.profile.created_at else None,
@@ -219,7 +227,7 @@ class UserProfileService:
         """Check if email already exists"""
         queryset = UserProfile.objects.filter(email=email)
         if exclude_uuid:
-            queryset = queryset.exclude(profile_uuid=exclude_uuid)
+            queryset = queryset.exclude(user_profile_uuid=exclude_uuid)
         return queryset.exists()
 
     @staticmethod

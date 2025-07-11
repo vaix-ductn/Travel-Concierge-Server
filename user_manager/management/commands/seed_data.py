@@ -1,13 +1,11 @@
 import json
 import os
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
-from django.conf import settings
-from user_manager.models import UserProfile
+from ...models import User, UserProfile
 
 
 class Command(BaseCommand):
-    help = 'Create seed data for system testing - Django users and user profiles'
+    help = 'Create seed data for system testing - custom users and user profiles'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -20,23 +18,22 @@ class Command(BaseCommand):
         """Create seed data for testing"""
 
         try:
-            # Define test users data with hard-coded values from itinerary_custom.json
+            # Define test users data
             test_users = [
                 {
-                    'django_user': {
+                    'user': {
                         'username': 'admin',
                         'email': 'admin@travelconcierge.com',
                         'password': 'TravelAdmin@2024',
-                        'first_name': 'System',
-                        'last_name': 'Administrator',
-                        'is_staff': True,
-                        'is_superuser': True,
+                        'full_name': 'System Administrator',
+                        'avatar_url': '',
+                        'address': 'Travel Concierge HQ, Tokyo, Japan',
+                        'interests': ['System administration', 'Travel technology'],
                     },
                     'user_profile': {
-                        'username': 'System Administrator',
-                        'email': 'admin@travelconcierge.com',
                         'address': 'Travel Concierge HQ, Tokyo, Japan',
                         'interests': 'System administration, Travel technology',
+                        'avatar_url': '',
                         'passport_nationality': 'Japanese',
                         'seat_preference': 'aisle',
                         'food_preference': 'No preference',
@@ -49,21 +46,19 @@ class Command(BaseCommand):
                     }
                 },
                 {
-                    'django_user': {
+                    'user': {
                         'username': 'nero',
                         'email': 'tranamynero@gmail.com',
                         'password': '1234@pass',
-                        'first_name': 'Nero',
-                        'last_name': 'Tran',
-                        'is_staff': False,
-                        'is_superuser': False,
+                        'full_name': 'Nero Tran',
+                        'avatar_url': '',
+                        'address': 'Ha Noi, Viet Nam',
+                        'interests': ['Travel', 'Photography', 'Food'],
                     },
                     'user_profile': {
-                        'username': 'Nero Tran',
-                        'email': 'tranamynero@gmail.com',
                         'address': 'Ha Noi, Viet Nam',
                         'interests': 'Travel, Photography, Food',
-                        # Hard-coded data from itinerary_custom.json
+                        'avatar_url': '',
                         'passport_nationality': 'Vietnamese',
                         'seat_preference': 'window',
                         'food_preference': 'Japanese cuisine - Ramen, Sushi, Sashimi',
@@ -76,20 +71,19 @@ class Command(BaseCommand):
                     }
                 },
                 {
-                    'django_user': {
+                    'user': {
                         'username': 'test_user',
                         'email': 'testuser@example.com',
                         'password': 'TestUser@2024',
-                        'first_name': 'Test',
-                        'last_name': 'User',
-                        'is_staff': False,
-                        'is_superuser': False,
+                        'full_name': 'Test User',
+                        'avatar_url': '',
+                        'address': 'San Francisco, CA, USA',
+                        'interests': ['Technology', 'Travel', 'Food', 'Music'],
                     },
                     'user_profile': {
-                        'username': 'Test User',
-                        'email': 'testuser@example.com',
                         'address': 'San Francisco, CA, USA',
                         'interests': 'Technology, Travel, Food, Music',
+                        'avatar_url': '',
                         'passport_nationality': 'American',
                         'seat_preference': 'window',
                         'food_preference': 'Mediterranean cuisine, Vegetarian options',
@@ -102,20 +96,19 @@ class Command(BaseCommand):
                     }
                 },
                 {
-                    'django_user': {
+                    'user': {
                         'username': 'demo_traveler',
                         'email': 'demo@travelconcierge.com',
                         'password': 'DemoTravel@2024',
-                        'first_name': 'Demo',
-                        'last_name': 'Traveler',
-                        'is_staff': False,
-                        'is_superuser': False,
+                        'full_name': 'Demo Traveler',
+                        'avatar_url': '',
+                        'address': 'London, UK',
+                        'interests': ['History', 'Culture', 'Architecture', 'Fine Dining'],
                     },
                     'user_profile': {
-                        'username': 'Demo Traveler',
-                        'email': 'demo@travelconcierge.com',
                         'address': 'London, UK',
                         'interests': 'History, Culture, Architecture, Fine Dining',
+                        'avatar_url': '',
                         'passport_nationality': 'British',
                         'seat_preference': 'aisle',
                         'food_preference': 'International cuisine, Local specialties',
@@ -129,78 +122,76 @@ class Command(BaseCommand):
                 }
             ]
 
-            # Create test users
             created_count = 0
             for user_data in test_users:
-                django_user_data = user_data['django_user']
-                profile_data = user_data['user_profile']
+                user_info = user_data['user']
+                profile_info = user_data['user_profile']
 
-                email = django_user_data['email']
-                username = django_user_data['username']
+                email = user_info['email']
+                username = user_info['username']
 
-                # Check if Django user already exists
-                if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
+                # Check if user exists
+                user_qs = User.objects.filter(email=email)
+                if user_qs.exists():
                     if not options['force']:
-                        self.stdout.write(
-                            self.style.WARNING(f'User {username} ({email}) already exists. Use --force to recreate.')
-                        )
+                        self.stdout.write(self.style.WARNING(f'User {username} ({email}) already exists. Use --force to recreate.'))
                         continue
                     else:
-                        # Delete existing users
-                        User.objects.filter(email=email).delete()
+                        user_qs.delete()
                         User.objects.filter(username=username).delete()
-                        UserProfile.objects.filter(email=email).delete()
+                        UserProfile.objects.filter(user_uuid__email=email).delete()
                         self.stdout.write(f'Deleted existing user: {username}')
 
-                # Create Django User
-                django_user = User.objects.create_user(
-                    username=django_user_data['username'],
-                    email=django_user_data['email'],
-                    password=django_user_data['password'],
-                    first_name=django_user_data['first_name'],
-                    last_name=django_user_data['last_name'],
-                    is_staff=django_user_data['is_staff'],
-                    is_superuser=django_user_data['is_superuser'],
+                # Create User
+                user = User(
+                    username=user_info['username'],
+                    email=user_info['email'],
+                    full_name=user_info.get('full_name', ''),
+                    avatar_url=user_info.get('avatar_url', ''),
+                    address=user_info.get('address', ''),
+                    interests=user_info.get('interests', []),
                 )
+                user.set_password(user_info['password'])
+                user.save()
 
                 # Create UserProfile
-                user_profile = UserProfile.objects.create(**profile_data)
-                user_profile.set_password(django_user_data['password'])  # Set same password
-                user_profile.save()
+                profile = UserProfile(
+                    user_uuid=user,
+                    address=profile_info.get('address', ''),
+                    interests=profile_info.get('interests', ''),
+                    avatar_url=profile_info.get('avatar_url', ''),
+                    passport_nationality=profile_info.get('passport_nationality', ''),
+                    seat_preference=profile_info.get('seat_preference', ''),
+                    food_preference=profile_info.get('food_preference', ''),
+                    allergies=profile_info.get('allergies', []),
+                    likes=profile_info.get('likes', []),
+                    dislikes=profile_info.get('dislikes', []),
+                    price_sensitivity=profile_info.get('price_sensitivity', []),
+                    home_address=profile_info.get('home_address', ''),
+                    local_prefer_mode=profile_info.get('local_prefer_mode', ''),
+                )
+                profile.save()
 
                 created_count += 1
-
-                self.stdout.write(
-                    self.style.SUCCESS(f'✅ Created user: {username} ({email})')
-                )
-                self.stdout.write(f'   Profile UUID: {user_profile.profile_uuid}')
-                self.stdout.write(f'   Django User ID: {django_user.id}')
-                self.stdout.write(f'   Passport: {user_profile.passport_nationality}')
-                self.stdout.write(f'   Preferences: {user_profile.likes}')
+                self.stdout.write(self.style.SUCCESS(f'✅ Created user: {username} ({email})'))
+                self.stdout.write(f'   Profile UUID: {profile.user_profile_uuid}')
+                self.stdout.write(f'   User UUID: {user.user_uuid}')
+                self.stdout.write(f'   Passport: {profile.passport_nationality}')
+                self.stdout.write(f'   Preferences: {profile.likes}')
                 self.stdout.write('')
 
             # Summary
-            self.stdout.write(
-                self.style.SUCCESS(f'\n🎉 Successfully created {created_count} test users!')
-            )
-            self.stdout.write(
-                self.style.SUCCESS(f'📝 Total Django users: {User.objects.count()}')
-            )
-            self.stdout.write(
-                self.style.SUCCESS(f'👤 Total User profiles: {UserProfile.objects.count()}')
-            )
+            self.stdout.write(self.style.SUCCESS(f'\n🎉 Successfully created {created_count} test users!'))
+            self.stdout.write(self.style.SUCCESS(f'📝 Total users: {User.objects.count()}'))
+            self.stdout.write(self.style.SUCCESS(f'👤 Total User profiles: {UserProfile.objects.count()}'))
 
             # Login instructions
-            self.stdout.write(
-                self.style.WARNING('\n🔐 Login credentials for testing:')
-            )
+            self.stdout.write(self.style.WARNING('\n🔐 Login credentials for testing:'))
             for user_data in test_users:
-                self.stdout.write(f"   Username: {user_data['django_user']['username']}")
-                self.stdout.write(f"   Password: {user_data['django_user']['password']}")
-                self.stdout.write(f"   Email: {user_data['django_user']['email']}")
+                self.stdout.write(f"   Username: {user_data['user']['username']}")
+                self.stdout.write(f"   Password: {user_data['user']['password']}")
+                self.stdout.write(f"   Email: {user_data['user']['email']}")
                 self.stdout.write('')
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f'Error creating seed data: {e}')
-            )
+            self.stdout.write(self.style.ERROR(f'Error creating seed data: {e}'))

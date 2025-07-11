@@ -4,12 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "Python: Remote Attach",
-            "type": "python",
+            "name": "Python Debugger: Remote Attach",
+            "type": "debugpy",
             "request": "attach",
             "connect": {
-                "host": "andes_cloud_app",
+                "host": "travel_concierge",
                 "port": 5678
             },
             "pathMappings": [
@@ -17,9 +18,7 @@
                     "localRoot": "${workspaceFolder}",
                     "remoteRoot": "/var/www"
                 }
-            ],
-            "justMyCode": false,
-            "django": true
+            ]
         }
     ]
 }

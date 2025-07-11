@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.core.cache import cache
 from django.utils import timezone
 from rest_framework import serializers
+from base.validation.base import Validation
 
 
 class AuthValidation:

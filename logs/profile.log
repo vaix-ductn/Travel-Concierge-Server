@@ -1,22 +1,38 @@
-Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
-Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
-Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
-Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
-Error retrieving user profile: (1146, "Table 'travel_concierge.user_profiles' doesn't exist")
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
+No token found in request headers for path: /api/auth/login/
+Login attempt from IP: 172.19.0.1
+Token generated successfully for user: nero
+Successful login for user: nero from IP: 172.19.0.1
+Successful login for user: nero from IP: 172.19.0.1
+Unexpected error during login from IP 172.19.0.1: api_response_success() got an unexpected keyword argument 'status_code'
+No token found in request headers for path: /api/auth/login/
+Login attempt from IP: 172.19.0.1
+Token generated successfully for user: nero
+Successful login for user: nero from IP: 172.19.0.1
+Successful login for user: nero from IP: 172.19.0.1
+Received token for path /api/user_manager/profile/4042f5c4-7d0c-4b1a-8dff-a1309fe6566c/: eyJhbGciOiJIUzI1NiIs... (truncated)
+Token verification failed - user not found for UUID: cae40bfe-a203-4f69-aa73-2bfcd46ebef1
+Token invalid or expired for path /api/user_manager/profile/4042f5c4-7d0c-4b1a-8dff-a1309fe6566c/: eyJhbGciOiJIUzI1NiIs... | Error: [ErrorDetail(string='User not found', code='invalid')]
+No token found in request headers for path: /api/auth/login/
+Login attempt from IP: 172.19.0.1
+Token generated successfully for user: nero
+Successful login for user: nero from IP: 172.19.0.1
+Successful login for user: nero from IP: 172.19.0.1
+No token found in request headers for path: /api/auth/login/
+Login attempt from IP: 172.19.0.1
+Token generated successfully for user: nero
+Successful login for user: nero from IP: 172.19.0.1
+Successful login for user: nero from IP: 172.19.0.1
+Received token for path /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/: eyJhbGciOiJIUzI1NiIs... (truncated)
+Token valid for user: nero | path: /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/
+Retrieved profile for user: nero (UUID: 0262c915-4c4b-4e13-ab96-0a27fa396d71)
+Received token for path /api/user_manager/profiles/: eyJhbGciOiJIUzI1NiIs... (truncated)
+Token valid for user: nero | path: /api/user_manager/profiles/
 Retrieved 4 user profiles
-Retrieved 4 user profiles
-Retrieved 4 user profiles
-Retrieved 4 user profiles
-Retrieved 4 user profiles
-Retrieved 4 user profiles
-Retrieved 4 user profiles
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
-Retrieved profile for user: Nero Tran (UUID: 114c3e87-efc3-44cc-8662-84cb9850ccdb)
-Retrieved 4 user profiles
-Error listing user profiles: (1054, "Unknown column 'user_profiles.user_id' in 'field list'")
-Error listing user profiles: (1054, "Unknown column 'user_profiles.user_id' in 'field list'")
+Received token for path /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/update/: eyJhbGciOiJIUzI1NiIs... (truncated)
+Token valid for user: nero | path: /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/update/
+Received token for path /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/update/: eyJhbGciOiJIUzI1NiIs... (truncated)
+Token valid for user: nero | path: /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/update/
+Error updating user profile with UUID 0262c915-4c4b-4e13-ab96-0a27fa396d71: Cannot resolve keyword 'email' into field. Choices are: address, allergies, avatar_url, created_at, dislikes, food_preference, home_address, interests, likes, local_prefer_mode, passport_nationality, price_sensitivity, seat_preference, updated_at, user_profile_uuid, user_uuid, user_uuid_id
+Received token for path /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/update/: eyJhbGciOiJIUzI1NiIs... (truncated)
+Token valid for user: nero | path: /api/user_manager/profile/0262c915-4c4b-4e13-ab96-0a27fa396d71/update/
+Error updating user profile with UUID 0262c915-4c4b-4e13-ab96-0a27fa396d71: JSON parse error - Expecting property name enclosed in double quotes: line 29 column 1 (char 765)

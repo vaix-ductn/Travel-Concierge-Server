@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
 import logging
-
+from django.views.decorators.csrf import csrf_exempt
+from base.view.custom_view_set import CustomViewSet
+from base.response.utils import api_response_success, api_response_error
 from ..service.user_profile_service import UserProfileService
 from ..serializers.user_profile_serializer import (
     UserProfileSerializer,
@@ -17,18 +19,20 @@ from ..validation.user_profile_validation import (
     ChangePasswordValidation,
     UserProfileListValidation
 )
+from ..permission.user_profile_permission import UserProfilePermission
 
 
-class UserProfileView:
+class UserProfileView(CustomViewSet):
+    permission_classes = [UserProfilePermission]
     """View class for UserProfile API endpoints"""
 
     @staticmethod
     @api_view(['GET'])
-    def get_profile(request, profile_uuid):
+    def get_profile(request, user_profile_uuid):
         """Get user profile information by profile UUID"""
         try:
             # Initialize service
-            profile_service = UserProfileService(profile_uuid=profile_uuid)
+            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
 
             # Process get profile
             profile = profile_service.process_get_profile()
@@ -36,31 +40,22 @@ class UserProfileView:
             # Serialize response
             serializer = UserProfileSerializer(profile)
 
-            return Response({
-                'success': True,
-                'data': serializer.data
-            })
+            return api_response_success(data=serializer.data)
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error retrieving user profile with UUID {profile_uuid}: {e}")
-            return Response({
-                'success': False,
-                'error': f'Unable to retrieve user profile with UUID {profile_uuid}'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logging.getLogger(__name__).error(f"Error retrieving user profile with UUID {user_profile_uuid}: {e}")
+            return api_response_error(msg=f'Unable to retrieve user profile with UUID {user_profile_uuid}')
 
     @staticmethod
     @api_view(['PUT'])
-    def update_profile(request, profile_uuid):
+    def update_profile(request, user_profile_uuid):
         """Update user profile information by profile UUID"""
         try:
             # Initialize service
-            profile_service = UserProfileService(profile_uuid=profile_uuid)
+            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
 
             # Use the existing serializer for backward compatibility
             serializer = UserProfileUpdateSerializer(
@@ -76,37 +71,24 @@ class UserProfileView:
                 # Serialize response
                 response_serializer = UserProfileSerializer(updated_profile)
 
-                return Response({
-                    'success': True,
-                    'message': 'Profile updated successfully',
-                    'data': response_serializer.data
-                })
+                return api_response_success(msg='Profile updated successfully', data=response_serializer.data)
             else:
-                return Response({
-                    'success': False,
-                    'errors': serializer.errors
-                }, status=status.HTTP_400_BAD_REQUEST)
+                return api_response_error(msg='Validation error', data=serializer.errors)
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error updating user profile with UUID {profile_uuid}: {e}")
-            return Response({
-                'success': False,
-                'error': f'Unable to update user profile with UUID {profile_uuid}'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logging.getLogger(__name__).error(f"Error updating user profile with UUID {user_profile_uuid}: {e}")
+            return api_response_error(msg=f'Unable to update user profile with UUID {user_profile_uuid}')
 
     @staticmethod
     @api_view(['PUT'])
-    def change_password(request, profile_uuid):
+    def change_password(request, user_profile_uuid):
         """Change user password by profile UUID"""
         try:
             # Initialize service
-            profile_service = UserProfileService(profile_uuid=profile_uuid)
+            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
 
             # Use the existing serializer for backward compatibility
             serializer = ChangePasswordSerializer(data=request.data)
@@ -117,36 +99,21 @@ class UserProfileView:
 
                 # Verify current password
                 if not profile_service.profile.check_password(current_password):
-                    return Response({
-                        'success': False,
-                        'error': 'Current password is incorrect'
-                    }, status=status.HTTP_400_BAD_REQUEST)
+                    return api_response_error(msg='Current password is incorrect')
 
                 # Process password change
                 profile_service.process_change_password(current_password, new_password)
 
-                return Response({
-                    'success': True,
-                    'message': 'Password changed successfully'
-                })
+                return api_response_success(msg='Password changed successfully')
             else:
-                return Response({
-                    'success': False,
-                    'errors': serializer.errors
-                }, status=status.HTTP_400_BAD_REQUEST)
+                return api_response_error(msg='Validation error', data=serializer.errors)
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error changing password for profile UUID {profile_uuid}: {e}")
-            return Response({
-                'success': False,
-                'error': f'Unable to change password for profile UUID {profile_uuid}'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logging.getLogger(__name__).error(f"Error changing password for profile UUID {user_profile_uuid}: {e}")
+            return api_response_error(msg=f'Unable to change password for profile UUID {user_profile_uuid}')
 
     @staticmethod
     @api_view(['POST'])
@@ -163,29 +130,16 @@ class UserProfileView:
                 # Serialize response
                 response_serializer = UserProfileSerializer(profile)
 
-                return Response({
-                    'success': True,
-                    'message': 'Profile created successfully',
-                    'data': response_serializer.data
-                }, status=status.HTTP_201_CREATED)
+                return api_response_success(msg='Profile created successfully', data=response_serializer.data)
             else:
-                return Response({
-                    'success': False,
-                    'errors': serializer.errors
-                }, status=status.HTTP_400_BAD_REQUEST)
+                return api_response_error(msg='Validation error', data=serializer.errors)
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
             logging.getLogger(__name__).error(f"Error creating user profile: {e}")
-            return Response({
-                'success': False,
-                'error': 'Unable to create user profile'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return api_response_error(msg='Unable to create user profile')
 
     @staticmethod
     @api_view(['GET'])
@@ -199,143 +153,117 @@ class UserProfileView:
             # Serialize response
             serializer = UserProfileSerializer(profiles, many=True)
 
-            return Response({
-                'success': True,
+            return api_response_success(data={
                 'count': len(profiles),
                 'total': total_count,
                 'data': serializer.data
             })
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
             logging.getLogger(__name__).error(f"Error listing user profiles: {e}")
-            return Response({
-                'success': False,
-                'error': 'Unable to retrieve user profiles'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return api_response_error(msg='Unable to retrieve user profiles')
 
     @staticmethod
     @api_view(['DELETE'])
-    def delete_profile(request, profile_uuid):
+    def delete_profile(request, user_profile_uuid):
         """Delete user profile (soft delete)"""
         try:
             # Initialize service
-            profile_service = UserProfileService(profile_uuid=profile_uuid)
+            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
 
             # Process delete
             profile_service.process_delete_profile()
 
-            return Response({
-                'success': True,
-                'message': 'Profile deleted successfully'
-            })
+            return api_response_success(msg='Profile deleted successfully')
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error deleting user profile with UUID {profile_uuid}: {e}")
-            return Response({
-                'success': False,
-                'error': f'Unable to delete user profile with UUID {profile_uuid}'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logging.getLogger(__name__).error(f"Error deleting user profile with UUID {user_profile_uuid}: {e}")
+            return api_response_error(msg=f'Unable to delete user profile with UUID {user_profile_uuid}')
 
     @staticmethod
     @api_view(['GET'])
-    def get_ai_context(request, profile_uuid):
+    def get_ai_context(request, user_profile_uuid):
         """Get AI context data for user profile"""
         try:
             # Initialize service
-            profile_service = UserProfileService(profile_uuid=profile_uuid)
+            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
 
             # Get AI context
             ai_context = profile_service.get_ai_context()
 
-            return Response({
-                'success': True,
-                'data': ai_context
-            })
+            return api_response_success(data=ai_context)
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error getting AI context for profile UUID {profile_uuid}: {e}")
-            return Response({
-                'success': False,
-                'error': f'Unable to get AI context for profile UUID {profile_uuid}'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logging.getLogger(__name__).error(f"Error getting AI context for profile UUID {user_profile_uuid}: {e}")
+            return api_response_error(msg=f'Unable to get AI context for profile UUID {user_profile_uuid}')
 
     @staticmethod
     @api_view(['GET'])
-    def get_profile_summary(request, profile_uuid):
+    def get_profile_summary(request, user_profile_uuid):
         """Get summarized profile information"""
         try:
             # Initialize service
-            profile_service = UserProfileService(profile_uuid=profile_uuid)
+            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
 
             # Get profile summary
             summary = profile_service.get_profile_summary()
 
-            return Response({
-                'success': True,
-                'data': summary
-            })
+            return api_response_success(data=summary)
 
         except ValidationError as e:
-            return Response({
-                'success': False,
-                'error': str(e)
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return api_response_error(msg=str(e))
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error getting profile summary for UUID {profile_uuid}: {e}")
-            return Response({
-                'success': False,
-                'error': f'Unable to get profile summary for UUID {profile_uuid}'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logging.getLogger(__name__).error(f"Error getting profile summary for UUID {user_profile_uuid}: {e}")
+            return api_response_error(msg=f'Unable to get profile summary for UUID {user_profile_uuid}')
 
 
 # Function-based views for backward compatibility with URLs
-def get_user_profile(request, profile_uuid):
+@csrf_exempt
+def get_user_profile(request, user_profile_uuid):
     """Function wrapper for get profile"""
-    return UserProfileView.get_profile(request, profile_uuid)
+    return UserProfileView.get_profile(request, user_profile_uuid)
 
-def update_user_profile(request, profile_uuid):
+@csrf_exempt
+def update_user_profile(request, user_profile_uuid):
     """Function wrapper for update profile"""
-    return UserProfileView.update_profile(request, profile_uuid)
+    return UserProfileView.update_profile(request, user_profile_uuid)
 
-def change_password(request, profile_uuid):
+@csrf_exempt
+def change_password(request, user_profile_uuid):
     """Function wrapper for change password"""
-    return UserProfileView.change_password(request, profile_uuid)
+    return UserProfileView.change_password(request, user_profile_uuid)
 
+@csrf_exempt
 def create_user_profile(request):
     """Function wrapper for create profile"""
     return UserProfileView.create_profile(request)
 
+@csrf_exempt
 def list_user_profiles(request):
     """Function wrapper for list profiles"""
     return UserProfileView.list_profiles(request)
 
-def delete_user_profile(request, profile_uuid):
+@csrf_exempt
+def delete_user_profile(request, user_profile_uuid):
     """Function wrapper for delete profile"""
-    return UserProfileView.delete_profile(request, profile_uuid)
+    return UserProfileView.delete_profile(request, user_profile_uuid)
 
-def get_user_ai_context(request, profile_uuid):
+@csrf_exempt
+def get_user_ai_context(request, user_profile_uuid):
     """Function wrapper for get AI context"""
-    return UserProfileView.get_ai_context(request, profile_uuid)
+    return UserProfileView.get_ai_context(request, user_profile_uuid)
 
-def get_user_profile_summary(request, profile_uuid):
+@csrf_exempt
+def get_user_profile_summary(request, user_profile_uuid):
     """Function wrapper for get profile summary"""
-    return UserProfileView.get_profile_summary(request, profile_uuid)
+    return UserProfileView.get_profile_summary(request, user_profile_uuid)

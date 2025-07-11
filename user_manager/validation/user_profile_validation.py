@@ -5,78 +5,11 @@ from django.core.validators import EmailValidator
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-
+from base.validation.base import Validation
 from ..models.user_profile import UserProfile
 
 
-class BaseValidation(serializers.Serializer):
-    """Base validation class with common validation methods"""
-
-    def validate_max_length(self, value, max_length=255):
-        """Validate string max length"""
-        if value and len(value) > max_length:
-            raise serializers.ValidationError(f'Maximum length is {max_length} characters')
-        return True
-
-    def validate_username_format(self, value):
-        """Validate username format"""
-        if not value:
-            raise serializers.ValidationError('Username is required')
-
-        if len(value) < 3:
-            raise serializers.ValidationError('Username must be at least 3 characters long')
-
-        if not re.match(r'^[a-zA-Z0-9_\s]+$', value):
-            raise serializers.ValidationError('Username can only contain letters, numbers, underscores and spaces')
-
-        return True
-
-    def validate_email_format(self, value):
-        """Validate email format"""
-        if not value:
-            raise serializers.ValidationError('Email is required')
-
-        email_validator = EmailValidator()
-        try:
-            email_validator(value)
-        except ValidationError:
-            raise serializers.ValidationError('Invalid email format')
-
-        return True
-
-    def validate_password_strength(self, value):
-        """Validate password strength"""
-        if not value:
-            raise serializers.ValidationError('Password is required')
-
-        try:
-            validate_password(value)
-        except ValidationError as e:
-            raise serializers.ValidationError(list(e.messages))
-
-        # Additional custom validation
-        if len(value) < 8:
-            raise serializers.ValidationError('Password must be at least 8 characters long')
-
-        if not re.search(r'[A-Z]', value):
-            raise serializers.ValidationError('Password must contain at least one uppercase letter')
-
-        if not re.search(r'[a-z]', value):
-            raise serializers.ValidationError('Password must contain at least one lowercase letter')
-
-        if not re.search(r'\d', value):
-            raise serializers.ValidationError('Password must contain at least one digit')
-
-        return True
-
-    def validate_url_format(self, value):
-        """Validate URL format if provided"""
-        if value and not value.startswith(('http://', 'https://')):
-            raise serializers.ValidationError('URL must be a valid HTTP/HTTPS URL')
-        return True
-
-
-class UserProfileInfoValidation(BaseValidation):
+class UserProfileInfoValidation(Validation):
     """Validation for user profile information"""
 
     username = serializers.CharField(required=True, max_length=100)
@@ -136,7 +69,7 @@ class UserProfileUpdateInfoValidation(UserProfileInfoValidation):
     interests = serializers.CharField(required=False, allow_blank=True)
 
 
-class UserProfileCreateValidation(BaseValidation):
+class UserProfileCreateValidation(Validation):
     """Validation for creating new user profile"""
 
     info = UserProfileInfoValidation()
@@ -155,7 +88,7 @@ class UserProfileCreateValidation(BaseValidation):
         return attrs
 
 
-class UserProfileUpdateValidation(BaseValidation):
+class UserProfileUpdateValidation(Validation):
     """Validation for updating user profile"""
 
     info = UserProfileUpdateInfoValidation(required=False)
@@ -169,7 +102,7 @@ class UserProfileUpdateValidation(BaseValidation):
             self.fields['info'].context = {'instance': self.instance}
 
 
-class ChangePasswordValidation(BaseValidation):
+class ChangePasswordValidation(Validation):
     """Validation for changing password"""
 
     current_password = serializers.CharField(required=True, write_only=True)
@@ -198,7 +131,7 @@ class ChangePasswordValidation(BaseValidation):
         return attrs
 
 
-class UserProfileListValidation(BaseValidation):
+class UserProfileListValidation(Validation):
     """Validation for listing user profiles with filters"""
 
     search = serializers.CharField(required=False, allow_blank=True, max_length=255)

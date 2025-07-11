@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'drf_yasg',  # Swagger documentation
     'user_manager',  # User management app with authentication
     'travel_concierge',
 ]
@@ -142,6 +141,7 @@ if isinstance(CORS_ALLOWED_ORIGINS, str):
 # REST Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'user_manager.service.bearer_auth.BearerHeaderAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
@@ -157,23 +157,6 @@ REST_FRAMEWORK = {
         'profile': '100/15min',  # For profile GET/UPDATE endpoints
         'password_change': '5/15min',  # For password change endpoint
     }
-}
-
-# Swagger settings
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-        }
-    },
-    'USE_SESSION_AUTH': False,
-    'LOGIN_URL': None,
-    'LOGOUT_URL': None,
-    'PERSIST_AUTH': True,
-    'REFETCH_SCHEMA_WITH_AUTH': True,
-    'REFETCH_SCHEMA_ON_LOGOUT': True,
 }
 
 # Disable Django admin login requirement for API documentation
