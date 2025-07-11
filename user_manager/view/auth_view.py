@@ -13,7 +13,8 @@ from ..serializers import (
     LoginResponseSerializer,
     TokenVerifySerializer,
     LogoutResponseSerializer,
-    ErrorResponseSerializer
+    ErrorResponseSerializer,
+    ChangePasswordSerializer,  # Thêm import mới
 )
 from ..permission.auth_permission import AuthPermission
 
@@ -322,3 +323,38 @@ class LogoutView(APIView):
                 'description': 'Invalidate JWT token to logout user securely'
             }
         )
+
+
+class ChangePasswordView(APIView):
+    """
+    API view for changing user password by user_uuid.
+    """
+    permission_classes = [AuthPermission]
+    serializer_class = ChangePasswordSerializer
+
+    def post(self, request, user_uuid):
+        serializer = ChangePasswordSerializer(data=request.data)
+        if not serializer.is_valid():
+            return api_response_error(
+                msg='Validation error',
+                data=serializer.errors,
+                http_code=status.HTTP_400_BAD_REQUEST
+            )
+        current_password = serializer.validated_data['current_password']
+        new_password = serializer.validated_data['new_password']
+
+        # Lấy user
+        from ..models.auth_models import User
+        try:
+            user = User.objects.get(user_uuid=user_uuid)
+        except User.DoesNotExist:
+            return api_response_error(msg='User not found', http_code=status.HTTP_404_NOT_FOUND)
+
+        # Kiểm tra mật khẩu hiện tại
+        if not user.check_password(current_password):
+            return api_response_error(msg='Current password is incorrect', http_code=status.HTTP_400_BAD_REQUEST)
+
+        # Đổi mật khẩu
+        user.set_password(new_password)
+        user.save()
+        return api_response_success(msg='Password changed successfully')

@@ -87,33 +87,10 @@ class UserProfileView(CustomViewSet):
     def change_password(request, user_profile_uuid):
         """Change user password by profile UUID"""
         try:
-            # Initialize service
-            profile_service = UserProfileService(user_profile_uuid=user_profile_uuid)
-
-            # Use the existing serializer for backward compatibility
-            serializer = ChangePasswordSerializer(data=request.data)
-
-            if serializer.is_valid():
-                current_password = serializer.validated_data['current_password']
-                new_password = serializer.validated_data['new_password']
-
-                # Verify current password
-                if not profile_service.profile.check_password(current_password):
-                    return api_response_error(msg='Current password is incorrect')
-
-                # Process password change
-                profile_service.process_change_password(current_password, new_password)
-
-                return api_response_success(msg='Password changed successfully')
-            else:
-                return api_response_error(msg='Validation error', data=serializer.errors)
-
-        except ValidationError as e:
-            return api_response_error(msg=str(e))
-
-        except Exception as e:
-            logging.getLogger(__name__).error(f"Error changing password for profile UUID {user_profile_uuid}: {e}")
-            return api_response_error(msg=f'Unable to change password for profile UUID {user_profile_uuid}')
+            # Đã chuyển sang auth_view.ChangePasswordView, bỏ logic cũ
+            return api_response_error(msg='This endpoint is deprecated. Please use /api/auth/change-password/')
+        except Exception:
+            return api_response_error(msg='This endpoint is deprecated. Please use /api/auth/change-password/')
 
     @staticmethod
     @api_view(['POST'])
@@ -237,11 +214,6 @@ def get_user_profile(request, user_profile_uuid):
 def update_user_profile(request, user_profile_uuid):
     """Function wrapper for update profile"""
     return UserProfileView.update_profile(request, user_profile_uuid)
-
-@csrf_exempt
-def change_password(request, user_profile_uuid):
-    """Function wrapper for change password"""
-    return UserProfileView.change_password(request, user_profile_uuid)
 
 @csrf_exempt
 def create_user_profile(request):
