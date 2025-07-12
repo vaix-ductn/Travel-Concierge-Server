@@ -300,6 +300,88 @@
           }
         }
       ]
+    },
+    {
+      "name": "🗺️ Plan",
+      "item": [
+        {
+          "name": "Create Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/user_manager/plan/:user_uuid/create/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user_manager", "plan", ":user_uuid", "create", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Trip to Maldives\",\n  \"destination\": \"Maldives\",\n  \"itinerary\": [\n    {\n      \"day_number\": 1,\n      \"date\": \"2025-07-15T00:00:00Z\",\n      \"display_date\": \"July 15\",\n      \"activities\": [\n        {\n          \"time_slot\": \"Morning\",\n          \"title\": \"Visit Fushimi Inari Shrine\",\n          \"description\": \"Thousands of vibrant red torii gates\",\n          \"weather_icon\": \"☀️\",\n          \"is_active\": true\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"created_at\": \"2025-01-20T10:30:00Z\",\n    \"days_count\": 3\n  }\n}"
+            },
+            "description": "Create a new plan for a user."
+          }
+        },
+        {
+          "name": "Get Plan",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/user_manager/plan/:plan_uuid/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user_manager", "plan", ":plan_uuid", ""]
+            },
+            "description": "Get plan details by plan_uuid."
+          }
+        },
+        {
+          "name": "Update Plan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/user_manager/plan/:plan_uuid/update/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user_manager", "plan", ":plan_uuid", "update", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Trip to Maldives - Updated\"\n}"
+            },
+            "description": "Update an existing plan by plan_uuid."
+          }
+        },
+        {
+          "name": "Delete Plan",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/user_manager/plan/:plan_uuid/delete/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user_manager", "plan", ":plan_uuid", "delete", ""]
+            },
+            "description": "Soft delete a plan by plan_uuid."
+          }
+        },
+        {
+          "name": "List Plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/user_manager/plan/:user_uuid/list/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user_manager", "plan", ":user_uuid", "list", ""]
+            },
+            "description": "List all plans for a user (not deleted)."
+          }
+        }
+      ]
     }
   ]
 }
