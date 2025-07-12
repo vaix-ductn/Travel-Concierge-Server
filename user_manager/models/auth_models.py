@@ -47,22 +47,7 @@ class User(models.Model):
         null=True,
         help_text="User's full display name"
     )
-    avatar_url = models.URLField(
-        max_length=500,
-        blank=True,
-        null=True,
-        help_text="URL to user's avatar image"
-    )
-    address = models.TextField(
-        blank=True,
-        null=True,
-        help_text="User's address"
-    )
-    interests = models.JSONField(
-        default=list,
-        blank=True,
-        help_text="List of user interests"
-    )
+    # Đã xóa avatar_url, address, interests khỏi User
 
     # Timestamps
     created_at = models.DateTimeField(
@@ -148,9 +133,6 @@ class User(models.Model):
             'username': self.username,
             'email': self.email,
             'full_name': self.full_name,
-            'avatar_url': self.avatar_url,
-            'address': self.address,
-            'interests': self.interests or [],
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
             'last_login': self.last_login.isoformat() if self.last_login else None,
@@ -168,7 +150,6 @@ class User(models.Model):
             'username': self.username,
             'email': self.email,
             'full_name': self.full_name or self.username,
-            'avatar_url': self.avatar_url,
         }
 
     @property

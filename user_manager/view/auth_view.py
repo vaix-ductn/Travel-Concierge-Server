@@ -84,10 +84,19 @@ class LoginView(APIView):
             # Handle response based on result
             if result['success']:
                 logger.info(f"Successful login for user: {username_or_email} from IP: {client_ip}")
+                # Chỉ trả về các trường cơ bản, không trả về avatar_url, address, interests
+                user_data = result.get('user', {})
+                # Nếu có user_profile_uuid thì trả về, còn các trường khác đã loại bỏ
                 return api_response_success(
                     data={
                         'token': result.get('token'),
-                        'user': result.get('user'),
+                        'user': {
+                            'user_uuid': user_data.get('user_uuid'),
+                            'username': user_data.get('username'),
+                            'email': user_data.get('email'),
+                            'full_name': user_data.get('full_name'),
+                            'user_profile_uuid': user_data.get('user_profile_uuid'),
+                        },
                         'expires_at': result.get('expires_at')
                     },
                     msg=result.get('message', 'Login successful'),
@@ -194,9 +203,16 @@ class VerifyTokenView(APIView):
             # Handle response
             if result['success']:
                 logger.debug(f"Token verified successfully from IP: {client_ip}")
+                user_data = result.get('user', {})
                 return api_response_success(
                     data={
-                        'user': result.get('user'),
+                        'user': {
+                            'user_uuid': user_data.get('user_uuid'),
+                            'username': user_data.get('username'),
+                            'email': user_data.get('email'),
+                            'full_name': user_data.get('full_name'),
+                            'user_profile_uuid': user_data.get('user_profile_uuid'),
+                        },
                         'token_expires_at': result.get('token_expires_at')
                     },
                     msg=result.get('message', 'Token is valid'),

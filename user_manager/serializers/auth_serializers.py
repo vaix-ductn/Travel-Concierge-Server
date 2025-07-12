@@ -112,13 +112,6 @@ class UserSerializer(BaseSerializer):
     username = serializers.CharField(read_only=True)
     email = serializers.EmailField(read_only=True)
     full_name = serializers.CharField(required=False, allow_blank=True)
-    avatar_url = serializers.URLField(required=False, allow_blank=True)
-    address = serializers.CharField(required=False, allow_blank=True)
-    interests = serializers.ListField(
-        child=serializers.CharField(max_length=100),
-        required=False,
-        allow_empty=True
-    )
     created_at = serializers.DateTimeField(read_only=True)
     updated_at = serializers.DateTimeField(read_only=True)
     last_login = serializers.DateTimeField(read_only=True)
@@ -127,7 +120,6 @@ class UserSerializer(BaseSerializer):
         model = User
         fields = [
             'user_uuid', 'username', 'email', 'full_name',
-            'avatar_url', 'address', 'interests',
             'created_at', 'updated_at', 'last_login'
         ]
         read_only_fields = ['user_uuid', 'username', 'email', 'created_at', 'updated_at', 'last_login']

@@ -46,7 +46,7 @@ def configure_genai():
     genai.configure(api_key=api_key)
 
     # List available models to verify access
-    print("Checking available Gemini models...")
+    # print("Checking available Gemini models...")
     for m in genai.list_models():
         print(f"Found model: {m.name}")
 

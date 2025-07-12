@@ -288,20 +288,22 @@ class AuthService:
 
             # Generate token
             token = TokenService.generate_token(user)
+            expires_at = (timezone.now() + timedelta(hours=TokenService.JWT_EXPIRATION_HOURS)).isoformat()
 
-            # Prepare user context
-            user_context = user.get_auth_context()
-            user_context['user_profile_uuid'] = user_profile_uuid
-
-            logger.info(f"Successful login for user: {user.username} from IP: {ip_address}")
-
-            return {
-                'success': True,
-                'message': 'Login successful',
-                'token': token,
-                'user': user_context,
-                'expires_at': (timezone.now() + timedelta(hours=TokenService.JWT_EXPIRATION_HOURS)).isoformat()
-            }
+            if user:
+                return {
+                    'success': True,
+                    'message': 'Login successful',
+                    'token': token,
+                    'user': {
+                        'user_uuid': str(user.user_uuid),
+                        'username': user.username,
+                        'email': user.email,
+                        'full_name': user.full_name,
+                        'user_profile_uuid': user_profile_uuid,
+                    },
+                    'expires_at': expires_at,
+                }
 
         except serializers.ValidationError as e:
             # Handle authentication failure
@@ -358,12 +360,19 @@ class AuthService:
 
             logger.debug(f"Token verified successfully for user: {user.username}")
 
-            return {
-                'success': True,
-                'message': 'Token is valid',
-                'user': user.get_auth_context(),
-                'token_expires_at': datetime.fromtimestamp(payload.get('exp')).isoformat()
-            }
+            if user:
+                return {
+                    'success': True,
+                    'message': 'Token is valid',
+                    'user': {
+                        'user_uuid': str(user.user_uuid),
+                        'username': user.username,
+                        'email': user.email,
+                        'full_name': user.full_name,
+                        'user_profile_uuid': AuthService._get_user_profile_uuid(user),
+                    },
+                    'token_expires_at': datetime.fromtimestamp(payload.get('exp')).isoformat()
+                }
 
         except serializers.ValidationError as e:
             error_code = getattr(e, 'code', None)
@@ -471,10 +480,7 @@ class AuthService:
                 user = User(
                     username=username,
                     email=email,
-                    full_name=kwargs.get('full_name'),
-                    avatar_url=kwargs.get('avatar_url'),
-                    address=kwargs.get('address'),
-                    interests=kwargs.get('interests', [])
+                    full_name=kwargs.get('full_name')
                 )
                 user.set_password(password)
                 user.save()
