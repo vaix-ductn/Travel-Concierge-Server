@@ -76,6 +76,8 @@ Make sure you use the information that's already been filled above previously.
 - Use instructions from <FIND_FLIGHTS/> to complete the flight and seat choices.
 - Use instructions from <FIND_HOTELS/> to complete the hotel and room choices.
 - Finally, use instructions from <CREATE_ITINERARY/> to generate an itinerary.
+
+IMPORTANT: When you finish creating the full itinerary, you MUST return ONLY a single valid JSON object as your final response. Do NOT include any explanations, greetings, markdown formatting, or any other text. The response must be pure JSON, strictly following the schema provided in the examples above.
 </FULL_ITINERARY>
 
 <FIND_FLIGHTS>
@@ -129,6 +131,8 @@ Your goal is to help the traveler by  completing the following information if an
 - Confirm with the user if the draft is good to go, if the user gives the go ahead, carry out the following steps:
   - Make sure the user's choices for flights and hotels are memorized as instructed above.
   - Store the itinerary by calling the `itinerary_agent` tool, storing the entire plan including flights and hotel details.
+
+IMPORTANT: After confirming with the user, your FINAL response must be ONLY a valid JSON object representing the itinerary. Do NOT include any explanations, greetings, or markdown formatting. The response must be pure JSON, nothing else.
 
 Interests:
   <interests>

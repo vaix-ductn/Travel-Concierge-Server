@@ -1,6 +1,7 @@
 from django.urls import path
 from .view import user_profile
 from .view.plan import create_plan, get_plan, update_plan, delete_plan, list_plans
+from .view.place import create_place, get_place, update_place, delete_place, list_places
 
 app_name = 'user_manager'
 
@@ -19,4 +20,10 @@ urlpatterns = [
     path('plan/<uuid:plan_uuid>/update/', update_plan, name='update_plan'),
     path('plan/<uuid:plan_uuid>/delete/', delete_plan, name='delete_plan'),
     path('plan/<uuid:user_uuid>/list/', list_plans, name='list_plans'),
+    # Place endpoints
+    path('place/<uuid:user_uuid>/create/', create_place, name='create_place'),
+    path('place/<uuid:place_uuid>/', get_place, name='get_place'),
+    path('place/<uuid:place_uuid>/update/', update_place, name='update_place'),
+    path('place/<uuid:place_uuid>/delete/', delete_place, name='delete_place'),
+    path('place/<uuid:user_uuid>/list/', list_places, name='list_places'),
 ]
