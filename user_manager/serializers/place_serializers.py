@@ -9,8 +9,8 @@ class PlaceCreateSerializer(serializers.Serializer):
     review_ratings = serializers.CharField(max_length=20)
     highlights = serializers.CharField(max_length=1000)
     image_url = serializers.CharField(max_length=500)
-    map_url = serializers.CharField(max_length=500)
-    place_id = serializers.CharField(max_length=100)
+    map_url = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    place_id = serializers.CharField(required=False, allow_blank=True, allow_null=True)
 
 class PlaceReadSerializer(serializers.Serializer):
     place_uuid = serializers.UUIDField(read_only=True)

@@ -26,9 +26,6 @@ class Command(BaseCommand):
                         'email': 'admin@travelconcierge.com',
                         'password': 'TravelAdmin@2024',
                         'full_name': 'System Administrator',
-                        'avatar_url': '',
-                        'address': 'Travel Concierge HQ, Tokyo, Japan',
-                        'interests': ['System administration', 'Travel technology'],
                     },
                     'user_profile': {
                         'address': 'Travel Concierge HQ, Tokyo, Japan',
@@ -51,9 +48,6 @@ class Command(BaseCommand):
                         'email': 'tranamynero@gmail.com',
                         'password': '1234@pass',
                         'full_name': 'Nero Tran',
-                        'avatar_url': '',
-                        'address': 'Ha Noi, Viet Nam',
-                        'interests': ['Travel', 'Photography', 'Food'],
                     },
                     'user_profile': {
                         'address': 'Ha Noi, Viet Nam',
@@ -76,9 +70,6 @@ class Command(BaseCommand):
                         'email': 'testuser@example.com',
                         'password': 'TestUser@2024',
                         'full_name': 'Test User',
-                        'avatar_url': '',
-                        'address': 'San Francisco, CA, USA',
-                        'interests': ['Technology', 'Travel', 'Food', 'Music'],
                     },
                     'user_profile': {
                         'address': 'San Francisco, CA, USA',
@@ -101,9 +92,6 @@ class Command(BaseCommand):
                         'email': 'demo@travelconcierge.com',
                         'password': 'DemoTravel@2024',
                         'full_name': 'Demo Traveler',
-                        'avatar_url': '',
-                        'address': 'London, UK',
-                        'interests': ['History', 'Culture', 'Architecture', 'Fine Dining'],
                     },
                     'user_profile': {
                         'address': 'London, UK',
@@ -147,9 +135,6 @@ class Command(BaseCommand):
                     username=user_info['username'],
                     email=user_info['email'],
                     full_name=user_info.get('full_name', ''),
-                    avatar_url=user_info.get('avatar_url', ''),
-                    address=user_info.get('address', ''),
-                    interests=user_info.get('interests', []),
                 )
                 user.set_password(user_info['password'])
                 user.save()
