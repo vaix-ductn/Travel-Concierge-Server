@@ -12,6 +12,10 @@ google-adk==1.0.0
 deprecated==1.2.14
 pydantic>=2.0.0
 google-generativeai>=0.3.0
+websockets>=12.0
+asyncio
+google-cloud-aiplatform>=1.38.0
+google-genai>=0.3.0
 
 # Authentication dependencies
 PyJWT==2.8.0

@@ -42,16 +42,15 @@ def configure_genai():
     api_key = os.getenv('GOOGLE_CLOUD_API_KEY')
     if not api_key:
         raise ValueError("GOOGLE_CLOUD_API_KEY environment variable is not set")
-
+    import google.generativeai as genai
     genai.configure(api_key=api_key)
-
     # List available models to verify access
     # print("Checking available Gemini models...")
     for m in genai.list_models():
         print(f"Found model: {m.name}")
 
-# Configure the API
-configure_genai()
+# XÓA dòng này để không override context xác thực cho toàn bộ process
+# configure_genai()
 
 root_agent = Agent(
     model="gemini-2.0-flash-exp",

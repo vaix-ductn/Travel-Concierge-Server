@@ -3,7 +3,11 @@
 # Function to cleanup child processes
 cleanup() {
     echo "Received SIGTERM/SIGINT, cleaning up..."
-    kill $(jobs -p)
+    echo "Stopping ADK web server (PID: $ADK_PID)..."
+    kill $ADK_PID 2>/dev/null
+    echo "Stopping Voice Chat WebSocket server (PID: $VOICE_PID)..."
+    kill $VOICE_PID 2>/dev/null
+    kill $(jobs -p) 2>/dev/null
     exit 0
 }
 
@@ -35,6 +39,23 @@ if ! ps -p $ADK_PID > /dev/null; then
     echo "Failed to start ADK web server"
     exit 1
 fi
+
+# Start Voice Chat WebSocket server in the background
+echo "Starting Voice Chat WebSocket server..."
+python manage.py start_voice_server --host 0.0.0.0 --port 8003 > /var/www/logs/voice_server.log 2>&1 &
+VOICE_PID=$!
+
+# Wait a moment for voice server to initialize
+sleep 2
+
+# Check if Voice server started successfully
+if ! ps -p $VOICE_PID > /dev/null; then
+    echo "Failed to start Voice Chat WebSocket server"
+    echo "Check logs: /var/www/logs/voice_server.log"
+    exit 1
+fi
+
+echo "Voice Chat WebSocket server started successfully (PID: $VOICE_PID)"
 
 # Start Django application
 echo "Starting Django application..."
