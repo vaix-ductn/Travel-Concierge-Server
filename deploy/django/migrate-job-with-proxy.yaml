@@ -1,0 +1,47 @@
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata:
+  name: migrate-db-proxy
+spec:
+  template:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: django-app
+            image: us-central1-docker.pkg.dev/travelapp-461806/travel-server-repo/django-server:latest
+            command:
+              - python
+              - manage.py
+              - migrate
+            env:
+              - name: DB_HOST
+                value: "127.0.0.1"
+              - name: DB_NAME
+                value: "travel_concierge"
+              - name: DB_USER
+                value: "travel_concierge"
+              - name: DB_PASSWORD
+                value: "TravelConcierge2024!"
+              - name: DB_PORT
+                value: "3306"
+              - name: DJANGO_SETTINGS_MODULE
+                value: "config.settings"
+            resources:
+              limits:
+                memory: "1Gi"
+                cpu: "1"
+          - name: cloud-sql-proxy
+            image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:latest
+            args:
+              - "--port=3306"
+              - "travelapp-461806:us-central1:travel-concierge-db"
+            resources:
+              requests:
+                memory: "256Mi"
+                cpu: "250m"
+              limits:
+                memory: "512Mi"
+                cpu: "500m"
+          maxRetries: 3
+          timeoutSeconds: 600

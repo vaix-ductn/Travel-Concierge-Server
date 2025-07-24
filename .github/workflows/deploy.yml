@@ -1,0 +1,324 @@
+name: Deploy Travel Server to Google Cloud
+
+on:
+  push:
+    branches:
+      - main          # Deploy to production
+      - staging       # Deploy to staging
+    paths:
+      - 'Server/travel_server/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Server/travel_server/**'
+  workflow_dispatch:   # Allow manual deployment
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  # Global environment variables
+  GOOGLE_CLOUD_PROJECT_STAGING: ${{ secrets.GOOGLE_CLOUD_PROJECT_STAGING }}
+  GOOGLE_CLOUD_PROJECT_PRODUCTION: ${{ secrets.GOOGLE_CLOUD_PROJECT_PRODUCTION }}
+  REGISTRY_REGION: us-central1
+
+jobs:
+  # =============================================================================
+  # Determine Deployment Environment
+  # =============================================================================
+  determine-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set-env.outputs.environment }}
+      project-id: ${{ steps.set-env.outputs.project-id }}
+    steps:
+      - id: set-env
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            echo "environment=staging" >> $GITHUB_OUTPUT
+          else
+            echo "environment=staging" >> $GITHUB_OUTPUT
+          fi
+
+          # Set project ID based on environment
+          if [[ "${{ steps.set-env.outputs.environment }}" == "production" ]]; then
+            echo "project-id=${{ env.GOOGLE_CLOUD_PROJECT_PRODUCTION }}" >> $GITHUB_OUTPUT
+          else
+            echo "project-id=${{ env.GOOGLE_CLOUD_PROJECT_STAGING }}" >> $GITHUB_OUTPUT
+          fi
+
+  # =============================================================================
+  # Run Tests
+  # =============================================================================
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Server/travel_server
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: testpassword
+          MYSQL_DATABASE: test_travel_concierge
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-django pytest-cov
+
+      - name: Run Django tests
+        env:
+          DATABASE_URL: mysql://root:testpassword@localhost:3306/test_travel_concierge
+          DJANGO_SETTINGS_MODULE: config.settings
+          SECRET_KEY: test-secret-key-for-ci
+        run: |
+          python manage.py collectstatic --noinput
+          python manage.py test --verbosity=2
+
+      - name: Run pytest with coverage
+        env:
+          DATABASE_URL: mysql://root:testpassword@localhost:3306/test_travel_concierge
+          DJANGO_SETTINGS_MODULE: config.settings
+          SECRET_KEY: test-secret-key-for-ci
+        run: |
+          pytest --cov=. --cov-report=term-missing --cov-report=xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./Server/travel_server/coverage.xml
+          flags: backend
+          name: travel-server-coverage
+
+  # =============================================================================
+  # Build and Deploy
+  # =============================================================================
+  deploy:
+    needs: [determine-environment, test]
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'  # Skip deployment for PRs
+    environment: ${{ needs.determine-environment.outputs.environment }}
+
+    defaults:
+      run:
+        working-directory: ./Server/travel_server
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # =============================================================================
+      # Google Cloud Authentication
+      # =============================================================================
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
+          project_id: ${{ needs.determine-environment.outputs.project-id }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ needs.determine-environment.outputs.project-id }}
+
+      # =============================================================================
+      # Configure Docker for Artifact Registry
+      # =============================================================================
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker ${{ env.REGISTRY_REGION }}-docker.pkg.dev
+
+      # =============================================================================
+      # Build and Push Docker Image
+      # =============================================================================
+      - name: Build and push Docker image
+        env:
+          PROJECT_ID: ${{ needs.determine-environment.outputs.project-id }}
+          ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build image name
+          IMAGE_NAME="${{ env.REGISTRY_REGION }}-docker.pkg.dev/${PROJECT_ID}/travel-server-repo/travel-server-${ENVIRONMENT}"
+
+          # Build and push image
+          gcloud builds submit \
+            --tag="${IMAGE_NAME}:${IMAGE_TAG}" \
+            --tag="${IMAGE_NAME}:latest" \
+            --project="${PROJECT_ID}" \
+            .
+
+          # Output image URL for next step
+          echo "IMAGE_URL=${IMAGE_NAME}:${IMAGE_TAG}" >> $GITHUB_ENV
+
+      # =============================================================================
+      # Deploy to Cloud Run
+      # =============================================================================
+      - name: Deploy to Cloud Run
+        env:
+          PROJECT_ID: ${{ needs.determine-environment.outputs.project-id }}
+          ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+          SERVICE_NAME: travel-server-${{ needs.determine-environment.outputs.environment }}
+        run: |
+          # Get database connection name
+          DB_CONNECTION_NAME=$(gcloud sql instances describe "travel-db-${ENVIRONMENT}" \
+            --project="${PROJECT_ID}" \
+            --format="value(connectionName)")
+
+          # Deploy to Cloud Run
+          gcloud run deploy "${SERVICE_NAME}" \
+            --image="${IMAGE_URL}" \
+            --platform=managed \
+            --region="${{ env.REGISTRY_REGION }}" \
+            --allow-unauthenticated \
+            --port=8000 \
+            --memory=2Gi \
+            --cpu=1 \
+            --max-instances=10 \
+            --min-instances=1 \
+            --set-env-vars="ENVIRONMENT=${ENVIRONMENT}" \
+            --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
+            --set-env-vars="STORAGE_BUCKET=${PROJECT_ID}-travel-storage-${ENVIRONMENT}" \
+            --set-cloudsql-instances="${DB_CONNECTION_NAME}" \
+            --project="${PROJECT_ID}"
+
+      # =============================================================================
+      # Run Database Migrations
+      # =============================================================================
+      - name: Run database migrations
+        env:
+          PROJECT_ID: ${{ needs.determine-environment.outputs.project-id }}
+          ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+          MIGRATION_JOB_NAME: travel-server-${{ needs.determine-environment.outputs.environment }}-migration
+        run: |
+          # Get database connection name
+          DB_CONNECTION_NAME=$(gcloud sql instances describe "travel-db-${ENVIRONMENT}" \
+            --project="${PROJECT_ID}" \
+            --format="value(connectionName)")
+
+          # Create and run migration job
+          gcloud run jobs create "${MIGRATION_JOB_NAME}" \
+            --image="${IMAGE_URL}" \
+            --region="${{ env.REGISTRY_REGION }}" \
+            --set-cloudsql-instances="${DB_CONNECTION_NAME}" \
+            --set-env-vars="ENVIRONMENT=${ENVIRONMENT}" \
+            --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
+            --command="python" \
+            --args="manage.py,migrate" \
+            --project="${PROJECT_ID}" \
+            --replace || true
+
+          # Execute migration job
+          gcloud run jobs execute "${MIGRATION_JOB_NAME}" \
+            --region="${{ env.REGISTRY_REGION }}" \
+            --project="${PROJECT_ID}" \
+            --wait
+
+      # =============================================================================
+      # Health Check and Notifications
+      # =============================================================================
+      - name: Health check
+        env:
+          PROJECT_ID: ${{ needs.determine-environment.outputs.project-id }}
+          ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+          SERVICE_NAME: travel-server-${{ needs.determine-environment.outputs.environment }}
+        run: |
+          # Get service URL
+          SERVICE_URL=$(gcloud run services describe "${SERVICE_NAME}" \
+            --region="${{ env.REGISTRY_REGION }}" \
+            --project="${PROJECT_ID}" \
+            --format="value(status.url)")
+
+          echo "Service deployed at: ${SERVICE_URL}"
+          echo "SERVICE_URL=${SERVICE_URL}" >> $GITHUB_ENV
+
+          # Basic health check
+          curl -f "${SERVICE_URL}/health/" || echo "Health check failed"
+
+      - name: Clean up old revisions
+        env:
+          PROJECT_ID: ${{ needs.determine-environment.outputs.project-id }}
+          ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+          SERVICE_NAME: travel-server-${{ needs.determine-environment.outputs.environment }}
+        run: |
+          # Clean up old Cloud Run revisions (keep last 3)
+          gcloud run revisions list \
+            --service="${SERVICE_NAME}" \
+            --region="${{ env.REGISTRY_REGION }}" \
+            --project="${PROJECT_ID}" \
+            --format="value(metadata.name)" \
+            --sort-by="~metadata.creationTimestamp" \
+            --limit=100 | tail -n +4 | while read -r revision; do
+              gcloud run revisions delete "$revision" \
+                --region="${{ env.REGISTRY_REGION }}" \
+                --project="${PROJECT_ID}" \
+                --quiet || true
+          done
+
+  # =============================================================================
+  # Notify on Success/Failure
+  # =============================================================================
+  notify:
+    needs: [determine-environment, deploy]
+    runs-on: ubuntu-latest
+    if: always() && github.event_name != 'pull_request'
+
+    steps:
+      - name: Notify deployment status
+        env:
+          ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+          DEPLOYMENT_STATUS: ${{ needs.deploy.result }}
+        run: |
+          if [[ "${{ needs.deploy.result }}" == "success" ]]; then
+            echo "✅ Deployment to ${ENVIRONMENT} was successful!"
+          else
+            echo "❌ Deployment to ${ENVIRONMENT} failed!"
+            exit 1
+          fi

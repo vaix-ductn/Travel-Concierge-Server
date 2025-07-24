@@ -1,0 +1,113 @@
+# =============================================================================
+# Travel Server Deployment Configuration
+# =============================================================================
+# This file contains environment-specific configuration for deploying
+# the Travel Server to Google Cloud Platform.
+
+# Development Environment (for local testing)
+development:
+  project_id: "travelapp-461806"
+  region: "us-central1"
+
+  # Resource sizing (small for dev)
+  cloud_run:
+    cpu: 1
+    memory: "1Gi"
+    min_instances: 0
+    max_instances: 3
+
+  database:
+    tier: "db-f1-micro"
+    storage_size: "10GB"
+    backup_enabled: false
+
+  # Environment variables
+  env_vars:
+    DEBUG: "true"
+    LOG_LEVEL: "DEBUG"
+    ALLOWED_HOSTS: "*"
+
+# Staging Environment
+# staging:
+#   project_id: "travel-concierge-staging"
+#   region: "us-central1"
+
+#   # Resource sizing (medium for staging)
+#   cloud_run:
+#     cpu: 1
+#     memory: "2Gi"
+#     min_instances: 1
+#     max_instances: 5
+
+#   database:
+#     tier: "db-g1-small"
+#     storage_size: "20GB"
+#     backup_enabled: true
+#     backup_start_time: "03:00"
+
+#   # Environment variables
+#   env_vars:
+#     DEBUG: "false"
+#     LOG_LEVEL: "INFO"
+#     ALLOWED_HOSTS: "*.run.app,staging-travel-server.com"
+
+# # Production Environment
+# production:
+#   project_id: "travel-concierge-prod"
+#   region: "us-central1"
+
+#   # Resource sizing (large for production)
+#   cloud_run:
+#     cpu: 2
+#     memory: "4Gi"
+#     min_instances: 2
+#     max_instances: 20
+
+#   database:
+#     tier: "db-standard-2"
+#     storage_size: "100GB"
+#     backup_enabled: true
+#     backup_start_time: "03:00"
+#     high_availability: true
+
+#   # Environment variables
+#   env_vars:
+#     DEBUG: "false"
+#     LOG_LEVEL: "WARNING"
+#     ALLOWED_HOSTS: "*.run.app,travel-server.com,api.travel-server.com"
+
+# Common settings across all environments
+common:
+  # Python runtime version
+  python_version: "3.11"
+
+  # Required Google Cloud APIs
+  required_apis:
+    - cloudbuild.googleapis.com
+    - run.googleapis.com
+    - sql-component.googleapis.com
+    - sqladmin.googleapis.com
+    - storage-component.googleapis.com
+    - artifactregistry.googleapis.com
+    - monitoring.googleapis.com
+    - logging.googleapis.com
+    - secretmanager.googleapis.com
+
+  # Database settings
+  database:
+    version: "MYSQL_8_0"
+    name: "travel_concierge"
+    charset: "utf8mb4"
+
+  # Storage settings
+  storage:
+    media_bucket_suffix: "media"
+    static_bucket_suffix: "static"
+    backup_bucket_suffix: "backups"
+
+  # Security settings
+  security:
+    ssl_required: true
+    cors_allowed_origins:
+      - "https://localhost:3000"
+      - "https://travel-concierge.com"

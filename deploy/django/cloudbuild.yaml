@@ -1,0 +1,16 @@
+# =============================================================================
+# Cloud Build Configuration for Django Service
+# =============================================================================
+
+steps:
+  # Build the Django container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'deploy/django/Dockerfile.production', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/django-server:latest', '.']
+
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/django-server:latest']
+
+# Store images in Artifact Registry
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/django-server:latest'

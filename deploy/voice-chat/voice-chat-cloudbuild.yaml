@@ -1,0 +1,12 @@
+steps:
+  # Build the Voice Chat container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'deploy/voice-chat/voice-chat.Dockerfile', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/voice-chat-server:latest', '.']
+
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/voice-chat-server:latest']
+
+# Store images in Artifact Registry
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/voice-chat-server:latest'

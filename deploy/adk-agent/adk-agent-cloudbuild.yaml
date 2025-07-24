@@ -1,0 +1,12 @@
+steps:
+  # Build the ADK Agent container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'deploy/adk-agent/adk-agent.Dockerfile', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/adk-agent-server:latest', '.']
+
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/adk-agent-server:latest']
+
+# Store images in Artifact Registry
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/travel-server-repo/adk-agent-server:latest'

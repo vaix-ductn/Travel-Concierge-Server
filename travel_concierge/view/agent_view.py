@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
+from django.views.decorators.csrf import csrf_exempt
 import logging
 
 from ..service.agent_service import AgentService
@@ -125,18 +126,20 @@ class AgentView:
     @permission_classes([AllowAny])
     def list_sub_agents(request):
         """
-        Get list of available sub-agents
+        List all available sub-agents
+
+        Query parameters:
+        - include_status: boolean (default: true)
+        - include_capabilities: boolean (default: false)
         """
         try:
+            # Get sub-agents
             agent_service = AgentService()
             sub_agents = agent_service.get_available_sub_agents()
 
             return Response({
                 'success': True,
-                'data': {
-                    'sub_agents': sub_agents,
-                    'count': len(sub_agents)
-                }
+                'data': sub_agents
             })
 
         except Exception as e:
@@ -151,11 +154,11 @@ class AgentView:
     @permission_classes([AllowAny])
     def agent_interaction(request):
         """
-        Complex agent interaction endpoint
+        Handle complex agent interactions
 
         Expected payload:
         {
-            "interaction_type": "planning",
+            "interaction_type": "planning|booking|recommendation",
             "parameters": {...},
             "user_context": {...}
         }
@@ -170,15 +173,11 @@ class AgentView:
             parameters = validation.validated_data.get('parameters', {})
             user_context = validation.validated_data.get('user_context', {})
 
-            # Process interaction (placeholder for now)
-            # This would be implemented based on specific interaction types
-            result = {
-                'interaction_type': interaction_type,
-                'processed': True,
-                'parameters_received': parameters,
-                'user_context_received': user_context,
-                'message': f'Processed {interaction_type} interaction'
-            }
+            # Initialize service and process interaction
+            agent_service = AgentService()
+            result = agent_service.process_complex_interaction(
+                interaction_type, parameters, user_context
+            )
 
             return Response({
                 'success': True,
@@ -199,19 +198,18 @@ class AgentView:
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# Function-based views for URL routing
+# Function-based views for backward compatibility
 def chat_with_agent(request):
-    """Function wrapper for chat with agent"""
     return AgentView.chat_with_agent(request)
 
+
 def get_agent_status(request):
-    """Function wrapper for get agent status"""
     return AgentView.get_agent_status(request)
 
+
 def list_sub_agents(request):
-    """Function wrapper for list sub agents"""
     return AgentView.list_sub_agents(request)
 
+
 def agent_interaction(request):
-    """Function wrapper for agent interaction"""
     return AgentView.agent_interaction(request)

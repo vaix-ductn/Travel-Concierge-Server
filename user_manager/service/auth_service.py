@@ -503,15 +503,32 @@ class AuthService:
         Returns:
             str: Client IP address
         """
-        # Check for forwarded IP (proxy/load balancer)
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            # Take the first IP in case of multiple proxies
-            ip = x_forwarded_for.split(',')[0].strip()
-        else:
-            ip = request.META.get('REMOTE_ADDR', '127.0.0.1')
+        try:
+            # Check for forwarded IP (proxy/load balancer)
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            if x_forwarded_for:
+                # Take the first IP in case of multiple proxies
+                ip = x_forwarded_for.split(',')[0].strip()
+            else:
+                ip = request.META.get('REMOTE_ADDR', '127.0.0.1')
 
-        return ip
+            # Force IPv4 if configured
+            from django.conf import settings
+            if getattr(settings, 'USE_IPV4', False):
+                # If it's an IPv6 address, convert to IPv4 or use fallback
+                if ':' in ip:
+                    # Try to extract IPv4 from IPv6 or use fallback
+                    if ip.startswith('::ffff:'):
+                        # IPv4-mapped IPv6 address
+                        ip = ip[7:]  # Remove ::ffff: prefix
+                    else:
+                        # Other IPv6 address, use fallback
+                        ip = '127.0.0.1'
+
+            return ip
+        except Exception as e:
+            logger.warning(f"Error extracting client IP: {str(e)}")
+            return '127.0.0.1'  # Fallback to localhost
 
     @staticmethod
     def _get_user_by_credential(username_or_email):

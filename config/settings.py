@@ -38,7 +38,8 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'base.middleware.csrf_bypass.AgentCSRFBypassMiddleware',
+    'base.middleware.csrf_bypass.CustomCsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -65,16 +66,44 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
-        'NAME': os.getenv('DB_NAME', 'travel_concierge'),
-        'USER': os.getenv('DB_USER', 'travel_concierge'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'travel_concierge'),
-        'HOST': os.getenv('DB_HOST', 'travel_concierge_db'),
-        'PORT': os.getenv('DB_PORT', '3306'),
+import pymysql
+pymysql.install_as_MySQLdb()
+
+# Database configuration for Cloud Run
+if os.getenv('ENVIRONMENT') == 'production':
+    # Production database (Cloud SQL)
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
+            'NAME': os.getenv('DB_NAME', 'travel_concierge'),
+            'USER': os.getenv('DB_USER', 'travel_concierge'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'TravelConcierge2024!'),
+            'HOST': os.getenv('DB_HOST', '/cloudsql/travelapp-461806:us-central1:travel-concierge-db'),
+            'PORT': os.getenv('DB_PORT', '3306'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            },
+        }
     }
-}
+else:
+    # Staging/Development database
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
+            'NAME': os.getenv('DB_NAME', 'travel_concierge'),
+            'USER': os.getenv('DB_USER', 'travel_concierge'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'TravelConcierge2024!'),
+            'HOST': os.getenv('DB_HOST', '104.198.165.249'),  # Cloud SQL public IP
+            'PORT': os.getenv('DB_PORT', '3306'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'connect_timeout': 60,
+                'read_timeout': 60,
+                'write_timeout': 60,
+            },
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -120,15 +149,10 @@ LOGIN_RATE_LIMIT_WINDOW = int(os.getenv('LOGIN_RATE_LIMIT_WINDOW', '900'))  # 15
 ACCOUNT_LOCKOUT_DURATION = int(os.getenv('ACCOUNT_LOCKOUT_DURATION', '1800'))  # 30 minutes
 
 # Cache configuration for rate limiting
+# Use dummy cache for all environments to avoid Redis dependency
 CACHES = {
     'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/1'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        },
-        'KEY_PREFIX': 'travel_concierge',
-        'TIMEOUT': 300,
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
@@ -137,6 +161,9 @@ CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '["http://localhost:300
 if isinstance(CORS_ALLOWED_ORIGINS, str):
     import json
     CORS_ALLOWED_ORIGINS = json.loads(CORS_ALLOWED_ORIGINS)
+
+# Force IPv4 to avoid IPv6 encoding issues
+USE_IPV4 = True
 
 # REST Framework settings
 REST_FRAMEWORK = {
@@ -148,8 +175,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',  # Changed from IsAuthenticated to AllowAny for profile APIs
     ],
     'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle'
+        # Temporarily disable throttling for staging
+        # 'rest_framework.throttling.AnonRateThrottle',
+        # 'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/hour',

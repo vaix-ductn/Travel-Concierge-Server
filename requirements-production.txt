@@ -1,0 +1,153 @@
+# =============================================================================
+# Production Requirements for Travel Server
+# Optimized for Google Cloud deployment - SYNCED WITH LOCAL
+# =============================================================================
+
+# Include base requirements (same as local)
+-r requirements.txt
+
+# Production-specific packages (minimal, no conflicts)
+# =============================================================================
+
+# WSGI Server (already in requirements.txt, but explicit for production)
+gunicorn==21.2.0
+
+# Cloud Services (minimal, only what's needed)
+# =============================================================================
+
+# Google Cloud client libraries (minimal set)
+google-cloud-storage>=2.18.0
+google-cloud-secret-manager>=2.22.0
+google-cloud-logging==3.8.0
+
+# Database connector for Cloud SQL (already in requirements.txt)
+# PyMySQL==1.1.0  # Already in requirements.txt
+
+# Security and Authentication (minimal)
+# =============================================================================
+
+# Enhanced security (only if not in requirements.txt)
+# django-cors-headers>=4.2.0  # Already in requirements.txt
+django-csp==3.7
+
+# OAuth and JWT (already in requirements.txt)
+# PyJWT==2.8.0  # Already in requirements.txt
+
+# Performance and Monitoring (minimal)
+# =============================================================================
+
+# Performance monitoring (lightweight)
+sentry-sdk[django]==1.38.0
+
+# Caching (already in requirements.txt)
+# redis==4.6.0  # Already in requirements.txt
+# django-redis==5.3.0  # Already in requirements.txt
+
+# Email backend
+django-anymail[sendgrid]==10.2
+
+# File handling and media
+# =============================================================================
+
+# Image processing (production optimized)
+Pillow==10.1.0
+
+# File validation
+python-magic==0.4.27
+
+# Utilities (minimal)
+# =============================================================================
+
+# Environment management
+python-decouple==3.8
+
+# HTTP requests (already in requirements.txt)
+# requests==2.31.0  # Already in requirements.txt
+urllib3==2.1.0
+
+# Date/time handling
+python-dateutil==2.8.2
+
+# Data validation
+marshmallow==3.20.1
+
+# Development and debugging (conditional)
+# =============================================================================
+
+# Only include debug tools in staging
+django-debug-toolbar==4.2.0; python_version >= "3.8"
+
+# Logging and monitoring (minimal)
+# =============================================================================
+
+# Structured logging
+structlog==23.2.0
+
+# Health checks
+django-health-check==3.17.0
+
+# API and Documentation (minimal)
+# =============================================================================
+
+# API framework (already in requirements.txt)
+# djangorestframework==3.14.0  # Already in requirements.txt
+
+# API documentation
+drf-spectacular==0.26.5
+
+# Testing (for production testing)
+# =============================================================================
+
+# Basic testing utilities (lightweight)
+factory-boy==3.3.0
+
+# Compliance and Security
+# =============================================================================
+
+# GDPR compliance tools
+django-gdpr-assist==1.4.2
+
+# Security scanning
+safety==2.3.5
+
+# Production Configuration
+# =============================================================================
+
+# Whitenoise for static files
+whitenoise[brotli]==6.6.0
+
+# SSL/TLS
+certifi==2023.11.17
+
+# Production database optimizations
+# =============================================================================
+
+# Connection pooling
+django-db-connection-pool[mysql]==1.2.4
+
+# Database migrations safety
+django-migration-linter==5.0.0
+
+# Voice Chat Production Dependencies
+# =============================================================================
+
+# Audio processing (production optimized)
+librosa==0.10.1
+soundfile==0.12.1
+
+# WebSocket for production
+channels[daphne]==4.0.0
+channels-redis==4.1.0
+
+# Google ADK for AI capabilities (already in requirements.txt)
+# google-adk==1.0.0  # Already in requirements.txt
+
+# Production monitoring and metrics (minimal)
+# =============================================================================
+
+# Application metrics
+prometheus-client==0.19.0
+django-prometheus==2.3.1
+
+# REMOVED: All OpenTelemetry tracing packages to match local environment
+# No opentelemetry-* packages to avoid conflicts

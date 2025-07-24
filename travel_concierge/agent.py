@@ -19,6 +19,10 @@ import os
 import time
 import google.generativeai as genai
 from google.api_core import retry
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from travel_concierge import prompt
 

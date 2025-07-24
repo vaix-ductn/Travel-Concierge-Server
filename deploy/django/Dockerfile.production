@@ -1,0 +1,117 @@
+# =============================================================================
+# Production Dockerfile for Travel Server
+# Optimized for Google Cloud Run deployment
+# =============================================================================
+
+# Use official Python runtime as base image
+FROM python:3.11-slim-bullseye AS base
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=random \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_DEFAULT_TIMEOUT=100
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    # Required for mysqlclient
+    default-libmysqlclient-dev \
+    pkg-config \
+    build-essential \
+    # Required for Pillow
+    libjpeg62-turbo-dev \
+    zlib1g-dev \
+    libfreetype6-dev \
+    liblcms2-dev \
+    libopenjp2-7-dev \
+    libtiff5-dev \
+    libwebp-dev \
+    # Required for audio processing
+    libsndfile1 \
+    ffmpeg \
+    # System utilities
+    curl \
+    git \
+    # Cloud SQL Proxy
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN groupadd --gid 1000 appuser && \
+    useradd --uid 1000 --gid 1000 --create-home appuser
+
+# =============================================================================
+# Dependencies Stage
+# =============================================================================
+FROM base AS dependencies
+
+# Install Cloud SQL Proxy
+RUN wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O /usr/local/bin/cloud_sql_proxy && \
+    chmod +x /usr/local/bin/cloud_sql_proxy
+
+# Set work directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt requirements-production.txt ./
+
+# Debug: List requirements files and show content
+RUN echo "=== Requirements files check ===" && \
+    ls -la requirements*.txt && \
+    echo "=== requirements.txt content ===" && \
+    cat requirements.txt && \
+    echo "=== requirements-production.txt content ===" && \
+    head -30 requirements-production.txt
+
+# Install Python dependencies with explicit PyMySQL installation and ADK
+RUN pip install --upgrade pip setuptools wheel && \
+    echo "=== Installing ADK Agent first ===" && \
+    pip install --no-cache-dir google-adk && \
+    echo "=== Installing production requirements ===" && \
+    pip install -r requirements-production.txt && \
+    echo "=== Verifying PyMySQL installation ===" && \
+    python -c "import pymysql; print(f'PyMySQL version: {pymysql.__version__}')" && \
+    echo "=== Verifying ADK installation ===" && \
+    python -c "import google.adk; print('ADK installed successfully')" && \
+    echo "=== Listing installed packages ===" && \
+    pip list | grep -i mysql
+
+# =============================================================================
+# Application Stage
+# =============================================================================
+FROM dependencies AS application
+
+# Copy application code
+COPY . .
+
+# Copy startup script
+COPY deploy/start_production.sh /start_production.sh
+RUN chmod +x /start_production.sh
+
+# Create necessary directories
+RUN mkdir -p staticfiles media logs && \
+    chown -R appuser:appuser /app && \
+    chown appuser:appuser /start_production.sh
+
+# Switch to non-root user
+USER appuser
+
+# Collect static files
+RUN python manage.py collectstatic --noinput --clear
+
+# =============================================================================
+# Production Stage
+# =============================================================================
+FROM application AS production
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health/ || exit 1
+
+# Set the startup command to run both Django and ADK Agent
+CMD ["bash", "-c", "python manage.py migrate && adk api_server travel_concierge --host 0.0.0.0 --port 8002 & gunicorn --bind 0.0.0.0:8000 --workers 2 --threads 4 --timeout 120 --keep-alive 2 --max-requests 1000 --max-requests-jitter 100 --worker-class gthread --access-logfile - --error-logfile - --log-level info config.wsgi:application"]
