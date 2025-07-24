@@ -37,32 +37,54 @@ class AgentView:
         }
         """
         try:
-            # Validate request data
-            validation = ChatMessageValidation(data=request.data)
-            validation.is_valid(raise_exception=True)
+            # Log request data for debugging
+            logger = logging.getLogger(__name__)
+            logger.info(f"Received chat request: {request.data}")
+
+            # Handle potential encoding issues
+            try:
+                # Validate request data
+                validation = ChatMessageValidation(data=request.data)
+                validation.is_valid(raise_exception=True)
+            except Exception as validation_error:
+                logger.error(f"Validation error: {validation_error}")
+                logger.error(f"Request data type: {type(request.data)}")
+                logger.error(f"Request data content: {request.data}")
+                raise
 
             # Extract validated data
             message = validation.validated_data['message']
             user_id = validation.validated_data['user_id']
             session_id = validation.validated_data.get('session_id')
 
+            logger.info(f"Processing message: '{message[:100]}...' for user: {user_id}")
+
             # Initialize service and process chat
             agent_service = AgentService()
             result = agent_service.process_chat_message(message, user_id, session_id)
 
+            # Ensure proper UTF-8 encoding for response
+            if 'data' in result and 'response' in result['data']:
+                response_text = result['data']['response']
+                if isinstance(response_text, bytes):
+                    result['data']['response'] = response_text.decode('utf-8', errors='replace')
+                elif not isinstance(response_text, str):
+                    result['data']['response'] = str(response_text)
+
             return Response({
                 'success': True,
                 'data': result
-            })
+            }, content_type='application/json; charset=utf-8')
 
         except ValidationError as e:
+            logger.error(f"Validation error in chat_with_agent: {e}")
             return Response({
                 'success': False,
                 'error': str(e)
             }, status=status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
-            logging.getLogger(__name__).error(f"Error in chat_with_agent: {e}")
+            logger.error(f"Error in chat_with_agent: {e}")
             return Response({
                 'success': False,
                 'error': 'Unable to process chat message'

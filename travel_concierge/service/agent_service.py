@@ -13,12 +13,27 @@ from travel_concierge.agent import root_agent
 
 
 class AgentService:
-    """Service class for AI Agent business logic"""
+    """Service class for handling AI Agent interactions"""
 
     def __init__(self):
-        """Initialize service with root agent"""
-        self.root_agent = root_agent
         self.logger = logging.getLogger(__name__)
+        # Initialize services once for reuse
+        import asyncio
+        from google.adk.runners import Runner
+        from google.adk.sessions import InMemorySessionService
+        from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService
+        from google.genai import types
+
+        self.session_service = InMemorySessionService()
+        self.artifacts_service = InMemoryArtifactService()
+        self.sessions = {}  # Cache for user sessions
+        self.root_agent = None
+        try:
+            self.root_agent = root_agent
+            self.logger.info("AI Agent initialized successfully")
+        except Exception as e:
+            self.logger.error(f"Failed to initialize AI Agent: {e}")
+            raise
 
     def process_chat_message(self, message: str, user_id: str, session_id: Optional[str] = None) -> Dict[str, Any]:
         """
@@ -40,6 +55,12 @@ class AgentService:
             response = self._interact_with_agent(message, user_id, session_id)
 
             self.logger.info(f"Agent response generated for user {user_id}")
+
+            # Ensure proper UTF-8 encoding for response
+            if isinstance(response, bytes):
+                response = response.decode('utf-8', errors='replace')
+            elif not isinstance(response, str):
+                response = str(response)
 
             # Validate and enhance response structure
             enhanced_response = self._enhance_response_structure(response)
@@ -71,20 +92,25 @@ class AgentService:
             from google.adk.sessions import InMemorySessionService
             from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService
             from google.genai import types
+            import time
 
-            # Initialize services
-            session_service = InMemorySessionService()
-            artifacts_service = InMemoryArtifactService()
-
-            # Create session if not provided
+            # Get or create session for this user
             if not session_id:
                 session_id = f"session_{user_id}_{int(time.time())}"
 
-            session = session_service.create_session(
-                state={},
-                app_name="travel-concierge",
-                user_id=user_id
-            )
+            # Check if session already exists for this user
+            if user_id in self.sessions:
+                session = self.sessions[user_id]
+                self.logger.info(f"Reusing existing session for user {user_id}")
+            else:
+                # Create new session for this user
+                session = self.session_service.create_session_sync(
+                    state={},
+                    app_name="travel-concierge",
+                    user_id=user_id
+                )
+                self.sessions[user_id] = session
+                self.logger.info(f"Created new session for user {user_id}")
 
             # Create content for the message
             content = types.Content(role="user", parts=[types.Part(text=message)])
@@ -93,33 +119,47 @@ class AgentService:
             runner = Runner(
                 app_name="travel-concierge",
                 agent=self.root_agent,
-                artifact_service=artifacts_service,
-                session_service=session_service,
+                artifact_service=self.artifacts_service,
+                session_service=self.session_service,
             )
 
             # Run the agent asynchronously
-            events_async = runner.run_async(
-                session_id=session.id,
-                user_id=user_id,
-                new_message=content
-            )
+            async def run_agent_async():
+                # Run the agent
+                events_async = runner.run_async(
+                    session_id=session.id,
+                    user_id=user_id,
+                    new_message=content
+                )
 
-            # Collect response
-            response_parts = []
-            async def collect_response():
+                # Collect response
+                response_parts = []
                 async for event in events_async:
                     if event.content and event.content.parts:
                         for part in event.content.parts:
                             if part.text:
-                                response_parts.append(part.text)
+                                # Clean up the text response
+                                text = part.text.strip()
+                                if text and text != "{}":
+                                    response_parts.append(text)
                             # Handle function responses that might contain map_url and image_url
                             if part.function_response:
-                                response_parts.append(str(part.function_response.response))
+                                func_response = str(part.function_response.response)
+                                if func_response and func_response != "{}":
+                                    response_parts.append(func_response)
+                            # Handle function calls
+                            if part.function_call:
+                                # Extract function call name and arguments
+                                func_name = part.function_call.name if hasattr(part.function_call, 'name') else 'unknown'
+                                func_args = part.function_call.args if hasattr(part.function_call, 'args') else {}
+                                if func_name and func_args:
+                                    response_parts.append(f"Calling {func_name} with arguments: {func_args}")
+
                 return "\n".join(response_parts)
 
-                        # Run the async function
+            # Run the async function
             try:
-                response = asyncio.run(collect_response())
+                response = asyncio.run(run_agent_async())
             except RuntimeError as e:
                 # Handle case where event loop is already running
                 if "event loop is running" in str(e):
@@ -127,7 +167,7 @@ class AgentService:
                     loop = asyncio.new_event_loop()
                     asyncio.set_event_loop(loop)
                     try:
-                        response = loop.run_until_complete(collect_response())
+                        response = loop.run_until_complete(run_agent_async())
                     finally:
                         loop.close()
                 else:
@@ -135,6 +175,15 @@ class AgentService:
 
             if not response:
                 response = f"Agent response to: {message}"
+
+            # Ensure proper UTF-8 encoding for response
+            if isinstance(response, bytes):
+                response = response.decode('utf-8', errors='replace')
+            elif not isinstance(response, str):
+                response = str(response)
+
+            # Log response for debugging
+            self.logger.info(f"Raw agent response: {response[:200]}...")
 
             return response
 
