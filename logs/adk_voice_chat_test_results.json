@@ -1,0 +1,77 @@
+{
+  "overall_success": true,
+  "total_tests": 17,
+  "passed_tests": 17,
+  "failed_tests": 0,
+  "duration": 0.06137394905090332,
+  "detailed_results": {
+    "Environment Variable: GOOGLE_CLOUD_PROJECT": {
+      "passed": true,
+      "details": "Value: travelapp-461806"
+    },
+    "Environment Variable: GOOGLE_CLOUD_LOCATION": {
+      "passed": true,
+      "details": "Value: us-central1 "
+    },
+    "ADK Handler Initialization": {
+      "passed": true,
+      "details": "Project: travelapp-461806, Location: us-central1"
+    },
+    "Google GenAI Vertex AI Config": {
+      "passed": true,
+      "details": "GOOGLE_GENAI_USE_VERTEXAI: TRUE"
+    },
+    "ADK Run Config Creation": {
+      "passed": true,
+      "details": "Streaming mode: StreamingMode.BIDI"
+    },
+    "Session Creation": {
+      "passed": true,
+      "details": "Session ID: voice_test_session_1752817715"
+    },
+    "Session Status Check": {
+      "passed": true,
+      "details": "Session active, User: test_user"
+    },
+    "Session Cleanup": {
+      "passed": true,
+      "details": "Session closed successfully"
+    },
+    "Live Streaming Session Creation": {
+      "passed": true,
+      "details": "Session: stream_test_1752817715"
+    },
+    "Live Request Queue": {
+      "passed": true,
+      "details": "Queue created successfully"
+    },
+    "ADK Runner Configuration": {
+      "passed": true,
+      "details": "Runner configured with travel agent"
+    },
+    "Live Streaming Cleanup": {
+      "passed": true,
+      "details": "Test session cleaned up"
+    },
+    "WebSocket Server Initialization": {
+      "passed": true,
+      "details": "Server configured on 127.0.0.1:8004"
+    },
+    "WebSocket Server Configuration": {
+      "passed": true,
+      "details": "Connection and session management ready"
+    },
+    "Input Sample Rate": {
+      "passed": true,
+      "details": "16000 Hz"
+    },
+    "Output Sample Rate": {
+      "passed": true,
+      "details": "24000 Hz"
+    },
+    "Voice Configuration": {
+      "passed": true,
+      "details": "Voice: Aoede"
+    }
+  }
+}
