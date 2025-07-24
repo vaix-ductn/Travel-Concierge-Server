@@ -11,14 +11,14 @@
 ### For Linux/Mac:
 ```bash
 cd Server/travel_server
-chmod +x deploy/quick_deploy.sh
-./deploy/quick_deploy.sh
+chmod +x quick_deploy.sh
+./quick_deploy.sh
 ```
 
 ### For Windows (PowerShell):
 ```powershell
 cd Server/travel_server
-.\deploy\quick_deploy.ps1
+.\quick_deploy.ps1
 ```
 
 ## 🔧 Manual Deploy
