@@ -16,6 +16,8 @@ websockets>=12.0
 asyncio
 google-cloud-aiplatform>=1.38.0
 google-genai>=0.3.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
 
 # Authentication dependencies
 PyJWT==2.8.0

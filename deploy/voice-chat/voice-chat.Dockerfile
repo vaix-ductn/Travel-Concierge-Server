@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     curl \
     git \
+    procps \
     && rm -rf /var/lib/apt/lists/*
 
 # Set work directory
@@ -37,16 +38,18 @@ COPY travel_concierge/management/ ./travel_concierge/management/
 # Create logs directory
 RUN mkdir -p logs
 
-# Expose voice chat server port
-EXPOSE 8003
+# Expose voice chat server port and health check port
+EXPOSE 8003 8080
 
 # Health check for voice chat server
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8003/health/ || exit 1
+HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:8080/health/ || exit 1
 
-# Start Voice Chat WebSocket server
-# Copy test server
-COPY deploy/voice-chat/test_voice_server.py ./test_voice_server.py
+# Copy Django settings and base configuration
+COPY base/ ./base/
 
-# Start test server
-CMD ["python", "test_voice_server.py"]
+# Copy production voice server startup script
+COPY deploy/voice-chat/start_voice_server.py ./start_voice_server.py
+
+# Start production voice server
+CMD ["python", "start_voice_server.py"]
