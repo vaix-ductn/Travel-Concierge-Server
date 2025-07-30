@@ -42,7 +42,7 @@ fi
 
 # Start Voice Chat WebSocket server in the background
 echo "Starting Voice Chat WebSocket server..."
-python manage.py start_voice_server --host 0.0.0.0 --port 8003 > /var/www/logs/voice_server.log 2>&1 &
+python -m travel_concierge.voice_chat.unified_voice_server > /var/www/logs/voice_server.log 2>&1 &
 VOICE_PID=$!
 
 # Wait a moment for voice server to initialize
