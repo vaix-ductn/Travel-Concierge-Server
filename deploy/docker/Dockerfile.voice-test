@@ -1,0 +1,38 @@
+# Dockerfile for Voice Chat Server Testing
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install additional dependencies for voice chat
+RUN pip install --no-cache-dir \
+    fastapi==0.104.1 \
+    uvicorn[standard]==0.24.0 \
+    websockets==12.0 \
+    google-agent-toolkit \
+    google-cloud-aiplatform
+
+# Copy application code
+COPY . .
+
+# Create logs directory
+RUN mkdir -p /app/logs
+
+# Expose ports
+EXPOSE 8003 8080
+
+# Health check endpoint
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8003/health || exit 1
+
+# Start voice chat server
+CMD ["python", "-m", "travel_concierge.voice_chat.unified_voice_server"]

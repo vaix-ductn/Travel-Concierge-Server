@@ -20,7 +20,7 @@ import threading
 sys.path.insert(0, '/app')
 
 # Configure Django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
 def setup_django():
     """Setup Django environment"""

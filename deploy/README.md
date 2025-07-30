@@ -1,92 +1,80 @@
-# Travel Concierge Deployment Structure
+# Deployment Infrastructure
 
-## 📁 Directory Organization
+This directory contains all deployment-related files and scripts for the Travel Concierge Voice Chat service.
+
+## Directory Structure
 
 ```
 deploy/
-├── django/                    # Django App Service
-│   ├── cloud-deploy.sh        # Django deployment script
-│   ├── cloud-deploy.ps1       # Django deployment script (PowerShell)
-│   └── Dockerfile.production  # Django production Dockerfile
-│
-├── adk-agent/                 # ADK Agent Service
-│   ├── adk-agent-cloudbuild.yaml  # Cloud Build config
-│   └── adk-agent.Dockerfile   # ADK Agent Dockerfile
-│
-├── voice-chat/                # Voice Chat Service
-│   ├── voice-chat-cloudbuild.yaml  # Cloud Build config
-│   └── voice-chat.Dockerfile  # Voice Chat Dockerfile
-│
-└── shared/                    # Shared deployment files
-    ├── deploy-all-services.sh # Deploy all services script
-    └── deploy-config.yaml     # Shared configuration
+├── docker/                     # Docker configurations
+│   ├── Dockerfile.voice-test   # Docker image for testing
+│   └── docker-compose.voice-test.yml  # Docker Compose setup
+├── scripts/                    # Deployment automation scripts  
+│   ├── deploy_voice_chat.ps1   # PowerShell deployment to GCP
+│   └── deploy_voice_test.ps1   # PowerShell testing deployment
+├── utils/                      # Utility scripts
+│   ├── restart_voice_server.py # Voice server restart utility
+│   └── start_unified_voice_server.py  # Unified server starter
+├── voice-chat/                 # Production voice chat deployment
+│   ├── start_voice_server.py   # Production server starter
+│   ├── voice-chat.Dockerfile   # Production Docker image
+│   └── voice-chat-cloudbuild.yaml  # GCP Cloud Build config
+└── voice-chat-adk/            # ADK bridge deployment
+    ├── Dockerfile              # ADK bridge Docker image
+    ├── cloudbuild.yaml         # ADK bridge Cloud Build
+    └── ...                     # Testing and deployment scripts
 ```
 
-## 🚀 Deployment Services
+## Usage Instructions
 
-### 1. Django App Service
-- **Port**: 8000
-- **URL**: `https://travel-server-staging-277713629269.us-central1.run.app`
-- **Purpose**: Main API endpoints, authentication, database operations
-
-### 2. ADK Agent Service
-- **Port**: 8002
-- **URL**: `https://adk-agent-server-277713629269.us-central1.run.app`
-- **Purpose**: AI Agent functionality, SSE streaming, ADK Web UI
-
-### 3. Voice Chat Service
-- **Port**: 8003
-- **URL**: `https://voice-chat-server-277713629269.us-central1.run.app`
-- **Purpose**: WebSocket voice chat, audio processing
-
-## 🔧 Deployment Commands
-
-### Deploy All Services
+### Local Development
 ```bash
-cd Server/travel_server
-./deploy/shared/deploy-all-services.sh
+# Start voice server locally
+cd deploy/utils
+python start_unified_voice_server.py
+
+# Restart voice server in Docker
+python restart_voice_server.py
 ```
 
-### Deploy Individual Services
-
-#### Django Service
+### Docker Testing
 ```bash
-cd Server/travel_server
-gcloud builds submit --config deploy/django/cloudbuild.yaml .
-gcloud run deploy travel-server-staging --image gcr.io/travelapp-461806/travel-server-repo/travel-server-staging:latest --region us-central1
+# Run with Docker Compose
+cd deploy/docker
+docker-compose -f docker-compose.voice-test.yml up --build
 ```
 
-#### ADK Agent Service
-```bash
-cd Server/travel_server
-gcloud builds submit --config deploy/adk-agent/adk-agent-cloudbuild.yaml .
-gcloud run deploy adk-agent-server --image gcr.io/travelapp-461806/travel-server-repo/adk-agent-server:latest --region us-central1
+### Production Deployment
+```powershell
+# Deploy to Google Cloud Run
+cd deploy/scripts
+.\deploy_voice_chat.ps1
 ```
 
-#### Voice Chat Service
-```bash
-cd Server/travel_server
-gcloud builds submit --config deploy/voice-chat/voice-chat-cloudbuild.yaml .
-gcloud run deploy voice-chat-server --image gcr.io/travelapp-461806/travel-server-repo/voice-chat-server:latest --region us-central1
+### Testing Deployment
+```powershell
+# Run comprehensive deployment tests
+cd deploy/scripts  
+.\deploy_voice_test.ps1
 ```
 
-## 🧪 Testing
+## Configuration
 
-Test scripts are located in `tests/deployment/`:
-- `test_production_services.ps1` - Test all production services
-- `test_local_docker_fix.ps1` - Test local Docker setup
-- `test_adk_agent_server.ps1` - Test ADK Agent server
-- `test_ai_agent_chat.ps1` - Test AI Agent chat
-- `test_api_endpoints.ps1` - Test API endpoints
+All deployment scripts are configured for:
+- **Project ID**: travelapp-461806
+- **Region**: us-central1
+- **Voice Server Port**: 8003
+- **Health Check Port**: 8080
 
-## 🔗 Service Communication
+## Requirements
 
-- Django Service calls ADK Agent via `ADK_AGENT_URL` environment variable
-- Voice Chat Service operates independently via WebSocket
-- All services are accessible via their respective Cloud Run URLs
+- Docker and Docker Compose
+- Google Cloud SDK (`gcloud`)
+- Python 3.10+
+- PowerShell (for Windows deployment scripts)
 
-## 📊 Monitoring
+## Notes
 
-- Health checks are configured for all services
-- Logs are available in Google Cloud Console
-- Metrics can be viewed in Cloud Monitoring
+- All paths in deployment files have been updated to work from their new locations
+- Scripts automatically detect project root directory for proper path resolution
+- Health checks and monitoring are included in all deployment configurations

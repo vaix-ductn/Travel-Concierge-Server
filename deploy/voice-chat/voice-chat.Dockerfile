@@ -31,9 +31,14 @@ COPY requirements.txt ./
 RUN pip install --upgrade pip setuptools wheel && \
     pip install -r requirements.txt
 
-# Copy voice chat code
-COPY travel_concierge/voice_chat/ ./travel_concierge/voice_chat/
-COPY travel_concierge/management/ ./travel_concierge/management/
+# Copy production voice server startup script first
+COPY deploy/voice-chat/start_voice_server.py ./start_voice_server.py
+
+# Copy entire Django project
+COPY . ./
+
+# Remove unnecessary files
+RUN rm -rf logs/ media/ static/ *.md deploy/ tests/
 
 # Create logs directory
 RUN mkdir -p logs
@@ -44,12 +49,6 @@ EXPOSE 8003 8080
 # Health check for voice chat server
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:8080/health/ || exit 1
-
-# Copy Django settings and base configuration
-COPY base/ ./base/
-
-# Copy production voice server startup script
-COPY deploy/voice-chat/start_voice_server.py ./start_voice_server.py
 
 # Start production voice server
 CMD ["python", "start_voice_server.py"]

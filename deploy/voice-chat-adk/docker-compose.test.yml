@@ -1,0 +1,25 @@
+# Docker Compose for local testing of ADK Bridge Server
+version: '3.8'
+
+services:
+  voice-chat-adk-bridge:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      - GOOGLE_CLOUD_PROJECT=sascha-playground-doit
+      - GOOGLE_CLOUD_LOCATION=us-central1
+      - HOST=0.0.0.0
+      - PORT=8003
+    volumes:
+      # Mount service account key if available
+      - ~/.config/gcloud:/root/.config/gcloud:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s=socket.socket(); s.connect(('localhost', 8003)); s.close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

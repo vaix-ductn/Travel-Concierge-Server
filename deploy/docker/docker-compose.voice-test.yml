@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  voice-chat-server:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.voice-test
+    ports:
+      - "8003:8003"
+      - "8080:8080"  # Health check port
+    environment:
+      - GOOGLE_CLOUD_PROJECT=travelapp-461806
+      - GOOGLE_CLOUD_LOCATION=us-central1
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/config/credentials/service-account-key.json
+      - PYTHONPATH=/app
+    volumes:
+      - ../../config/credentials:/app/config/credentials:ro
+      - ../../travel_concierge:/app/travel_concierge:ro
+    networks:
+      - voice-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  voice-network:
+    driver: bridge
