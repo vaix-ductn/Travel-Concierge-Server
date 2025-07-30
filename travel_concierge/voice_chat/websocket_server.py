@@ -130,6 +130,8 @@ class VoiceWebSocketServer:
                     'user_id': user_id,
                     'status': 'ready_for_audio'
                 })
+                
+                self.logger.info(f"✅ Sent session_id to client: {session_id}")
 
                 # Start live streaming task automatically
                 asyncio.create_task(self.stream_responses(websocket, session_id))
@@ -244,8 +246,8 @@ class VoiceWebSocketServer:
             success = await adk_live_handler.process_audio_input(session_id, audio_data)
 
             if not success:
-                self.logger.warning(f"⚠️ Audio processing failed for session {session_id}")
-                # Don't send error to client for audio processing failures to avoid spam
+                self.logger.error(f"❌ Audio processing failed for session {session_id}")
+                await self.send_error(websocket, f"Audio processing failed for session {session_id}")
             else:
                 self.logger.debug(f"✅ Successfully processed JSON audio for session {session_id}")
 
@@ -266,8 +268,8 @@ class VoiceWebSocketServer:
             success = await adk_live_handler.process_audio_input(session_id, audio_data)
 
             if not success:
-                self.logger.warning(f"⚠️ Binary audio processing failed for session {session_id}")
-                # Don't send error to client for audio processing failures to avoid spam
+                self.logger.error(f"❌ Binary audio processing failed for session {session_id}")
+                await self.send_error(websocket, f"Binary audio processing failed for session {session_id}")
             else:
                 self.logger.debug(f"✅ Successfully processed binary audio for session {session_id}")
 

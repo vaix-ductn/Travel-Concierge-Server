@@ -92,6 +92,7 @@ class ADKLiveHandler:
         # Session management
         self.active_sessions: Dict[str, Dict[str, Any]] = {}
         self.user_sessions: Dict[str, str] = {}  # user_id -> session_id mapping
+        self.max_sessions = 10  # Limit maximum concurrent sessions
 
         # Initialize Vertex AI
         try:
@@ -113,6 +114,9 @@ class ADKLiveHandler:
         This combines connection, session creation, and initialization
         """
         try:
+            # Clean up old sessions if too many
+            await self._cleanup_old_sessions()
+            
             # Generate unique session ID
             session_id = f"auto_voice_{user_id}_{int(time.time())}_{str(uuid.uuid4())[:8]}"
 
@@ -206,11 +210,27 @@ class ADKLiveHandler:
         """Process audio input from client"""
         try:
             session_info = self.active_sessions.get(session_id)
-            if not session_info or not session_info['is_active']:
-                self.logger.warning(f"⚠️ No active session found for {session_id}")
+            if not session_info:
+                self.logger.error(f"❌ No active session found for {session_id}")
+                self.logger.error(f"❌ Available sessions: {list(self.active_sessions.keys())}")
+                
+                # Don't try to recreate session - this causes session ID mismatch
+                self.logger.error(f"❌ Session {session_id} was requested but not found")
+                self.logger.error(f"❌ This indicates session ID synchronization issue between client and server")
                 return False
+                
+            if not session_info['is_active']:
+                self.logger.error(f"❌ Session {session_id} is not active")
+                # Try to reactivate session
+                session_info['is_active'] = True
+                self.logger.info(f"🔄 Reactivated session {session_id}")
 
             live_request_queue = session_info['live_request_queue']
+            
+            # Validate live_request_queue
+            if not live_request_queue:
+                self.logger.error(f"❌ No live_request_queue for session {session_id}")
+                return False
 
             # Create audio blob
             audio_blob = types.Blob(
@@ -225,7 +245,9 @@ class ADKLiveHandler:
             return True
 
         except Exception as e:
-            self.logger.error(f"❌ Failed to process audio input: {str(e)}")
+            import traceback
+            self.logger.error(f"❌ Failed to process audio input for session {session_id}: {str(e)}")
+            self.logger.error(f"❌ Exception details: {traceback.format_exc()}")
             return False
 
     async def start_live_session(self, session_id: str) -> AsyncGenerator[Dict[str, Any], None]:
@@ -404,6 +426,29 @@ class ADKLiveHandler:
 
         except Exception as e:
             self.logger.error(f"❌ Error during cleanup: {str(e)}")
+
+    async def _cleanup_old_sessions(self):
+        """Cleanup old sessions if too many are active"""
+        try:
+            if len(self.active_sessions) <= self.max_sessions:
+                return
+                
+            self.logger.warning(f"⚠️ Too many sessions ({len(self.active_sessions)}), cleaning up oldest")
+            
+            # Get oldest sessions (sort by created_at)
+            session_items = list(self.active_sessions.items())
+            session_items.sort(key=lambda x: x[1].get('created_at', 0))
+            
+            # Close oldest sessions to keep only max_sessions
+            sessions_to_close = len(self.active_sessions) - self.max_sessions + 1
+            for i in range(sessions_to_close):
+                if i < len(session_items):
+                    session_id = session_items[i][0]
+                    await self.close_session(session_id)
+                    self.logger.info(f"🧹 Closed old session: {session_id}")
+                    
+        except Exception as e:
+            self.logger.error(f"❌ Error during old session cleanup: {str(e)}")
 
 
     async def process_text_input(self, session_id: str, text: str) -> bool:
