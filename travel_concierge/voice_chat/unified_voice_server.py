@@ -45,8 +45,8 @@ logger.info("🚀 Voice Chat Server Logger Initialized with DEBUG level")
 # Configuration
 PROJECT_ID = "travelapp-461806"
 LOCATION = "us-central1"
-MODEL = "gemini-2.0-flash-exp"  # Try different model
-VOICE_NAME = "Puck"  # Try different voice
+MODEL = "gemini-2.0-flash-exp"  # Primary model
+VOICE_NAME = "Aoede"  # Voice that worked in previous sessions
 
 # Initialize Vertex AI
 try:
@@ -474,19 +474,30 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         # Create Run Config with simplified config first
         logger.debug(f"⚙️ Creating RunConfig with simplified config for session: {session_id}")
         try:
+            # First try with both TEXT and AUDIO response modalities
             run_config = RunConfig(
                 streaming_mode=StreamingMode.BIDI,
-                response_modalities=["TEXT"]  # Start with text only to avoid audio issues
+                response_modalities=["TEXT", "AUDIO"],  # Enable both text and audio responses
+                voice_config=types.VoiceConfig(voice_name=VOICE_NAME)  # Add voice configuration
             )
-            logger.debug(f"✅ RunConfig created with simplified config - TEXT only")
+            logger.debug(f"✅ RunConfig created with TEXT and AUDIO response modalities")
         except Exception as e:
-            logger.error(f"❌ Failed to create RunConfig: {str(e)}")
-            error_message = {
-                'type': 'error',
-                'data': {'error_message': f'RunConfig creation failed: {str(e)}'}
-            }
-            await websocket.send_text(json.dumps(error_message))
-            return
+            logger.warning(f"⚠️ Failed to create RunConfig with AUDIO, falling back to TEXT-only: {str(e)}")
+            try:
+                # Fallback to TEXT-only mode if AUDIO fails
+                run_config = RunConfig(
+                    streaming_mode=StreamingMode.BIDI,
+                    response_modalities=["TEXT"]  # TEXT-only fallback
+                )
+                logger.debug(f"✅ RunConfig created with TEXT-only fallback")
+            except Exception as e2:
+                logger.error(f"❌ Failed to create even TEXT-only RunConfig: {str(e2)}")
+                error_message = {
+                    'type': 'error',
+                    'data': {'error_message': f'RunConfig creation failed: {str(e2)}'}
+                }
+                await websocket.send_text(json.dumps(error_message))
+                return
         
         # Create Runner
         logger.debug(f"🏃 Creating Runner for session: {session_id}")
